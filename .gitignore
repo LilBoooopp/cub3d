@@ -2,3 +2,4 @@ Objects/
 *.o
 *.txt
 cub3d
+libft/Objects/
