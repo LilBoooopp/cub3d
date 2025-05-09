@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/09 15:01:14 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/09 16:20:27 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <stdio.h>
 # include <math.h>
 # include <stdlib.h>
+
+typedef struct s_cub
+{
+	void	*mlx;
+	void	*mlx_win;
+}	t_cub;
 
 typedef struct s_data
 {
