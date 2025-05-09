@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 16:55:19 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/09 14:50:41 by cbopp            ###   ########.fr       */
+/*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
+/*   Updated: 2025/05/09 14:50:53 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#ifndef CUB3D_H
+# define CUB3D_H
 
-int	main(void)
-{
-	void	*mlx;
-	void	*mlx_win;
+# include <../mlx_linux/mlx.h>
+# include <stdio.h>
+# include <math.h>
+# include <stdlib.h>
 
-	mlx_win = NULL;
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	mlx_loop(mlx);
-
-	return (0);
-}
+#endif

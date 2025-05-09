@@ -1,7 +1,7 @@
 NAME = cub3d
 CC = cc
 RM = rm -rf
-FLAGS = -Werror -Wextra -Wall
+FLAGS = -Imlx_linux
 MAKE := make --no-print-directory
 
 #--------------------------------------LIBFT------------------------------------#
@@ -59,7 +59,7 @@ $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJECTS)
-	@$(CC) $(FLAGS) $(OBJECTS) $(LIBFT) $(PRINTF) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJECTS) $(LIBFT) $(PRINTF) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 	@echo "\033[1;32m\n✅ $(NAME) successfully compiled!\n\033[0m"
 	@rm .counter
 
