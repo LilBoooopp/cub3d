@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   mlx_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/09 15:01:14 by cbopp            ###   ########.fr       */
+/*   Created: 2025/05/09 14:58:22 by cbopp             #+#    #+#             */
+/*   Updated: 2025/05/09 14:59:56 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "../../include/cub3d.h"
 
-# include <../mlx_linux/mlx.h>
-# include <stdio.h>
-# include <math.h>
-# include <stdlib.h>
-
-typedef struct s_data
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
-}	t_data;
+	char	*dst;
 
-// mlx
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-
-
-#endif
+	dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
+	*(unsigned int *)dst = color;
+}

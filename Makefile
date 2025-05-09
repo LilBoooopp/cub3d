@@ -16,8 +16,13 @@ SRC_SRC =  \
 	main.c
 SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
 
-ALL_SRC = $(SRC)
-vpath %.c src
+MLX_DIR = src/mlx/
+MLX_SRC =  \
+	mlx_helper.c
+MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
+
+ALL_SRC = $(SRC) $(MLX)
+vpath %.c src src/mlx
 #--------------------------------------OBJECTS----------------------------------#
 OBJ_DIR = Objects/
 # Generate object files with same names but in Objects directory
