@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 17:18:28 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/12 17:56:04 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,22 @@ static t_map	*init_map(void)
 	return (map);
 }
 
+static	t_player	*init_player(void)
+{
+	t_player	*player;
+
+	player = malloc(sizeof(t_player));
+	player->pos = set_vec2(4, 4);
+	player->facing = set_vec2(0, 0);
+	player->fov = 120;
+	return (player);
+}
+
 
 int	init(t_cub *cub)
 {
 	cub->mlx = mlx_init();
+	cub->player = init_player();
 	cub->mlx_win = mlx_new_window(cub->mlx, 1280, 1024, "Cub3D");
 	cub->map = init_map();
 	ft_print_inttable(cub->map->map, cub->map->sizey, cub->map->sizex);
