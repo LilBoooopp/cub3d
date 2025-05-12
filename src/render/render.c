@@ -6,13 +6,13 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/13 00:27:24 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/13 00:45:25 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	render_player(t_cub *cub, t_img *img, t_player *player)
+void	render_map(t_cub *cub, t_img *img, t_player *player)
 {
 	t_vec2			end;
 	t_img			box;
@@ -39,7 +39,7 @@ int	render(t_cub *cub)
 	img.img = mlx_new_image(cub->mlx, img.size.x, img.size.y);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.len, &img.end);
 	mlx_set_img(&img, 0xFFFFFF);
-	render_player(cub, &img, &cub->player);
+	render_map(cub, &img, &cub->player);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, img.img, 0, 0);
 	mlx_destroy_image(cub->mlx, img.img);
 	return (0);

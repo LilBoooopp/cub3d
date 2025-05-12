@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 23:35:29 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/13 01:07:22 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,23 @@ typedef struct s_cub
 	t_map		*map;
 }	t_cub;
 
+typedef struct s_raycast
+{
+	double	cam_x;
+	t_vec2	ray_dir;
+	t_vec2	map;
+	t_vec2	side_dist;
+	t_vec2	delta_dist;
+	t_vec2	step;
+	int		hit;
+	int		side;
+	double	perp_dist;
+	int		line_h;
+	int		draw_start;
+	int		draw_end;
+	int		color;
+}	t_raycast;
+
 typedef struct s_img
 {
 	void	*img;
@@ -95,38 +112,42 @@ typedef struct s_img
 	int		end;
 }	t_img;
 
-// init
+/* === AUTO GENERATED PROTOTYPES START === */
+/* init */
 int		init(t_cub *cub);
+void	init_player(t_player *player);
 
-// utils
+/* mlx */
+int		get_pixel(t_img *img, t_vec2 pos);
+t_vec2	get_rotated_position(t_vec2 center, t_vec2 local, double angle);
+t_vec2	rotate_point(t_vec2 rel, double angle);
+void	draw_line(t_img *img, t_vec2 start, t_vec2 end, int color);
+void	draw_pixels(t_img *img, t_vec2 pos, t_vec2 size, int color);
+void	draw_rotated_image(t_img *t, t_img *s, t_vec2 pos, double ang);
+void	mlx_set_img(t_img *img, int color);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+
+/* player */
+void	move_backward(t_player *p);
+void	move_forward(t_player *p);
+void	move_left(t_player *p);
+void	move_right(t_player *p);
+void	rotate(t_player *p, double angle);
+
+/* render */
+int		render(t_cub *cub);
+void	cast_rays(t_cub *cub, t_img *img);
+void	render_map(t_cub *cub, t_img *img, t_player *player);
+
+/* utils */
+int		close_window(t_cub *cub);
+int		handle_input(int keycode, t_cub *cub);
+int		is_in_bounds(t_img *img, t_vec2 point);
+t_vec2	get_center(t_img *img);
 t_vec2	set_vec2(double x, double y);
 t_vec3	set_vec3(double x, double y, double z);
 t_vec4	set_vec4(int r, int g, int b, int a);
-int		is_in_bounds(t_img *img, t_vec2 point);
-t_vec2	get_center(t_img *img);
 
-int		handle_input(int keycode, t_cub *cub);
-int		close_window(t_cub *cub);
-
-// render
-int		render(t_cub *cub);
-
-// player
-void	move_forward(t_player *p);
-void	move_backward(t_player *p);
-void	move_right(t_player *p);
-void	move_left(t_player *p);
-void	rotate(t_player *p, double angle);
-
-// mlx
-int		get_pixel(t_img *img, t_vec2 pos);
-void	mlx_set_img(t_img *img, int color);
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-void	draw_pixels(t_img *img, t_vec2 pos, t_vec2 size, int color);
-
-// draw
-void	draw_line(t_img *img, t_vec2 start, t_vec2 end, int color);
-void	draw_rotated_image(t_img *target, t_img *source, t_vec2 pos,
-	double angle);
+/* === AUTO GENERATED PROTOTYPES END   === */
 
 #endif
