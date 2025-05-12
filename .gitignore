@@ -3,3 +3,4 @@ Objects/
 *.txt
 cub3d
 libft/Objects/
+.vscode/
