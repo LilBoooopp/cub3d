@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 16:55:19 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 18:30:58 by cbopp            ###   ########.fr       */
+/*   Created: 2025/05/12 18:28:25 by cbopp             #+#    #+#             */
+/*   Updated: 2025/05/12 19:12:34 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
-int	main(void)
+int	handle_input(int keycode, t_cub *cub)
 {
-	t_cub	cub;
-
-	init(&cub);
-	mlx_hook(cub.mlx_win, 2, 1l << 0, handle_input, &cub);
-	mlx_hook(cub.mlx_win, 17, 0, close_window, &cub);
-	mlx_loop_hook(cub.mlx, render, &cub);
-	mlx_loop(cub.mlx);
+	if (keycode == ESC)
+		close_window(cub);
 	return (0);
 }

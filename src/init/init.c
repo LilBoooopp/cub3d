@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 17:56:04 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/12 18:48:01 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static t_map	*init_map(void)
 	i = 0;
 	map->sizex = 10;
 	map->sizey = 10;
-	map->map = malloc(sizeof(int) * map->sizey);
+	map->map = malloc(sizeof(int *) * (map->sizey));
 	while (i < map->sizey)
 	{
-		map->map[i] = malloc(sizeof(int) * map->sizex);
+		map->map[i] = malloc(sizeof(int) * (map->sizex));
 		j = 0;
 		while (j < map->sizex)
 		{
@@ -40,24 +40,20 @@ static t_map	*init_map(void)
 	return (map);
 }
 
-static	t_player	*init_player(void)
+void	init_player(t_player *player)
 {
-	t_player	*player;
-
-	player = malloc(sizeof(t_player));
 	player->pos = set_vec2(4, 4);
 	player->facing = set_vec2(0, 0);
 	player->fov = 120;
-	return (player);
 }
 
 
 int	init(t_cub *cub)
 {
-	cub->mlx = mlx_init();
-	cub->player = init_player();
-	cub->mlx_win = mlx_new_window(cub->mlx, 1280, 1024, "Cub3D");
 	cub->map = init_map();
+	cub->mlx = mlx_init();
+	init_player(&cub->player);
+	cub->mlx_win = mlx_new_window(cub->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	ft_print_inttable(cub->map->map, cub->map->sizey, cub->map->sizex);
 	printf("debug1");
 	return (1);

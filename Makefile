@@ -1,7 +1,7 @@
 NAME = cub3d
 CC = cc
 RM = rm -rf
-FLAGS = -Imlx_linux -lm -Werror -Wextra -Wall -g
+FLAGS = -Imlx_linux -lm -Werror -Wextra -Wall -fsanitize=address -g
 MAKE := make --no-print-directory
 
 #--------------------------------------LIBFT------------------------------------#
@@ -26,8 +26,20 @@ MLX_SRC =  \
 	mlx_helper.c
 MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
 
-ALL_SRC = $(SRC) $(INIT) $(MLX)
-vpath %.c src src/init src/mlx
+RENDER_DIR = src/render/
+RENDER_SRC =  \
+	render.c
+RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
+
+UTILS_DIR = src/utils/
+UTILS_SRC =  \
+	close.c \
+	input.c \
+	util_vec.c
+UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
+
+ALL_SRC = $(SRC) $(INIT) $(MLX) $(RENDER) $(UTILS)
+vpath %.c src src/init src/mlx src/render src/utils
 #--------------------------------------OBJECTS----------------------------------#
 OBJ_DIR = Objects/
 # Generate object files with same names but in Objects directory

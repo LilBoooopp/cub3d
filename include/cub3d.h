@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 17:55:01 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/12 19:12:28 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # include <stdlib.h>
 # include "../libft/libft.h"
 
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 1080
+
+typedef enum e_key
+{
+	ESC = 65307,
+}	t_key;
 typedef enum e_direction
 {
 	N,
@@ -66,18 +73,19 @@ typedef struct s_cub
 {
 	void		*mlx;
 	void		*mlx_win;
-	t_player	*player;
+	t_player	player;
 	t_map		*map;
 }	t_cub;
 
-typedef struct s_data
+typedef struct s_img
 {
 	void	*img;
+	t_vec2	size;
 	char	*addr;
 	int		bpp;
-	int		line_length;
-	int		endian;
-}	t_data;
+	int		len;
+	int		end;
+}	t_img;
 
 // init
 int		init(t_cub *cub);
@@ -87,8 +95,16 @@ t_vec2	set_vec2(double x, double y);
 t_vec3	set_vec3(double x, double y, double z);
 t_vec4	set_vec4(int r, int g, int b, int a);
 
+int		handle_input(int keycode, t_cub *cub);
+int		close_window(t_cub *cub);
+
+// render
+int		render(t_cub *cub);
+
 // mlx
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	mlx_set_img(t_img *img, int color);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void	draw_pixels(t_img *img, t_vec2 pos, t_vec2 size, int color);
 
 
 #endif
