@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 18:48:01 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/12 20:03:57 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static t_map	*init_map(void)
 void	init_player(t_player *player)
 {
 	player->pos = set_vec2(4, 4);
-	player->facing = set_vec2(0, 0);
-	player->fov = 120;
+	player->dir = set_vec2(0, 0);
+	player->plane.x = 120;
 }
 
 

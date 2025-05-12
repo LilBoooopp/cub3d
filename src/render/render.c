@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 19:32:11 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/12 19:38:07 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	render(t_cub *cub)
 	img.img = mlx_new_image(cub->mlx, img.size.x, img.size.y);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.len,
 			&img.end);
-	mlx_set_img(&img, 0x000000);
+	mlx_set_img(&img, 0xFFFFFF);
 	render_player(&img, &cub->player);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, img.img, 0, 0);
 	mlx_destroy_image(cub->mlx, img.img);

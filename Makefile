@@ -26,6 +26,11 @@ MLX_SRC =  \
 	mlx_helper.c
 MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
 
+PLAYER_DIR = src/player/
+PLAYER_SRC =  \
+	move.c
+PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
+
 RENDER_DIR = src/render/
 RENDER_SRC =  \
 	render.c
@@ -38,8 +43,8 @@ UTILS_SRC =  \
 	util_vec.c
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
 
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/render src/utils
+ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
+vpath %.c src src/init src/mlx src/player src/render src/utils
 #--------------------------------------OBJECTS----------------------------------#
 OBJ_DIR = Objects/
 # Generate object files with same names but in Objects directory

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 19:12:28 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/12 20:08:06 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,19 @@
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 1080
 
+# define MOVE_SPEED 5.0
+# define ROT_SPEED 0.05
+
 typedef enum e_key
 {
-	ESC = 65307,
+	W = 119,
+	A = 97,
+	S = 115,
+	D = 100,
+	LEFT = 65361,
+	RIGHT = 65363,
+	ESC = 65307
 }	t_key;
-typedef enum e_direction
-{
-	N,
-	E,
-	S,
-	W
-}	t_direction;
 
 typedef struct s_vec2
 {
@@ -55,11 +57,17 @@ typedef struct s_vec4
 	int	a;
 }	t_vec4;
 
+/**
+ * @brief player struct
+ * @param pos Player position vector.
+ * @param dir Player direct vector.
+ * @param plane Player camera vector.
+ */
 typedef struct s_player
 {
 	t_vec2	pos;
-	t_vec2	facing;
-	int		fov;
+	t_vec2	dir;
+	t_vec2	plane;
 }	t_player;
 
 typedef struct s_map
