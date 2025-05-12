@@ -5,3 +5,5 @@ cub3d
 libft/Objects/
 .vscode/
 libft/libft.a
+*.bak
+.counter

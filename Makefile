@@ -23,6 +23,7 @@ INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
 
 MLX_DIR = src/mlx/
 MLX_SRC =  \
+	draw.c \
 	mlx_helper.c
 MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
 
@@ -39,6 +40,7 @@ RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
 UTILS_DIR = src/utils/
 UTILS_SRC =  \
 	close.c \
+	img_math.c \
 	input.c \
 	util_vec.c
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))

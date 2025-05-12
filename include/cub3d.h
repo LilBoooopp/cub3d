@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 20:08:06 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/12 23:35:29 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@
 
 typedef enum e_key
 {
-	W = 119,
-	A = 97,
-	S = 115,
-	D = 100,
-	LEFT = 65361,
-	RIGHT = 65363,
-	ESC = 65307
+	key_W = 119,
+	key_A = 97,
+	key_S = 115,
+	key_D = 100,
+	key_LEFT = 65361,
+	key_RIGHT = 65363,
+	key_ESC = 65307
 }	t_key;
 
 typedef struct s_vec2
@@ -102,6 +102,8 @@ int		init(t_cub *cub);
 t_vec2	set_vec2(double x, double y);
 t_vec3	set_vec3(double x, double y, double z);
 t_vec4	set_vec4(int r, int g, int b, int a);
+int		is_in_bounds(t_img *img, t_vec2 point);
+t_vec2	get_center(t_img *img);
 
 int		handle_input(int keycode, t_cub *cub);
 int		close_window(t_cub *cub);
@@ -109,10 +111,22 @@ int		close_window(t_cub *cub);
 // render
 int		render(t_cub *cub);
 
+// player
+void	move_forward(t_player *p);
+void	move_backward(t_player *p);
+void	move_right(t_player *p);
+void	move_left(t_player *p);
+void	rotate(t_player *p, double angle);
+
 // mlx
+int		get_pixel(t_img *img, t_vec2 pos);
 void	mlx_set_img(t_img *img, int color);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	draw_pixels(t_img *img, t_vec2 pos, t_vec2 size, int color);
 
+// draw
+void	draw_line(t_img *img, t_vec2 start, t_vec2 end, int color);
+void	draw_rotated_image(t_img *target, t_img *source, t_vec2 pos,
+	double angle);
 
 #endif

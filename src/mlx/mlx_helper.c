@@ -6,11 +6,23 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:58:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 19:31:42 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/12 23:47:26 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+int	get_pixel(t_img *img, t_vec2 pos)
+{
+	char	*src_px;
+	int		color;
+
+	if (!img || !img->addr || !is_in_bounds(img, pos))
+		return (0xFF000000);
+	src_px = img->addr + ((int)pos.y * img->len + (int)pos.x * (img->bpp / 8));
+	color = *(unsigned int *)src_px;
+	return (color);
+}
 
 void	mlx_set_img(t_img *img, int color)
 {
@@ -44,11 +56,11 @@ void	draw_pixels(t_img *img, t_vec2 pos, t_vec2 size, int color)
 {
 	t_vec2	p;
 
-	p = set_vec2(0, 0);
-	while (p.y < size.y)
+	p.y = -size.y / 2;
+	while (p.y <= size.y / 2)
 	{
-		p.x = 0;
-		while (p.x < size.x)
+		p.x = -size.x / 2;
+		while (p.x <= size.x / 2)
 		{
 			my_mlx_pixel_put(img, p.x + pos.x, p.y + pos.y, color);
 			p.x++;

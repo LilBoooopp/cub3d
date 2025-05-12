@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 19:41:35 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 20:04:22 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/12 22:51:08 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	move_backward(t_player *p)
 
 void	move_right(t_player *p)
 {
-	p->pos.x += p->dir.y * MOVE_SPEED;
+	p->pos.x -= p->dir.y * MOVE_SPEED;
 	p->pos.y += p->dir.x * MOVE_SPEED;
 }
 
 void	move_left(t_player *p)
 {
-	p->pos.x -= p->dir.y * MOVE_SPEED;
+	p->pos.x += p->dir.y * MOVE_SPEED;
 	p->pos.y -= p->dir.x * MOVE_SPEED;
 }
 
