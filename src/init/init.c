@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_helper.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 14:58:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/09 16:24:32 by cbopp            ###   ########.fr       */
+/*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
+/*   Updated: 2025/05/10 12:45:31 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+int	init(t_cub *cub)
 {
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
+	cub->mlx = mlx_init();
+	cub->mlx_win = mlx_new_window(cub->mlx, 1280, 1024, "Cub3D");
+	return (1);
 }

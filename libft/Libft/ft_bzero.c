@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:59:10 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/05/08 15:42:49 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/12 16:46:10 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /**
  * @brief The ft_bzero() function erases the data in the n bytes of the memory
-       starting at the location pointed to by s, by writing zeros (bytes  con‐
-       taining '\0') to that area.
+       starting at the location pointed to by s, by writing zeros (bytes 
+	   containing '\0') to that area.
 	@param s A pointer to the memory startng point.
 	@param n The number of bytes of memory to replace by '\0'
  */

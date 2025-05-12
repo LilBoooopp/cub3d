@@ -1,7 +1,7 @@
 NAME = cub3d
 CC = cc
 RM = rm -rf
-FLAGS = -Imlx_linux
+FLAGS = -Imlx_linux -lm #-Werror -Wextra -Wall
 MAKE := make --no-print-directory
 
 #--------------------------------------LIBFT------------------------------------#

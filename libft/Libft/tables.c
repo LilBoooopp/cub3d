@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:42:44 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/08 16:26:53 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/12 17:19:55 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,32 @@ void	ft_free_chartable(char **table)
 		i++;
 	}
 	free(table);
+}
+
+/**
+ * @brief Prints all the elements in a table of integers
+ * @param table The table of integers
+ * @returns 0 on success, 1 on fail
+ */
+int	ft_print_inttable(int **table, size_t sizey, size_t sizex)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < sizey)
+	{
+		j = 0;
+		while (j < sizex)
+		{
+			if (ft_printf("%d", table[i][j]) < 0)
+				return (1);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+	return (0);
 }
 
 /**
