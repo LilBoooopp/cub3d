@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/13 00:45:25 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/13 15:05:13 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	render_map(t_cub *cub, t_img *img, t_player *player)
 	box.addr = mlx_get_data_addr(box.img, &box.bpp, &box.len, &box.end);
 	mlx_set_img(&box, 0xFF000000);
 	draw_pixels(&box, get_center(&box), box.size, 0x00FF0000);
-	end.x = player->pos.x + player->dir.x * 300;
-	end.y = player->pos.y + player->dir.y * 300;
+	end.x = player->pos.x + player->dir.x * 100;
+	end.y = player->pos.y + player->dir.y * 100;
 	angle = atan2(player->dir.y, player->dir.x);
 	draw_rotated_image(img, &box, player->pos, angle);
 	mlx_destroy_image(cub->mlx, box.img);

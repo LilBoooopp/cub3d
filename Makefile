@@ -43,6 +43,7 @@ UTILS_SRC =  \
 	close.c \
 	img_math.c \
 	input.c \
+	math_vec.c \
 	util_vec.c
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
 

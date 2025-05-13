@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/13 01:07:22 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/13 16:31:01 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ typedef struct s_vec2
 	double	x;
 	double	y;
 }	t_vec2;
+
+typedef struct s_vec2i
+{
+	int	x;
+	int	y;
+}	t_vec2i;
 
 typedef struct s_vec3
 {
@@ -89,10 +95,10 @@ typedef struct s_raycast
 {
 	double	cam_x;
 	t_vec2	ray_dir;
-	t_vec2	map;
+	t_vec2i	map;
 	t_vec2	side_dist;
 	t_vec2	delta_dist;
-	t_vec2	step;
+	t_vec2i	step;
 	int		hit;
 	int		side;
 	double	perp_dist;
@@ -112,13 +118,15 @@ typedef struct s_img
 	int		end;
 }	t_img;
 
+
+
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */
-int		init(t_cub *cub);
+int	init(t_cub *cub);
 void	init_player(t_player *player);
 
 /* mlx */
-int		get_pixel(t_img *img, t_vec2 pos);
+int	get_pixel(t_img *img, t_vec2 pos);
 t_vec2	get_rotated_position(t_vec2 center, t_vec2 local, double angle);
 t_vec2	rotate_point(t_vec2 rel, double angle);
 void	draw_line(t_img *img, t_vec2 start, t_vec2 end, int color);
@@ -135,16 +143,23 @@ void	move_right(t_player *p);
 void	rotate(t_player *p, double angle);
 
 /* render */
-int		render(t_cub *cub);
-void	cast_rays(t_cub *cub, t_img *img);
+int	render(t_cub *cub);
+t_vec2i	set_raydir(t_raycast ray);
+void	cast_rays(t_cub *cub);
 void	render_map(t_cub *cub, t_img *img, t_player *player);
+void	setSideDist(t_raycast *ray, t_player player);
 
 /* utils */
-int		close_window(t_cub *cub);
-int		handle_input(int keycode, t_cub *cub);
-int		is_in_bounds(t_img *img, t_vec2 point);
+int	close_window(t_cub *cub);
+int	handle_input(int keycode, t_cub *cub);
+int	is_in_bounds(t_img *img, t_vec2 point);
 t_vec2	get_center(t_img *img);
 t_vec2	set_vec2(double x, double y);
+t_vec2	vec2_add(t_vec2 vec1, t_vec2 vec2);
+t_vec2	vec2_div(t_vec2 vec1, t_vec2 vec2);
+t_vec2	vec2_mult(t_vec2 vec1, t_vec2 vec2);
+t_vec2	vec2_sub(t_vec2 vec1, t_vec2 vec2);
+t_vec2i	vecdtoi(t_vec2 vec2);
 t_vec3	set_vec3(double x, double y, double z);
 t_vec4	set_vec4(int r, int g, int b, int a);
 
