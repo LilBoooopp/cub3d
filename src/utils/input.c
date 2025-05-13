@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:25 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 20:25:32 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/13 17:30:20 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int	handle_input(int keycode, t_cub *cub)
 		rotate(&cub->player, -ROT_SPEED);
 	else if (keycode == key_RIGHT)
 		rotate(&cub->player, ROT_SPEED);
+	printf("player x: %d, y: %d\n", (int)cub->player.pos.x, (int)cub->player.pos.y);
 	return (0);
 }

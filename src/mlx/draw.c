@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:33:43 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/13 00:37:21 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/13 17:12:28 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,26 @@ void	draw_rotated_image(t_img *t, t_img *s, t_vec2 pos,
 			x++;
 		}
 		y++;
+	}
+}
+
+void	drawtoimg(t_img *src, t_img *dst, t_vec2 pos)
+{
+	t_vec2	idx;
+	int		col;
+
+	idx.y = 0;
+	while (idx.y < src->size.y && idx.y < dst->size.y)
+	{
+		idx.x = 0;
+		while (idx.x < src->size.x && idx.x < dst->size.y)
+		{
+			col = get_pixel(src, idx);
+			if (is_in_bounds(src, idx)
+				&& (unsigned int)col != 0xFF000000)
+				my_mlx_pixel_put(dst, pos.x + idx.x, pos.y + idx.y, col);
+			idx.x++;
+		}
+		idx.y++;
 	}
 }

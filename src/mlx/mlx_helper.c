@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:58:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 23:47:26 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/13 16:50:25 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	get_pixel(t_img *img, t_vec2 pos)
 	return (color);
 }
 
-void	mlx_set_img(t_img *img, int color)
+void	mlx_set_img(t_img *img, unsigned int color)
 {
 	int	x;
 	int	y;
@@ -67,4 +67,15 @@ void	draw_pixels(t_img *img, t_vec2 pos, t_vec2 size, int color)
 		}
 		p.y++;
 	}
+}
+
+t_img	make_image(t_cub *cub, t_vec2 size, int color)
+{
+	t_img	new;
+
+	new.size = size;
+	new.img = mlx_new_image(cub->mlx, new.size.x, new.size.y);
+	new.addr = mlx_get_data_addr(new.img, &new.bpp, &new.len, &new.end);
+	mlx_set_img(&new, color);
+	return (new);
 }

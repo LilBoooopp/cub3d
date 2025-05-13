@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/13 16:31:01 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/13 17:40:30 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct s_img
 
 
 
+
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */
 int	init(t_cub *cub);
@@ -127,12 +128,14 @@ void	init_player(t_player *player);
 
 /* mlx */
 int	get_pixel(t_img *img, t_vec2 pos);
+t_img	make_image(t_cub *cub, t_vec2 size, int color);
 t_vec2	get_rotated_position(t_vec2 center, t_vec2 local, double angle);
 t_vec2	rotate_point(t_vec2 rel, double angle);
 void	draw_line(t_img *img, t_vec2 start, t_vec2 end, int color);
 void	draw_pixels(t_img *img, t_vec2 pos, t_vec2 size, int color);
 void	draw_rotated_image(t_img *t, t_img *s, t_vec2 pos, double ang);
-void	mlx_set_img(t_img *img, int color);
+void	drawtoimg(t_img *src, t_img *dst, t_vec2 pos);
+void	mlx_set_img(t_img *img, unsigned int color);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 /* player */
@@ -146,6 +149,8 @@ void	rotate(t_player *p, double angle);
 int	render(t_cub *cub);
 t_vec2i	set_raydir(t_raycast ray);
 void	cast_rays(t_cub *cub);
+void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map);
+void	draw_player(t_cub *cub, t_player *player, t_img *img, t_img *map);
 void	render_map(t_cub *cub, t_img *img, t_player *player);
 void	setSideDist(t_raycast *ray, t_player player);
 
@@ -153,6 +158,7 @@ void	setSideDist(t_raycast *ray, t_player player);
 int	close_window(t_cub *cub);
 int	handle_input(int keycode, t_cub *cub);
 int	is_in_bounds(t_img *img, t_vec2 point);
+t_vec2	fix_pos(t_img *src, t_img *dst, t_vec2 pos);
 t_vec2	get_center(t_img *img);
 t_vec2	set_vec2(double x, double y);
 t_vec2	vec2_add(t_vec2 vec1, t_vec2 vec2);

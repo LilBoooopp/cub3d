@@ -34,6 +34,7 @@ PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
 
 RENDER_DIR = src/render/
 RENDER_SRC =  \
+	map.c \
 	rays.c \
 	render.c
 RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
