@@ -6,14 +6,19 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/13 17:40:30 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/13 18:30:24 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../mlx_linux/mlx.h"
+# if defined(__APPLE__)
+#	include "../mlx_mac/mlx.h"
+# else
+#	include "../mlx_linux/mlx.h"
+# endif
+
 # include <stdio.h>
 # include <math.h>
 # include <stdlib.h>
@@ -117,9 +122,6 @@ typedef struct s_img
 	int		len;
 	int		end;
 }	t_img;
-
-
-
 
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */
