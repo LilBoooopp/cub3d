@@ -175,3 +175,83 @@ UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
 
 ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
 vpath %.c src src/init src/mlx src/player src/render src/utils
+
+SRC_DIR = src/
+SRC_SRC =  \
+	main.c
+SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
+
+INIT_DIR = src/init/
+INIT_SRC =  \
+	init.c
+INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
+
+MLX_DIR = src/mlx/
+MLX_SRC =  \
+	draw.c \
+	mlx_helper.c
+MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
+
+PLAYER_DIR = src/player/
+PLAYER_SRC =  \
+	move.c
+PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
+
+RENDER_DIR = src/render/
+RENDER_SRC =  \
+	map.c \
+	rays.c \
+	render.c
+RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
+
+UTILS_DIR = src/utils/
+UTILS_SRC =  \
+	close.c \
+	img_math.c \
+	input.c \
+	math_vec.c \
+	util_vec.c
+UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
+
+ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
+vpath %.c src src/init src/mlx src/player src/render src/utils
+
+SRC_DIR = src/
+SRC_SRC =  \
+	main.c
+SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
+
+INIT_DIR = src/init/
+INIT_SRC =  \
+	init.c
+INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
+
+MLX_DIR = src/mlx/
+MLX_SRC =  \
+	draw.c \
+	mlx_helper.c
+MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
+
+PLAYER_DIR = src/player/
+PLAYER_SRC =  \
+	move.c
+PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
+
+RENDER_DIR = src/render/
+RENDER_SRC =  \
+	map.c \
+	rays.c \
+	render.c
+RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
+
+UTILS_DIR = src/utils/
+UTILS_SRC =  \
+	close.c \
+	img_math.c \
+	input.c \
+	math_vec.c \
+	util_vec.c
+UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
+
+ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
+vpath %.c src src/init src/mlx src/player src/render src/utils

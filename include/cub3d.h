@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/13 18:30:24 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/13 18:32:41 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	int	sizex;
-	int	sizey;
-	int	**map;
+	int		sizex;
+	int		sizey;
+	char	**map;
 }	t_map;
 
 typedef struct s_cub
@@ -122,6 +122,7 @@ typedef struct s_img
 	int		len;
 	int		end;
 }	t_img;
+
 
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */

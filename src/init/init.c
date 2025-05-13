@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 22:46:20 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/13 18:45:29 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,40 @@
 static t_map	*init_map(void)
 {
 	t_map	*map;
-	int		i;
-	int		j;
+	int		i, j;
 
 	map = malloc(sizeof(t_map));
-	i = 0;
+	if (!map)
+		return (NULL);
 	map->sizex = 10;
 	map->sizey = 10;
-	map->map = malloc(sizeof(int *) * (map->sizey));
-	while (i < map->sizey)
+	map->map = malloc(sizeof(char *) * (map->sizey + 1));
+	if (!map->map)
+		return (free(map), NULL);
+
+	for (i = 0; i < map->sizey; i++)
 	{
-		map->map[i] = malloc(sizeof(int) * (map->sizex));
-		j = 0;
-		while (j < map->sizex)
+		map->map[i] = malloc(sizeof(char) * (map->sizex + 1));
+		if (!map->map[i])
 		{
-			if (i == 0 || i == map->sizey - 1 || j == 0 || j == map->sizex - 1)
-				map->map[i][j] = 1;
-			else
-				map->map[i][j] = 0;
-			j++;
+			while (i-- > 0)
+				free(map->map[i]);
+			free(map->map);
+			free(map);
+			return (NULL);
 		}
-		i++;
+		for (j = 0; j < map->sizex; j++)
+		{
+			if (i == 0 || i == map->sizey - 1 ||
+			    j == 0 || j == map->sizex - 1)
+				map->map[i][j] = '1';
+			else
+				map->map[i][j] = '0';
+		}
+		map->map[i][map->sizex] = '\0';
 	}
+
+	map->map[map->sizey] = NULL;
 	return (map);
 }
 
@@ -53,6 +65,6 @@ int	init(t_cub *cub)
 	cub->mlx = mlx_init();
 	init_player(&cub->player);
 	cub->mlx_win = mlx_new_window(cub->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
-	ft_print_inttable(cub->map->map, cub->map->sizey, cub->map->sizex);
+	ft_print_chartable(cub->map->map);
 	return (1);
 }
