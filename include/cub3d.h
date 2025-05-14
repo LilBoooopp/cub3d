@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/13 18:32:41 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/14 15:20:55 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 1080
 
-# define MOVE_SPEED 5.0
+# define MOVE_SPEED 0.5
 # define ROT_SPEED 0.05
 
 typedef enum e_key
@@ -94,6 +94,7 @@ typedef struct s_cub
 	void		*mlx_win;
 	t_player	player;
 	t_map		*map;
+	int			debug;
 }	t_cub;
 
 typedef struct s_raycast
@@ -124,6 +125,8 @@ typedef struct s_img
 }	t_img;
 
 
+
+
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */
 int	init(t_cub *cub);
@@ -151,9 +154,9 @@ void	rotate(t_player *p, double angle);
 /* render */
 int	render(t_cub *cub);
 t_vec2i	set_raydir(t_raycast ray);
-void	cast_rays(t_cub *cub);
+void	cast_rays(t_cub *cub, t_img *img);
 void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map);
-void	draw_player(t_cub *cub, t_player *player, t_img *img, t_img *map);
+void	draw_player(t_cub *cub, t_player *player, t_img *map);
 void	render_map(t_cub *cub, t_img *img, t_player *player);
 void	setSideDist(t_raycast *ray, t_player player);
 
@@ -161,7 +164,7 @@ void	setSideDist(t_raycast *ray, t_player player);
 int	close_window(t_cub *cub);
 int	handle_input(int keycode, t_cub *cub);
 int	is_in_bounds(t_img *img, t_vec2 point);
-t_vec2	fix_pos(t_img *src, t_img *dst, t_vec2 pos);
+t_vec2	fix_pos(t_cub *cub, t_img *dst, t_vec2 pos);
 t_vec2	get_center(t_img *img);
 t_vec2	set_vec2(double x, double y);
 t_vec2	vec2_add(t_vec2 vec1, t_vec2 vec2);

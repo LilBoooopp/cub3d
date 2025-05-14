@@ -6,21 +6,21 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 23:32:42 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/13 17:36:58 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/14 15:18:40 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-t_vec2	fix_pos(t_img *src, t_img *dst, t_vec2 pos)
+t_vec2	fix_pos(t_cub *cub, t_img *dst, t_vec2 pos)
 {
 	t_vec2	new;
 	double	x;
 	double	y;
 
-	x = src->size.x / dst->size.x;
-	y = src->size.y / dst->size.y;
-	new = vec2_div(pos, set_vec2(x, y));
+	x = dst->size.x / cub->map->sizex;
+	y = dst->size.y / cub->map->sizey;
+	new = set_vec2(pos.x * (x / 2), pos.y * (y / 2));
 	return (new);
 }
 

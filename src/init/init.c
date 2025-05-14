@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/13 18:45:29 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/14 15:33:06 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static t_map	*init_map(void)
 
 void	init_player(t_player *player)
 {
-	player->pos = set_vec2(500, 500);
-	player->dir = set_vec2(0, -1);
+	player->pos = set_vec2(4, 4);
+	player->dir = set_vec2(1, -1);
 	player->plane = set_vec2(0.66, 0);
 }
 
@@ -63,6 +63,7 @@ int	init(t_cub *cub)
 {
 	cub->map = init_map();
 	cub->mlx = mlx_init();
+	cub->debug = 1;
 	init_player(&cub->player);
 	cub->mlx_win = mlx_new_window(cub->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	ft_print_chartable(cub->map->map);
