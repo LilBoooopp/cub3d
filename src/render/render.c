@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/14 15:19:32 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/14 16:36:24 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	render(t_cub *cub)
 {
 	t_img	back;
 
+	// smooth_input(cub);
 	back.size = set_vec2(WIN_WIDTH, WIN_HEIGHT);
 	back.img = mlx_new_image(cub->mlx, back.size.x, back.size.y);
 	back.addr = mlx_get_data_addr(back.img, &back.bpp, &back.len, &back.end);

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 23:32:42 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/14 15:18:40 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/14 15:46:55 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_vec2	fix_pos(t_cub *cub, t_img *dst, t_vec2 pos)
 
 	x = dst->size.x / cub->map->sizex;
 	y = dst->size.y / cub->map->sizey;
-	new = set_vec2(pos.x * (x / 2), pos.y * (y / 2));
+	new = set_vec2((pos.x * (x - 1)) + (x / 2), (pos.y * (y - 1)) + (y / 2));
 	return (new);
 }
 

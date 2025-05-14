@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/14 15:23:43 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/14 16:38:07 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ static void	draw_stripe(t_img *img, t_raycast *ray, int x)
 	if (ray->draw_end >= WIN_HEIGHT)
 		ray->draw_end = WIN_HEIGHT - 1;
 	if (ray->side)
-		ray->color = 0x007F7F7F;
+		ray->color = 0x008ea832;
 	else
-		ray->color = 0x00FFFFFF;
+		ray->color = 0x00323ea8;
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 		my_mlx_pixel_put(img, x, y++, ray->color);
@@ -107,11 +107,11 @@ void	cast_rays(t_cub *cub, t_img *img)
 		setSideDist(&ray, cub->player);
 		perform_dda(&ray, cub);
 		if (ray.side == 0)
-			ray.perp_dist = (ray.map.x - p->pos.x + (1 - ray.step.x)
-					/ 2) / ray.ray_dir.x;
+			ray.perp_dist = ((ray.map.x - p->pos.x + (1 - ray.step.x)
+					/ 2) / ray.ray_dir.x) * TILE_SIZE;
 		else
-			ray.perp_dist = (ray.map.y - p->pos.y + (1 - ray.step.y)
-					/ 2) / ray.ray_dir.y;
+			ray.perp_dist = ((ray.map.y - p->pos.y + (1 - ray.step.y)
+					/ 2) / ray.ray_dir.y) * TILE_SIZE;
 		draw_stripe(img, &ray, x);
 	}
 }

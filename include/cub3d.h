@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/14 15:20:55 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/14 16:34:08 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <stdio.h>
 # include <math.h>
 # include <stdlib.h>
+# include <ctype.h>
+# include <stdbool.h>
 # include "../libft/libft.h"
 
 # define WIN_WIDTH 1280
@@ -29,6 +31,7 @@
 
 # define MOVE_SPEED 0.5
 # define ROT_SPEED 0.05
+# define TILE_SIZE 64
 
 typedef enum e_key
 {
@@ -95,6 +98,7 @@ typedef struct s_cub
 	t_player	player;
 	t_map		*map;
 	int			debug;
+	bool		keys[256];
 }	t_cub;
 
 typedef struct s_raycast
@@ -127,6 +131,10 @@ typedef struct s_img
 
 
 
+
+
+
+
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */
 int	init(t_cub *cub);
@@ -145,10 +153,10 @@ void	mlx_set_img(t_img *img, unsigned int color);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 /* player */
-void	move_backward(t_player *p);
-void	move_forward(t_player *p);
-void	move_left(t_player *p);
-void	move_right(t_player *p);
+void	move_backward(t_player *p, t_map *m);
+void	move_forward(t_player *p, t_map *m);
+void	move_left(t_player *p, t_map *m);
+void	move_right(t_player *p, t_map *m);
 void	rotate(t_player *p, double angle);
 
 /* render */
