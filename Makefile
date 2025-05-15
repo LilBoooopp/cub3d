@@ -12,50 +12,62 @@ LIBFT     = $(addprefix $(LIBFT_DIR), $(LIBFT_A))
 PRINTF    = $(addprefix $(PRINTF_DIR), $(PRINTF_A))
 
 #───────────────────────────  MINILIBX SECTION  ──────────────────────────────#
-OS = $(shell uname)                # detect host once
+OS = $(shell uname)
 
 ifeq ($(OS),Darwin)                # ▸▸ macOS
 	MLX_DIR   = mlx_mac
 	MLX_INC   := -I$(MLX_DIR)
 	MLX_LIBS  := -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 	MLX       = $(MLX_DIR)/libmlx.a
-else                                # ▸▸ Linux (42 VM, WSL…)
+else                                # ▸▸ Linux (42 VM, WSL, etc)
 	MLX_DIR   = mlx_linux
 	MLX_INC   := -I$(MLX_DIR)
 	MLX_LIBS  := -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 	MLX       = $(MLX_DIR)/libmlx_Linux.a
 endif
 
-#────────────────────────────  SOURCE FILE LISTS  ────────────────────────────#
-SRC_DIR  = src/
-SRC_SRC  = main.c
-SRC      = $(addprefix $(SRC_DIR), $(SRC_SRC))
+#--------------------------------------SOURCES---------------------------------#
+SRC_DIR = src/
+SRC_SRC =  \
+	main.c
+SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
 
 INIT_DIR = src/init/
-INIT_SRC = init.c
-INIT     = $(addprefix $(INIT_DIR), $(INIT_SRC))
+INIT_SRC =  \
+	init.c
+INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
 
-MLX_DIR  = src/mlx/
-MLX_SRC  = draw.c mlx_helper.c
-MLX      = $(addprefix $(MLX_DIR), $(MLX_SRC))
+MLX_DIR = src/mlx/
+MLX_SRC =  \
+	draw.c \
+	mlx_helper.c
+MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
 
 PLAYER_DIR = src/player/
-PLAYER_SRC = move.c
-PLAYER     = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
+PLAYER_SRC =  \
+	move.c
+PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
 
 RENDER_DIR = src/render/
-RENDER_SRC = map.c rays.c render.c
-RENDER     = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
+RENDER_SRC =  \
+	map.c \
+	ray_utils.c \
+	rays.c \
+	render.c
+RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
 
 UTILS_DIR = src/utils/
-UTILS_SRC = close.c img_math.c input.c math_vec.c util_vec.c
-UTILS     = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
+UTILS_SRC =  \
+	close.c \
+	img_math.c \
+	input.c \
+	math_vec.c \
+	util_vec.c
+UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
 
 ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-
 vpath %.c src src/init src/mlx src/player src/render src/utils
-
-#────────────────────────────  OBJECTS & VPATH  ──────────────────────────────#
+#--------------------------------------OBJECTS----------------------------------#
 OBJ_DIR  = Objects/
 OBJECTS  = $(patsubst %.c,$(OBJ_DIR)%.o,$(notdir $(ALL_SRC)))
 VPATH    = $(SRC_DIR):$(INIT_DIR):$(CMDS_DIR):$(PARS_DIR):$(EXEC_DIR):$(BEF_DIR)
@@ -116,7 +128,6 @@ $(OBJ_DIR)%.o: %.c
 	printf "\r\033[1;36m%s \033[1mCompiling\033[0m [%-*s] %3d%% \033[36m%-40.40s\033[0m" "$$frame" "$$barlen" "$$bar$$space" "$$percent" "$<"; \
 	$(CC) $(FLAGS) $(MLX_INC) -c $< -o $@
 
-#───────────────────────────────  HOUSEKEEPING  ──────────────────────────────#
 clean:
 	@echo $(CURSIVE)$(GRAY)" -> Cleaning object files.."$(NONE)
 	@$(RM) $(OBJ_DIR)
@@ -135,643 +146,3 @@ bonus:
 	@echo $(GREEN)"- Compiled -"$(NONE)
 
 .PHONY: all clean fclean re bonus reset_counter
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
-
-SRC_DIR = src/
-SRC_SRC =  \
-	main.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
-
-INIT_DIR = src/init/
-INIT_SRC =  \
-	init.c
-INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
-
-MLX_DIR = src/mlx/
-MLX_SRC =  \
-	draw.c \
-	mlx_helper.c
-MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
-
-PLAYER_DIR = src/player/
-PLAYER_SRC =  \
-	move.c
-PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
-
-RENDER_DIR = src/render/
-RENDER_SRC =  \
-	map.c \
-	rays.c \
-	render.c
-RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
-
-UTILS_DIR = src/utils/
-UTILS_SRC =  \
-	close.c \
-	img_math.c \
-	input.c \
-	math_vec.c \
-	util_vec.c
-UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
-
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils

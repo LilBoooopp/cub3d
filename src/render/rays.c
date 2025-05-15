@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/14 16:38:07 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/14 19:53:49 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void	setSideDist(t_raycast *ray, t_player player)
 		ray->side_dist.y = (player.pos.y - ray->map.y) * ray->delta_dist.y;
 }
 
-t_vec2i	set_raydir(t_raycast ray)
+t_vec2i	set_raydir(t_raycast *ray)
 {
 	t_vec2i	new;
 
-	if (ray.ray_dir.x > 0)
+	if (ray->ray_dir.x > 0)
 		new.x = 1;
 	else
 		new.x = -1;
-	if (ray.ray_dir.y > 0)
+	if (ray->ray_dir.y > 0)
 		new.y = 1;
 	else
 		new.y = -1;
@@ -97,14 +97,7 @@ void	cast_rays(t_cub *cub, t_img *img)
 	p = &cub->player;
 	while (++x < WIN_WIDTH)
 	{
-		ray.cam_x = 2 * x / (double)WIN_WIDTH - 1;
-		ray.ray_dir = vec2_add(p->dir, set_vec2(p->plane.x
-					* ray.cam_x, p->plane.y * ray.cam_x));
-		ray.map = vecdtoi(p->pos);
-		ray.delta_dist = set_vec2(fabs(1.0 / ray.ray_dir.x),
-				fabs(1.0 / ray.ray_dir.y));
-		ray.step = set_raydir(ray);
-		setSideDist(&ray, cub->player);
+		init_ray(cub, &ray, x);
 		perform_dda(&ray, cub);
 		if (ray.side == 0)
 			ray.perp_dist = ((ray.map.x - p->pos.x + (1 - ray.step.x)
@@ -112,6 +105,7 @@ void	cast_rays(t_cub *cub, t_img *img)
 		else
 			ray.perp_dist = ((ray.map.y - p->pos.y + (1 - ray.step.y)
 					/ 2) / ray.ray_dir.y) * TILE_SIZE;
-		draw_stripe(img, &ray, x);
+		if (ray.hit)
+			draw_stripe(img, &ray, x);
 	}
 }

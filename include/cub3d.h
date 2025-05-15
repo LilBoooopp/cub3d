@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/14 16:34:08 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/14 19:22:04 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 1080
 
-# define MOVE_SPEED 0.5
+# define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
-# define TILE_SIZE 64
+# define TILE_SIZE 16
 
 typedef enum e_key
 {
@@ -129,12 +129,6 @@ typedef struct s_img
 }	t_img;
 
 
-
-
-
-
-
-
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */
 int	init(t_cub *cub);
@@ -161,10 +155,11 @@ void	rotate(t_player *p, double angle);
 
 /* render */
 int	render(t_cub *cub);
-t_vec2i	set_raydir(t_raycast ray);
+t_vec2i	set_raydir(t_raycast *ray);
 void	cast_rays(t_cub *cub, t_img *img);
 void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map);
 void	draw_player(t_cub *cub, t_player *player, t_img *map);
+void	init_ray(t_cub *cub, t_raycast *ray, int x);
 void	render_map(t_cub *cub, t_img *img, t_player *player);
 void	setSideDist(t_raycast *ray, t_player player);
 
