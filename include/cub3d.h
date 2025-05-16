@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/15 16:34:16 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/16 15:42:03 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 # include <stdlib.h>
 # include <ctype.h>
 # include <stdbool.h>
+# include <time.h>
 # include "../libft/libft.h"
+# include <sys/time.h>
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 1080
@@ -98,7 +100,9 @@ typedef struct s_cub
 	t_player	player;
 	t_map		*map;
 	int			debug;
-	bool		keys[256];
+	bool		keys[70000];
+	double		frame_time;
+	double		last_frame_time;
 }	t_cub;
 
 typedef struct s_raycast
@@ -129,8 +133,15 @@ typedef struct s_img
 }	t_img;
 
 
+
+
+
+
+
+
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */
+double	gettime(void);
 int	init(t_cub *cub);
 void	init_player(t_player *player);
 
@@ -161,11 +172,12 @@ void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map);
 void	draw_player(t_cub *cub, t_player *player, t_img *map);
 void	init_ray(t_cub *cub, t_raycast *ray, int x);
 void	render_map(t_cub *cub, t_img *img, t_player *player);
-void	setSideDist(t_raycast *ray, t_player player);
+void	set_side_dist(t_raycast *ray, t_player player);
 
 /* utils */
 int	close_window(t_cub *cub);
 int	handle_input(int keycode, t_cub *cub);
+int	handle_keyrelease(int kc, t_cub *cub);
 int	is_in_bounds(t_img *img, t_vec2 point);
 t_vec2	fix_pos(t_cub *cub, t_img *dst, t_vec2 pos);
 t_vec2	get_center(t_img *img);
@@ -177,6 +189,7 @@ t_vec2	vec2_sub(t_vec2 vec1, t_vec2 vec2);
 t_vec2i	vecdtoi(t_vec2 vec2);
 t_vec3	set_vec3(double x, double y, double z);
 t_vec4	set_vec4(int r, int g, int b, int a);
+void	smooth_input(t_cub *cub);
 
 /* === AUTO GENERATED PROTOTYPES END   === */
 
