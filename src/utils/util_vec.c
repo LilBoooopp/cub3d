@@ -6,11 +6,11 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:35:28 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/12 23:30:13 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:14:33 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 t_vec2	set_vec2(double x, double y)
 {

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/16 15:42:03 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:05:04 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define CUB3D_H
 
 # if defined(__APPLE__)
-#	include "../mlx_mac/mlx.h"
+#  include "../mlx_mac/mlx.h"
 # else
-#	include "../mlx_linux/mlx.h"
+#  include "../mlx_linux/mlx.h"
 # endif
 
 # include <stdio.h>
@@ -132,21 +132,14 @@ typedef struct s_img
 	int		end;
 }	t_img;
 
-
-
-
-
-
-
-
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */
 double	gettime(void);
-int	init(t_cub *cub);
+int		init(t_cub *cub);
 void	init_player(t_player *player);
 
 /* mlx */
-int	get_pixel(t_img *img, t_vec2 pos);
+int		get_pixel(t_img *img, t_vec2 pos);
 t_img	make_image(t_cub *cub, t_vec2 size, int color);
 t_vec2	get_rotated_position(t_vec2 center, t_vec2 local, double angle);
 t_vec2	rotate_point(t_vec2 rel, double angle);
@@ -165,7 +158,7 @@ void	move_right(t_player *p, t_map *m);
 void	rotate(t_player *p, double angle);
 
 /* render */
-int	render(t_cub *cub);
+int		render(t_cub *cub);
 t_vec2i	set_raydir(t_raycast *ray);
 void	cast_rays(t_cub *cub, t_img *img);
 void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map);
@@ -175,10 +168,10 @@ void	render_map(t_cub *cub, t_img *img, t_player *player);
 void	set_side_dist(t_raycast *ray, t_player player);
 
 /* utils */
-int	close_window(t_cub *cub);
-int	handle_input(int keycode, t_cub *cub);
-int	handle_keyrelease(int kc, t_cub *cub);
-int	is_in_bounds(t_img *img, t_vec2 point);
+int		close_window(t_cub *cub);
+int		handle_input(int keycode, t_cub *cub);
+int		handle_keyrelease(int kc, t_cub *cub);
+int		is_in_bounds(t_img *img, t_vec2 point);
 t_vec2	fix_pos(t_cub *cub, t_img *dst, t_vec2 pos);
 t_vec2	get_center(t_img *img);
 t_vec2	set_vec2(double x, double y);

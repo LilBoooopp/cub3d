@@ -6,11 +6,11 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 19:41:35 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/14 16:03:47 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:14:08 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 void	move_forward(t_player *p, t_map *m)
 {

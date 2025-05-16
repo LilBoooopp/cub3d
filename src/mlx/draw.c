@@ -6,11 +6,11 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:33:43 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/13 17:12:28 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:44:05 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 void	draw_line(t_img *img, t_vec2 start, t_vec2 end, int color)
 {

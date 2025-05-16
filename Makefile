@@ -1,8 +1,9 @@
 #───────────────────────────  PROJECT BASICS  ────────────────────────────────#
 NAME = cub3d
 CC   = cc
+INC = include
 RM   = rm -rf
-FLAGS = -Werror -Wextra -Wall -fsanitize=address -g
+FLAGS = -Werror -Wextra -Wall -fsanitize=address -g -I$(INC)
 MAKE := make --no-print-directory
 
 #────────────────────────────  LIBFT SECTION  ────────────────────────────────#
@@ -126,7 +127,7 @@ $(OBJ_DIR)%.o: %.c
 	bar=$$(printf "█%.0s" $$(seq 1 $$done)); \
 	space=$$(printf "░%.0s" $$(seq 1 $$todo)); \
 	printf "\r\033[1;36m%s \033[1mCompiling\033[0m [%-*s] %3d%% \033[36m%-40.40s\033[0m" "$$frame" "$$barlen" "$$bar$$space" "$$percent" "$<"; \
-	$(CC) $(FLAGS) $(MLX_INC) -c $< -o $@
+	$(CC) $(FLAGS) -I $(MLX_INC) -c $< -o $@
 
 clean:
 	@echo $(CURSIVE)$(GRAY)" -> Cleaning object files.."$(NONE)

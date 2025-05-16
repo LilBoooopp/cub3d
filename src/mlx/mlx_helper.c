@@ -6,11 +6,11 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:58:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/13 16:50:25 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:13:36 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 int	get_pixel(t_img *img, t_vec2 pos)
 {
