@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/14 19:22:04 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/15 16:34:16 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
-# define TILE_SIZE 16
+# define TILE_SIZE 1
 
 typedef enum e_key
 {

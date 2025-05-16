@@ -6,13 +6,13 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/14 19:53:49 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/16 14:56:08 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	setSideDist(t_raycast *ray, t_player player)
+void	set_side_dist(t_raycast *ray, t_player player)
 {
 	if (ray->step.x == 1)
 		ray->side_dist.x = (ray->map.x + 1 - player.pos.x) * ray->delta_dist.x;
@@ -56,13 +56,13 @@ static void	perform_dda(t_raycast *ray, t_cub *cub)
 			ray->map.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (ray->map.x < 0 || ray->map.x >= cub->map->sizex
-			|| ray->map.y < 0 || ray->map.y >= cub->map->sizey)
-		{
-			ray->hit = 1;
-			break ;
-		}
-		if (cub->map->map[ray->map.y][ray->map.x] > 0)
+		// if (ray->map.x < 0 || ray->map.x >= cub->map->sizex
+		// 	|| ray->map.y < 0 || ray->map.y >= cub->map->sizey)
+		// {
+		// 	ray->hit = 1;
+		// 	break ;
+		// }
+		if (cub->map->map[ray->map.y][ray->map.x] == '1')
 			ray->hit = 1;
 	}
 }
@@ -83,7 +83,7 @@ static void	draw_stripe(t_img *img, t_raycast *ray, int x)
 	else
 		ray->color = 0x00323ea8;
 	y = ray->draw_start;
-	while (y < ray->draw_end)
+	while (y < ray->draw_end && ray->hit)
 		my_mlx_pixel_put(img, x, y++, ray->color);
 }
 
@@ -101,10 +101,10 @@ void	cast_rays(t_cub *cub, t_img *img)
 		perform_dda(&ray, cub);
 		if (ray.side == 0)
 			ray.perp_dist = ((ray.map.x - p->pos.x + (1 - ray.step.x)
-					/ 2) / ray.ray_dir.x) * TILE_SIZE;
+						/ 2) / ray.ray_dir.x) * TILE_SIZE;
 		else
 			ray.perp_dist = ((ray.map.y - p->pos.y + (1 - ray.step.y)
-					/ 2) / ray.ray_dir.y) * TILE_SIZE;
+						/ 2) / ray.ray_dir.y) * TILE_SIZE;
 		if (ray.hit)
 			draw_stripe(img, &ray, x);
 	}
