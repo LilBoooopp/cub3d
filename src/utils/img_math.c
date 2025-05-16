@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   img_math.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 16:55:19 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/16 15:43:44 by cbopp            ###   ########.fr       */
+/*   Created: 2025/05/12 23:32:42 by cbopp             #+#    #+#             */
+/*   Updated: 2025/05/14 15:46:55 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
-int	main(void)
+t_vec2	fix_pos(t_cub *cub, t_img *dst, t_vec2 pos)
 {
-	t_cub	cub;
+	t_vec2	new;
+	double	x;
+	double	y;
 
-	init(&cub);
-	mlx_hook(cub.mlx_win, 2, 1l << 0, handle_input, &cub);
-	mlx_hook(cub.mlx_win, 3, 1L << 1, handle_keyrelease, &cub);
-	mlx_hook(cub.mlx_win, 17, 0, close_window, &cub);
-	mlx_loop_hook(cub.mlx, render, &cub);
-	mlx_loop(cub.mlx);
-	return (0);
+	x = dst->size.x / cub->map->sizex;
+	y = dst->size.y / cub->map->sizey;
+	new = set_vec2((pos.x * (x - 1)) + (x / 2), (pos.y * (y - 1)) + (y / 2));
+	return (new);
+}
+
+t_vec2	get_center(t_img *img)
+{
+	t_vec2	ret;
+
+	ret.x = img->size.x / 2;
+	ret.y = img->size.y / 2;
+	return (ret);
 }

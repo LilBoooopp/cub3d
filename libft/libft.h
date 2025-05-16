@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:27:54 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/05/08 15:45:34 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/12 17:18:07 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ int		ft_gnl_strchr(char *str);
 
 size_t	ft_chartable_linecount(char **table);
 void	ft_free_chartable(char **table);
+int		ft_print_inttable(int **table, size_t sizey, size_t sizex);
 int		ft_print_chartable(char **table);
 
 void	*set(void *vtarget, void *target_new);
