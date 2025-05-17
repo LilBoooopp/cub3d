@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/17 20:51:12 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/17 21:06:55 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@
 # define MOVE_SPEED 3.0
 # define ROT_SPEED 2.0
 # define TILE_SIZE 1
+
+extern const char	*g_digit[10];
 
 typedef struct s_vec2
 {
@@ -216,9 +218,12 @@ int	update(t_cub *cub);
 t_vec2i	set_raydir(t_raycast *ray);
 void	cast_rays(t_cub *cub, t_img *img);
 void	change_debug(t_cub *cub);
+void	draw_big_fps(t_cub *cub);
 void	draw_debug(t_cub *cub);
+void	draw_digit(t_cub *c, char d, int ox, int oy, int s);
 void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map);
 void	draw_player(t_cub *cub, t_player *player, t_img *map);
+void	draw_px(t_cub *c, int x, int y);
 void	init_ray(t_cub *cub, t_raycast *ray, int x);
 void	render_map(t_cub *cub, t_img *img, t_player *player);
 void	set_side_dist(t_raycast *ray, t_player player);
