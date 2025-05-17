@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/16 16:13:50 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/17 20:46:07 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	render(t_cub *cub)
 
 	cub->last_frame_time = gettime() - cub->frame_time;
 	cub->frame_time = gettime();
-	// printf("framerate: %f\n", cub->last_frame_time);
 	smooth_input(cub);
 	back.size = set_vec2(WIN_WIDTH, WIN_HEIGHT);
 	back.img = mlx_new_image(cub->mlx, back.size.x, back.size.y);
@@ -28,6 +27,7 @@ int	render(t_cub *cub)
 	if (cub->debug == 1)
 		render_map(cub, &back, &cub->player);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, back.img, 0, 0);
+	draw_debug(cub);
 	mlx_destroy_image(cub->mlx, back.img);
 	return (0);
 }

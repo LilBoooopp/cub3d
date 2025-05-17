@@ -3,7 +3,7 @@ NAME = cub3d
 CC   = cc
 INC = include
 RM   = rm -rf
-FLAGS = -Werror -Wextra -Wall -fsanitize=address -g -I$(INC)
+FLAGS = -Werror -Wextra -Wall -g -I$(INC) #fsanitize=address
 MAKE := make --no-print-directory
 
 #────────────────────────────  LIBFT SECTION  ────────────────────────────────#
@@ -54,7 +54,8 @@ RENDER_SRC =  \
 	map.c \
 	ray_utils.c \
 	rays.c \
-	render.c
+	render.c \
+	update.c
 RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
 
 UTILS_DIR = src/utils/
