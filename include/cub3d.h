@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/17 21:06:55 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/17 21:15:02 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,12 @@
 
 extern const char	*g_digit[10];
 
+typedef enum e_state
+{
+	STATE_MENU,
+	STATE_PLAY
+}	t_state;
+
 typedef struct s_vec2
 {
 	double	x;
@@ -154,6 +160,8 @@ typedef struct s_cub
 	double		last_frame_time;
 	double		delta;
 	int			fps;
+	t_state		state;
+	int			menu_sel;
 }	t_cub;
 
 typedef struct s_raycast
