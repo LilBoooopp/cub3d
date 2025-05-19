@@ -6,7 +6,7 @@
 /*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/16 15:54:10 by plbuet           ###   ########.fr       */
+/*   Updated: 2025/05/19 11:04:16 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # endif
 
 # include <stdio.h>
+#include <fcntl.h>
 # include <math.h>
 # include <stdlib.h>
 # include <ctype.h>
@@ -91,6 +92,9 @@ typedef struct s_map
 	int		sizex;
 	int		sizey;
 	char	**map;
+	char	orientation;
+	int		player_x;
+	int		player_y;
 }	t_map;
 
 typedef struct s_cub
@@ -132,7 +136,16 @@ typedef struct s_img
 	int		end;
 }	t_img;
 
-
+typedef struct s_texture
+{
+	char	*n;
+	char	*s;
+	char	*we;
+	char	*ea;
+	char	f[7];
+	char	c[7];
+	int		full;
+}	t_texture;
 
 
 
