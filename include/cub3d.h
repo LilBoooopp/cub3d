@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 14:26:57 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 14:33:33 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,9 @@ typedef struct s_map
 {
 	int		sizex;
 	int		sizey;
+	int		screenx;
+	int		screeny;
+	int		tile_size;
 	char	**map;
 }	t_map;
 
