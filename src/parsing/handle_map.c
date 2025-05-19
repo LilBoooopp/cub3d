@@ -6,7 +6,7 @@
 /*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/19 17:08:34 by plbuet           ###   ########.fr       */
+/*   Updated: 2025/05/19 18:25:19 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_map *tab_map(t_node *lst_map, int max_width)
 	map->map = malloc(sizeof(char *) * (size + 1));
 	if (!map->map)
 		return(NULL);
+	map->player_y = size;
 	i = 0;
 	while (i < size)
 	{
@@ -46,7 +47,7 @@ t_map *tab_map(t_node *lst_map, int max_width)
 		lst_map = lst_map->next;
 		i ++;
 	}
-	printf("end\n");
+	map->sizex = max_width;
 	return(map);
 }
 
