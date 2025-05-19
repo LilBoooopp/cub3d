@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/17 21:15:02 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 13:38:13 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,9 +190,6 @@ typedef struct s_img
 	int		len;
 	int		end;
 }	t_img;
-
-
-
 
 
 /* === AUTO GENERATED PROTOTYPES START === */
