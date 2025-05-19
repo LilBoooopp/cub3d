@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:25 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 19:06:25 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 19:53:06 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int	handle_input(int keycode, t_cub *cub)
 		cub->ismap *= -1;
 	// printf("player x: %f, y: %f\n", cub->player.pos.x, cub->player.pos.y);
 	// printf("player dirx: %f, diry: %f\n", cub->player.dir.x, cub->player.dir.y);
+	// printf("player planex: %f, planey: %f\n", cub->player.plane.x, cub->player.plane.y);
 	return (0);
 }
