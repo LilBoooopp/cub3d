@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 14:45:58 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 19:01:57 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@
 # endif
 
 # include <stdio.h>
+#include <fcntl.h>
 # include <math.h>
 # include <stdlib.h>
 # include <ctype.h>
@@ -155,7 +156,19 @@ typedef struct s_map
 	int		screeny;
 	int		tile_size;
 	char	**map;
+	char	orientation;
 }	t_map;
+
+typedef struct s_texture
+{
+	char	*n;
+	char	*s;
+	char	*we;
+	char	*ea;
+	char	f[7];
+	char	c[7];
+	int		full;
+}	t_texture;
 
 typedef struct s_cub
 {
@@ -163,6 +176,7 @@ typedef struct s_cub
 	void		*mlx_win;
 	t_player	player;
 	t_map		*map;
+	t_texture	texture;
 	int			debug;
 	bool		keys[70000];
 	double		frame_time;
@@ -200,13 +214,11 @@ typedef struct s_img
 	int		end;
 }	t_img;
 
-
-
-
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */
 double	gettime(void);
-int	init(t_cub *cub);
+t_map	*ini_map(t_cub *cub, char **v);
+int		init(t_cub *cub, char ** v);
 void	init_player(t_player *player);
 
 /* mlx */

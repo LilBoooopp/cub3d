@@ -3,7 +3,7 @@ NAME = cub3d
 CC   = cc
 INC = include
 RM   = rm -rf
-FLAGS = -Werror -Wextra -Wall -g -I$(INC) -fsanitize=address
+FLAGS = -Werror -Wextra -Wall -g -I$(INC) #-fsanitize=address
 MAKE := make --no-print-directory
 
 #────────────────────────────  LIBFT SECTION  ────────────────────────────────#
@@ -44,6 +44,14 @@ MLX_SRC =  \
 	mlx_helper.c
 MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
 
+PARSING_DIR = src/parsing/
+PARSING_SRC =  \
+	handle_map.c \
+	init_texture.c \
+	open_files.c \
+	utils.c
+PARSING = $(addprefix $(PARSING_DIR), $(PARSING_SRC))
+
 PLAYER_DIR = src/player/
 PLAYER_SRC =  \
 	input.c \
@@ -72,8 +80,8 @@ UTILS_SRC =  \
 	util_vec.c
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
 
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
+ALL_SRC = $(SRC) $(INIT) $(MLX) $(PARSING) $(PLAYER) $(RENDER) $(UTILS)
+vpath %.c src src/init src/mlx src/parsing src/player src/render src/utils
 #--------------------------------------OBJECTS----------------------------------#
 OBJ_DIR  = Objects/
 OBJECTS  = $(patsubst %.c,$(OBJ_DIR)%.o,$(notdir $(ALL_SRC)))
