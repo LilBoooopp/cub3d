@@ -3,25 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   handle_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/19 18:30:30 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 19:53:24 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parsing.h"
 
-// void	check_map(t_map *map, int max_width)
-// {
-// 	int i = 0;
+int	check_map(t_map *map)
+{
+	int	i = 0;
+	int	j = 0;
 
-// 	while (i < max_width)
-// 	{
-// 		printf("%s", map->map[i]);
-// 		i ++;
-// 	}
-// }
+	while (i < map->sizey)
+	{
+		j = 0;
+		while (j < map->sizex)
+		{
+			if (map->map[i][j] == 'N' || map->map[i][j] == 'S' || map->map[i][j] == 'E' || map->map[i][j] == 'W')
+			{
+				map->player_x = j;
+				map->player_y = i;
+				map->orientation = map->map[i][j];
+			}
+			else if (map->map[i][j] == ' ' || map->map[i][j] == '1' || map->map[i][j] == '0')
+				continue;
+			else
+				return (1);
+		}
+		i ++;
+	}
+	return (0);
+}
 
 t_map *tab_map(t_node *lst_map, int max_width)
 {
@@ -48,6 +63,7 @@ t_map *tab_map(t_node *lst_map, int max_width)
 		i ++;
 	}
 	map->sizex = max_width;
+	check_map(map);
 	return(map);
 }
 

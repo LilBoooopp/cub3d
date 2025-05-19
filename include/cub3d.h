@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 18:40:42 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 19:56:49 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ typedef struct s_img
 double	gettime(void);
 t_map	*ini_map(t_cub *cub, char **v);
 int		init(t_cub *cub, char ** v);
-void	init_player(t_player *player);
+void	init_player(t_player *player, t_map *map);
 
 /* mlx */
 int	get_pixel(t_img *img, t_vec2 pos);
