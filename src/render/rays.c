@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/16 16:13:12 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 18:44:39 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ static void	perform_dda(t_raycast *ray, t_cub *cub)
 			ray->map.y += ray->step.y;
 			ray->side = 1;
 		}
-		// if (ray->map.x < 0 || ray->map.x >= cub->map->sizex
-		// 	|| ray->map.y < 0 || ray->map.y >= cub->map->sizey)
-		// {
-		// 	ray->hit = 1;
-		// 	break ;
-		// }
+		if (ray->map.x < 0 || ray->map.x >= cub->map->sizex
+			|| ray->map.y < 0 || ray->map.y >= cub->map->sizey)
+		{
+			ray->hit = 1;
+			break ;
+		}
 		if (cub->map->map[ray->map.y][ray->map.x] == '1')
 			ray->hit = 1;
 	}
