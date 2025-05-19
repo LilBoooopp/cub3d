@@ -46,6 +46,7 @@ MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
 
 PLAYER_DIR = src/player/
 PLAYER_SRC =  \
+	input.c \
 	move.c
 PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
 
@@ -54,6 +55,7 @@ RENDER_SRC =  \
 	debug.c \
 	font.c \
 	map.c \
+	menu.c \
 	ray_utils.c \
 	rays.c \
 	render.c \
@@ -64,7 +66,6 @@ UTILS_DIR = src/utils/
 UTILS_SRC =  \
 	close.c \
 	img_math.c \
-	input.c \
 	math_vec.c \
 	util_vec.c
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))

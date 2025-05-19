@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:25 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/17 20:53:48 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 13:51:48 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	handle_input(int keycode, t_cub *cub)
 {
 	if (keycode < 70000)
 		cub->keys[keycode] = true;
+	if (cub->state == STATE_MENU)
+		return (handle_menu(keycode, cub), 0);
 	if (cub->keys[key_G])
 		change_debug(cub);
 	printf("player x: %f, y: %f\n", cub->player.pos.x, cub->player.pos.y);
