@@ -6,11 +6,11 @@
 /*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/19 16:26:38 by plbuet           ###   ########.fr       */
+/*   Updated: 2025/05/19 17:12:18 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"parsing.h"
+#include "parsing.h"
 
 void	extract_texture(char *line, t_texture *texture)
 {
@@ -26,9 +26,7 @@ void	extract_texture(char *line, t_texture *texture)
 }
 int check_file(char *name_files)
 {
-	int	i;
 	char *check;
-	i = 0;
 	
 	check = ft_strrchr(name_files, '.');
 	if ((ft_strncmp(check, ".cub", 4) == 0) && ft_strlen(check) == 4)
@@ -40,10 +38,8 @@ t_map	*openFiles(char *name_files, t_texture *texture)
 {
 	int		fd;
 	char	*line;
-	int		i;
 	t_map	*map;
 
-	i = 0;
 	if (check_file(name_files) == 1)
 	{
 		perror("Error\n incorect name files\n");
@@ -60,14 +56,16 @@ t_map	*openFiles(char *name_files, t_texture *texture)
 			extract_texture(line, texture);
 	}
 	printf("%s\n%s\n%s\n%s\n%d\n",texture->n, texture->s, texture->we, texture->ea, texture->full);
-	return (read_map(fd, line, map));
+	return (read_map(fd, line));
 }
 
-int ini_map(int c, char **v)
+t_map	*ini_map(t_cub *cub, char **v)
 {
 	t_map		*map;
 	t_texture	texture;
-
+	int			i;
+	
+	i = 0;
 	texture.full = 0;
 	texture.c[0] = '\0';
 	texture.f[0] = '\0';
@@ -75,18 +73,17 @@ int ini_map(int c, char **v)
 	texture.s = NULL;
 	texture.we = NULL;
 	texture.ea = NULL;
-
 	map = openFiles(v[1], &texture);
 	if (!map)
-		return(1);
-	int i = 0;
+		return(NULL);
 	while (map->map[i])
 	{
 		printf("%s\n", map->map[i]);
 		i ++;
 	}
+	cub->texture =  texture;
 	printf("%s\n%s\n%s\n%s\n",texture.n, texture.s, texture.we, texture.ea);
 	printf("%s\n%s\n", texture.c, texture.f);
-	return(0);
+	return(map);
 }
 

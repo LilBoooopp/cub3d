@@ -6,33 +6,37 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:25 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/16 15:43:57 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/17 20:53:48 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 void	smooth_input(t_cub *cub)
 {
+	double	lin;
+	double	rot;
+
+	lin = MOVE_SPEED * cub->delta;
+	rot = ROT_SPEED * cub->delta;
 	if (cub->keys[key_ESC])
 		close_window(cub);
 	if (cub->keys[key_W])
-		move_forward(&cub->player, cub->map);
+		move_forward(&cub->player, cub->map, lin);
 	if (cub->keys[key_S])
-		move_backward(&cub->player, cub->map);
+		move_backward(&cub->player, cub->map, lin);
 	if (cub->keys[key_A])
-		move_left(&cub->player, cub->map);
+		move_left(&cub->player, cub->map, lin);
 	if (cub->keys[key_D])
-		move_right(&cub->player, cub->map);
+		move_right(&cub->player, cub->map, lin);
 	if (cub->keys[key_LEFT])
-		rotate(&cub->player, -ROT_SPEED);
+		rotate(&cub->player, -rot);
 	if (cub->keys[key_RIGHT])
-		rotate(&cub->player, ROT_SPEED);
+		rotate(&cub->player, rot);
 }
 
 int	handle_keyrelease(int kc, t_cub *cub)
 {
-	printf("release\n");
 	if (kc < 70000)
 		cub->keys[kc] = false;
 	return (0);
@@ -42,6 +46,8 @@ int	handle_input(int keycode, t_cub *cub)
 {
 	if (keycode < 70000)
 		cub->keys[keycode] = true;
+	if (cub->keys[key_G])
+		change_debug(cub);
 	printf("player x: %f, y: %f\n", cub->player.pos.x, cub->player.pos.y);
 	printf("player dirx: %f, diry: %f\n", cub->player.dir.x, cub->player.dir.y);
 	return (0);

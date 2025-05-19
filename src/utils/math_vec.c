@@ -6,11 +6,11 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 14:38:17 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/13 16:32:27 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:14:28 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 t_vec2	vec2_add(t_vec2 vec1, t_vec2 vec2)
 {

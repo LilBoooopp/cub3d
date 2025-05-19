@@ -1,8 +1,9 @@
 #───────────────────────────  PROJECT BASICS  ────────────────────────────────#
 NAME = cub3d
 CC   = cc
+INC = include
 RM   = rm -rf
-FLAGS = -Werror -Wextra -Wall -fsanitize=address -g
+FLAGS = -Werror -Wextra -Wall -g -I$(INC) #fsanitize=address
 MAKE := make --no-print-directory
 
 #────────────────────────────  LIBFT SECTION  ────────────────────────────────#
@@ -43,30 +44,42 @@ MLX_SRC =  \
 	mlx_helper.c
 MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
 
+PARSING_DIR = src/parsing/
+PARSING_SRC =  \
+	handle_map.c \
+	init_texture.c \
+	open_files.c \
+	utils.c
+PARSING = $(addprefix $(PARSING_DIR), $(PARSING_SRC))
+
 PLAYER_DIR = src/player/
 PLAYER_SRC =  \
+	input.c \
 	move.c
 PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
 
 RENDER_DIR = src/render/
 RENDER_SRC =  \
+	debug.c \
+	font.c \
 	map.c \
+	menu.c \
 	ray_utils.c \
 	rays.c \
-	render.c
+	render.c \
+	update.c
 RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
 
 UTILS_DIR = src/utils/
 UTILS_SRC =  \
 	close.c \
 	img_math.c \
-	input.c \
 	math_vec.c \
 	util_vec.c
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
 
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/player src/render src/utils
+ALL_SRC = $(SRC) $(INIT) $(MLX) $(PARSING) $(PLAYER) $(RENDER) $(UTILS)
+vpath %.c src src/init src/mlx src/parsing src/player src/render src/utils
 #--------------------------------------OBJECTS----------------------------------#
 OBJ_DIR  = Objects/
 OBJECTS  = $(patsubst %.c,$(OBJ_DIR)%.o,$(notdir $(ALL_SRC)))
@@ -126,7 +139,7 @@ $(OBJ_DIR)%.o: %.c
 	bar=$$(printf "█%.0s" $$(seq 1 $$done)); \
 	space=$$(printf "░%.0s" $$(seq 1 $$todo)); \
 	printf "\r\033[1;36m%s \033[1mCompiling\033[0m [%-*s] %3d%% \033[36m%-40.40s\033[0m" "$$frame" "$$barlen" "$$bar$$space" "$$percent" "$<"; \
-	$(CC) $(FLAGS) $(MLX_INC) -c $< -o $@
+	$(CC) $(FLAGS) -I $(MLX_INC) -c $< -o $@
 
 clean:
 	@echo $(CURSIVE)$(GRAY)" -> Cleaning object files.."$(NONE)

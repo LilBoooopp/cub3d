@@ -6,7 +6,7 @@
 /*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/19 16:25:33 by plbuet           ###   ########.fr       */
+/*   Updated: 2025/05/19 17:08:34 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_map *tab_map(t_node *lst_map, int max_width)
 	return(map);
 }
 
-t_map *read_map(int fd, char *line, t_map *map)
+t_map *read_map(int fd, char *line)
 {
 	int		max_width;
 	int		len;

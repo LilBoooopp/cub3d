@@ -3,24 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:55:19 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/16 15:43:44 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 17:11:08 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d.h"
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_cub	cub;
 
-	init(&cub);
+	if (ac != 2)
+		return(1);
+	init(&cub, av);
 	mlx_hook(cub.mlx_win, 2, 1l << 0, handle_input, &cub);
 	mlx_hook(cub.mlx_win, 3, 1L << 1, handle_keyrelease, &cub);
 	mlx_hook(cub.mlx_win, 17, 0, close_window, &cub);
-	mlx_loop_hook(cub.mlx, render, &cub);
+	mlx_loop_hook(cub.mlx, update, &cub);
 	mlx_loop(cub.mlx);
 	return (0);
 }

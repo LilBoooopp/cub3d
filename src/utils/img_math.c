@@ -6,11 +6,11 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 23:32:42 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/14 15:46:55 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:14:23 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 t_vec2	fix_pos(t_cub *cub, t_img *dst, t_vec2 pos)
 {
