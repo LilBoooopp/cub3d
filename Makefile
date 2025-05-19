@@ -3,7 +3,7 @@ NAME = cub3d
 CC   = cc
 INC = include
 RM   = rm -rf
-FLAGS = -Werror -Wextra -Wall -g -I$(INC) #fsanitize=address
+FLAGS = -Werror -Wextra -Wall -g -I$(INC) -fsanitize=address
 MAKE := make --no-print-directory
 
 #────────────────────────────  LIBFT SECTION  ────────────────────────────────#
@@ -67,6 +67,7 @@ UTILS_DIR = src/utils/
 UTILS_SRC =  \
 	close.c \
 	img_math.c \
+	map_math.c \
 	math_vec.c \
 	util_vec.c
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))

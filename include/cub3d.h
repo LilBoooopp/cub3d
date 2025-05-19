@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 14:33:33 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 14:45:58 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,7 +240,7 @@ void	cast_rays(t_cub *cub, t_img *img);
 void	change_debug(t_cub *cub);
 void	draw_big_fps(t_cub *cub);
 void	draw_debug(t_cub *cub);
-void	draw_debug_rays(t_cub *c, t_img *m);
+void	draw_debug_rays(t_cub *c, t_img *m, t_vec2 pos);
 void	draw_digit(t_cub *c, char d, int ox, int oy, int s);
 void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map);
 void	draw_menu(t_cub *c);

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 20:38:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/17 21:01:28 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 14:42:06 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	update(t_cub *cub)
 		cub->fps = (int)(1.0 / cub->delta);
 	else
 		cub->fps = 0;
+	smooth_input(cub);
 	render(cub);
 	return (0);
 }
