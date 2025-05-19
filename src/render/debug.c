@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:01:04 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/17 21:03:35 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 14:13:11 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	draw_big_fps(t_cub *cub)
 
 void	change_debug(t_cub *cub)
 {
-	if (cub->debug == 1)
+	if (cub->debug == 2)
 		cub->debug = 0;
 	else
 		cub->debug++;

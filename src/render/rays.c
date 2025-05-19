@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/16 16:13:12 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 14:05:25 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_vec2i	set_raydir(t_raycast *ray)
 	return (new);
 }
 
-static void	perform_dda(t_raycast *ray, t_cub *cub)
+void	perform_dda(t_raycast *ray, t_cub *cub)
 {
 	ray->hit = 0;
 	while (!ray->hit)

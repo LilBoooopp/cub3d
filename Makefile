@@ -53,6 +53,7 @@ PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
 RENDER_DIR = src/render/
 RENDER_SRC =  \
 	debug.c \
+	debug_rays.c \
 	font.c \
 	map.c \
 	menu.c \

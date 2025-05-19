@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 13:49:44 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 14:27:01 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	init(t_cub *cub)
 	cub->debug = 1;
 	cub->state = STATE_MENU;
 	cub->menu_sel = 0;
+	cub->ismap = -1;
 	cub->keys[key_LEFT] = false;
 	init_player(&cub->player);
 	cub->mlx_win = mlx_new_window(cub->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");

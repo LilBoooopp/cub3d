@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 13:49:02 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 14:26:57 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,11 +163,11 @@ typedef struct s_cub
 	int			debug;
 	bool		keys[70000];
 	double		frame_time;
-	double		last_frame_time;
 	double		delta;
 	int			fps;
 	t_state		state;
 	int			menu_sel;
+	int			ismap;
 }	t_cub;
 
 typedef struct s_raycast
@@ -196,6 +196,7 @@ typedef struct s_img
 	int		len;
 	int		end;
 }	t_img;
+
 
 
 
@@ -236,12 +237,14 @@ void	cast_rays(t_cub *cub, t_img *img);
 void	change_debug(t_cub *cub);
 void	draw_big_fps(t_cub *cub);
 void	draw_debug(t_cub *cub);
+void	draw_debug_rays(t_cub *c, t_img *m);
 void	draw_digit(t_cub *c, char d, int ox, int oy, int s);
 void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map);
 void	draw_menu(t_cub *c);
 void	draw_player(t_cub *cub, t_player *player, t_img *map);
 void	draw_px(t_cub *c, int x, int y);
 void	init_ray(t_cub *cub, t_raycast *ray, int x);
+void	perform_dda(t_raycast *ray, t_cub *cub);
 void	render_map(t_cub *cub, t_img *img, t_player *player);
 void	set_side_dist(t_raycast *ray, t_player player);
 

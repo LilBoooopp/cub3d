@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 13:51:08 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 14:25:42 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	render(t_cub *cub)
 {
 	t_img	back;
 
-	cub->last_frame_time = gettime() - cub->frame_time;
-	cub->frame_time = gettime();
 	if (cub->state == STATE_MENU)
 		return (draw_menu(cub), 0);
 	smooth_input(cub);
@@ -26,10 +24,10 @@ int	render(t_cub *cub)
 	back.addr = mlx_get_data_addr(back.img, &back.bpp, &back.len, &back.end);
 	mlx_set_img(&back, 0xFFFFFF);
 	cast_rays(cub, &back);
-	if (cub->debug == 1)
+	if (cub->ismap == 1)
 		render_map(cub, &back, &cub->player);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, back.img, 0, 0);
-	if (cub->debug)
+	if (cub->debug > 0)
 		draw_big_fps(cub);
 	mlx_destroy_image(cub->mlx, back.img);
 	return (0);

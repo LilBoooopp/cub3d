@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:13:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/17 21:08:30 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/19 14:14:35 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	render_map(t_cub *cub, t_img *img, t_player *player)
 	t_img	map;
 
 	map = make_image(cub, set_vec2(300, 300), 0xa55a77);
+	if (cub->debug >= 2)
+		draw_debug_rays(cub, &map);
 	draw_player(cub, player, &map);
 	drawtoimg(&map, img, set_vec2(980, 0));
 	mlx_destroy_image(cub->mlx, map.img);
