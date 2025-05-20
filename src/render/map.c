@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:13:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 14:39:32 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/20 15:03:50 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ void	draw_player(t_cub *cub, t_player *player, t_img *map)
 	map_pos = fix_pos(cub, map, player->pos);
 	if (cub->debug >= 2)
 		draw_debug_rays(cub, map, map_pos);
-	box = make_image(cub, set_vec2(25, 25), 0xFF000000);
-	draw_pixels(&box, get_center(&box), box.size, 0x00FF0000);
+	box = make_image(cub, set_vec2(12, 12), 0xFF000000);
+	draw_pixels(&box, get_center(&box), box.size, 0xFFFF0000);
 	angle = atan2(player->dir.y, player->dir.x);
 	draw_rotated_image(map, &box, map_pos, angle);
 	mlx_destroy_image(cub->mlx, box.img);
-	draw_dir(player, map_pos, map);
+	if (cub->ismap && cub->debug > 1)
+		draw_dir(player, map_pos, map);
 }
 
 void	init_minimap(t_map *m, t_img *map)

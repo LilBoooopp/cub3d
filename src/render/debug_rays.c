@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 14:08:17 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 14:45:43 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/20 15:09:50 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	draw_debug_rays(t_cub *c, t_img *m, t_vec2 pos)
 				+ (1 - r.step.y) / 2) / r.ray_dir.y) * TILE_SIZE;
 		start = set_vec2(pos.x * TILE_SIZE,
 				pos.y * TILE_SIZE);
-		dir = set_vec2(r.ray_dir.x * r.perp_dist * TILE_SIZE,
-				r.ray_dir.y * r.perp_dist * TILE_SIZE);
+		dir = set_vec2(r.ray_dir.x * r.perp_dist * TILE_SIZE * 20,
+				r.ray_dir.y * r.perp_dist * TILE_SIZE * 20);
 		draw_line(m, start, vec2_add(start, dir), 0x00FF00);
-		x += 10;
+		x += 50;
 	}
 }
