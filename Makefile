@@ -41,6 +41,7 @@ INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
 MLX_DIR = src/mlx/
 MLX_SRC =  \
 	draw.c \
+	draw2.c \
 	mlx_helper.c \
 	mlx_helper2.c
 MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))

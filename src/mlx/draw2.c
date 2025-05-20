@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 20:38:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 17:58:56 by cbopp            ###   ########.fr       */
+/*   Created: 2025/05/20 17:41:29 by cbopp             #+#    #+#             */
+/*   Updated: 2025/05/20 17:42:47 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	update(t_cub *cub)
+void	draw_rect(t_img *im, t_vec2 orig, t_vec2 size, int color)
 {
-	double	now;
+	int	x;
+	int	y;
 
-	now = gettime();
-	cub->delta = now - cub->frame_time;
-	cub->frame_time = now;
-	if (cub->delta > 0.0)
-		cub->fps = (int)(1.0 / cub->delta);
-	else
-		cub->fps = 0;
-	smooth_input(cub);
-	render(cub);
-	return (0);
+	y = 0;
+	while (y < size.y)
+	{
+		x = 0;
+		while (x < size.x)
+		{
+			my_mlx_pixel_put(im, orig.x + x, orig.y + y, color);
+			x++;
+		}
+		y++;
+	}
 }

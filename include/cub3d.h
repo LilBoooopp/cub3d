@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 15:19:52 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/20 17:47:47 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ typedef struct s_map
 	int		sizey;
 	int		screenx;
 	int		screeny;
-	t_vec2	tile_size;
+	t_vec2	t_size;
 	char	**map;
 	char	orientation;
 }	t_map;
@@ -233,6 +233,7 @@ void	drawtoimg(t_img *src, t_img *dst, t_vec2 pos);
 void	mlx_set_img(t_img *img, unsigned int color);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	draw_image_transparent(t_img *src, t_img *dst, t_vec2 pos);
+void	draw_rect(t_img *im, t_vec2 orig, t_vec2 size, int color);
 
 /* player */
 int	handle_input(int keycode, t_cub *cub);
