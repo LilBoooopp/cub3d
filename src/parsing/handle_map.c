@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/19 19:03:52 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/20 13:47:05 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_map *tab_map(t_node *lst_map, int max_width)
 	map->map = malloc(sizeof(char *) * (size + 1));
 	if (!map->map)
 		return(NULL);
-	map->sizex = size;
+	map->sizey = size;
 	i = 0;
 	while (i < size)
 	{
