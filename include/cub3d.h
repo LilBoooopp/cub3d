@@ -6,7 +6,11 @@
 /*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/05/19 19:56:49 by plbuet           ###   ########.fr       */
+=======
+/*   Updated: 2025/05/19 19:01:57 by cbopp            ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +47,9 @@
 #  define key_Z		0x06
 #  define key_LEFT	0x7B
 #  define key_RIGHT	0x7C
+#  define key_UP	0x7A
+#  define key_DOWN	0x7D
+#  define key_ENTER	0x24
 #  define key_ESC	0x35
 # else
 #  include "../mlx_linux/mlx.h"
@@ -74,7 +81,10 @@
 #  define key_Z		'z'
 #  define key_LEFT	65361
 #  define key_RIGHT	65363
-#  define key_ESC 	65307
+#  define key_UP	65362
+#  define key_DOWN	65364
+#  define key_ENTER	65293
+#  define key_ESC	65307
 # endif
 
 # include <stdio.h>
@@ -146,10 +156,11 @@ typedef struct s_map
 {
 	int		sizex;
 	int		sizey;
+	int		screenx;
+	int		screeny;
+	int		tile_size;
 	char	**map;
 	char	orientation;
-	int		player_x;
-	int		player_y;
 }	t_map;
 
 typedef struct s_texture
@@ -173,11 +184,11 @@ typedef struct s_cub
 	int			debug;
 	bool		keys[70000];
 	double		frame_time;
-	double		last_frame_time;
 	double		delta;
 	int			fps;
 	t_state		state;
 	int			menu_sel;
+	int			ismap;
 }	t_cub;
 
 typedef struct s_raycast
@@ -227,13 +238,17 @@ void	mlx_set_img(t_img *img, unsigned int color);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 /* player */
+int	handle_input(int keycode, t_cub *cub);
+int	handle_keyrelease(int kc, t_cub *cub);
 void	move_backward(t_player *p, t_map *m, double spd);
 void	move_forward(t_player *p, t_map *m, double spd);
 void	move_left(t_player *p, t_map *m, double spd);
 void	move_right(t_player *p, t_map *m, double spd);
 void	rotate(t_player *p, double angle);
+void	smooth_input(t_cub *cub);
 
 /* render */
+int	handle_menu(int key, t_cub *c);
 int	render(t_cub *cub);
 int	update(t_cub *cub);
 t_vec2i	set_raydir(t_raycast *ray);
@@ -241,18 +256,19 @@ void	cast_rays(t_cub *cub, t_img *img);
 void	change_debug(t_cub *cub);
 void	draw_big_fps(t_cub *cub);
 void	draw_debug(t_cub *cub);
+void	draw_debug_rays(t_cub *c, t_img *m, t_vec2 pos);
 void	draw_digit(t_cub *c, char d, int ox, int oy, int s);
 void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map);
+void	draw_menu(t_cub *c);
 void	draw_player(t_cub *cub, t_player *player, t_img *map);
 void	draw_px(t_cub *c, int x, int y);
 void	init_ray(t_cub *cub, t_raycast *ray, int x);
+void	perform_dda(t_raycast *ray, t_cub *cub);
 void	render_map(t_cub *cub, t_img *img, t_player *player);
 void	set_side_dist(t_raycast *ray, t_player player);
 
 /* utils */
 int	close_window(t_cub *cub);
-int	handle_input(int keycode, t_cub *cub);
-int	handle_keyrelease(int kc, t_cub *cub);
 int	is_in_bounds(t_img *img, t_vec2 point);
 t_vec2	fix_pos(t_cub *cub, t_img *dst, t_vec2 pos);
 t_vec2	get_center(t_img *img);
@@ -264,7 +280,6 @@ t_vec2	vec2_sub(t_vec2 vec1, t_vec2 vec2);
 t_vec2i	vecdtoi(t_vec2 vec2);
 t_vec3	set_vec3(double x, double y, double z);
 t_vec4	set_vec4(int r, int g, int b, int a);
-void	smooth_input(t_cub *cub);
 
 /* === AUTO GENERATED PROTOTYPES END   === */
 

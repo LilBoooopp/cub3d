@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   util_veci.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 20:38:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 18:53:23 by cbopp            ###   ########.fr       */
+/*   Created: 2025/05/19 19:23:17 by cbopp             #+#    #+#             */
+/*   Updated: 2025/05/19 19:24:21 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	update(t_cub *cub)
+t_vec2i	set_vec2i(int x, int y)
 {
-	double	now;
+	t_vec2i	new;
 
-	now = gettime();
-	cub->delta = now - cub->frame_time;
-	cub->frame_time = now;
-	if (cub->delta > 0.0)
-		cub->fps = (int)(1.0 / cub->delta);
-	else
-		cub->fps = 0;
-	smooth_input(cub);
-	render(cub);
-	return (0);
+	new.x = x;
+	new.y = y;
+	return (new);
 }

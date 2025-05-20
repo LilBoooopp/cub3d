@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/05/19 19:53:46 by plbuet           ###   ########.fr       */
+=======
+/*   Updated: 2025/05/19 18:59:31 by cbopp            ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +80,7 @@ t_map	*ini_map(t_cub *cub, char **v)
 	map = openFiles(v[1], &texture);
 	if (!map)
 		return(NULL);
-	while (map->map[i])
+	while (i < map->sizey)
 	{
 		printf("%s\n", map->map[i]);
 		i ++;

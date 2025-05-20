@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:46:15 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/19 17:09:18 by plbuet           ###   ########.fr       */
+/*   Updated: 2025/05/19 19:01:47 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PARSING_H
 
 # include"../include/cub3d.h"
-
 
 typedef struct s_node
 {

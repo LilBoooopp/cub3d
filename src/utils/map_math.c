@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   map_math.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 20:38:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 18:53:23 by cbopp            ###   ########.fr       */
+/*   Created: 2025/05/19 14:28:07 by cbopp             #+#    #+#             */
+/*   Updated: 2025/05/19 14:31:54 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	update(t_cub *cub)
+t_vec2i	pos_to_map(t_cub *c, t_vec2 pos)
 {
-	double	now;
+	t_vec2i	ret;
+	t_vec2	ratio;
 
-	now = gettime();
-	cub->delta = now - cub->frame_time;
-	cub->frame_time = now;
-	if (cub->delta > 0.0)
-		cub->fps = (int)(1.0 / cub->delta);
-	else
-		cub->fps = 0;
-	smooth_input(cub);
-	render(cub);
-	return (0);
+	ratio.x = c->map->screenx / c->map->sizex;
+	ratio.y = c->map->screeny / c->map->sizey;
+	ret.x = pos.x * ratio.x;
+	ret.y = pos.y * ratio.y;
+	return (ret);
 }
