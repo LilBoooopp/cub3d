@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 15:19:43 by plbuet           ###   ########.fr       */
+/*   Updated: 2025/05/20 16:08:19 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ double gettime(void)
 int	init(t_cub *cub, char ** v)
 {
 	cub->map = ini_map(cub, v);
+	if (!cub->map)
+		return(1);
 	cub->map->screenx = 300;
 	cub->map->screeny = 300;
 	cub->mlx = mlx_init();

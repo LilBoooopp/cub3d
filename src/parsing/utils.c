@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:33:13 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/20 15:18:00 by plbuet           ###   ########.fr       */
+/*   Updated: 2025/05/20 15:48:57 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char **create_empty_map(int height, int width)
 		map[y] = malloc(width + 1);
 		if (!map[y])
 			return (NULL); // à compléter avec libération en cas d'erreur
-		ft_memset(map[y], '0', width);
+		ft_memset(map[y], '1', width);
 		map[y][width] = '\0';
 	}
 	map[height] = NULL;

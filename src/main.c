@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:55:19 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 17:11:08 by plbuet           ###   ########.fr       */
+/*   Updated: 2025/05/20 16:08:42 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return(1);
-	init(&cub, av);
+	if (init(&cub, av) == 1)
+		return(0);
 	mlx_hook(cub.mlx_win, 2, 1l << 0, handle_input, &cub);
 	mlx_hook(cub.mlx_win, 3, 1L << 1, handle_keyrelease, &cub);
 	mlx_hook(cub.mlx_win, 17, 0, close_window, &cub);

@@ -3,43 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   handle_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/20 15:20:49 by plbuet           ###   ########.fr       */
+/*   Updated: 2025/05/20 16:16:09 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parsing.h"
 
-void flood_fill_masked(char **map, int x, int y, int width, int height, char **mask)
+int	flood_fill_masked(char **map, int x, int y, int width, int height, char **mask)
 {
-	if (x < 0 || y < 0 || x >= width || y >= height)
-		return;
+	if (x < 0 || y < 0 || x == width || y == height)
+		return (-1);
 	char c = map[y][x];
 	if (c == ' ' || c == '\0' || c == '1' || mask[y][x] == 'x')
-		return;
+		return (0);
 
-	mask[y][x] = 'x'; // accessible
+	mask[y][x] = 'x';
 
-	flood_fill_masked(map, x + 1, y, width, height, mask);
-	flood_fill_masked(map, x - 1, y, width, height, mask);
-	flood_fill_masked(map, x, y + 1, width, height, mask);
-	flood_fill_masked(map, x, y - 1, width, height, mask);
+	if (flood_fill_masked(map, x + 1, y, width, height, mask) < 0)
+		return (-1);
+	if (flood_fill_masked(map, x - 1, y, width, height, mask) < 0)
+		return (-1);
+	if (flood_fill_masked(map, x, y + 1, width, height, mask) < 0)
+		return (-1);
+	if (flood_fill_masked(map, x, y - 1, width, height, mask) < 0)
+		return (-1);
+	return (0);
 }
 
 char **build_filtered_map(char **original, char **mask, int height, int width)
 {
+	(void)original;
 	char **filtered = malloc(sizeof(char *) * (height + 1));
 	for (int y = 0; y < height; y++)
 	{
 		filtered[y] = malloc(width + 1);
 		for (int x = 0; x < width; x++)
 		{
-			if (mask[y][x] == 'x' || original[y][x] == '1')
-				filtered[y][x] = original[y][x]; // zone visitée ou mur
+			if (mask[y][x] == 'x')
+				filtered[y][x] = original[y][x];
 			else
-				filtered[y][x] = ' ';
+				filtered[y][x] = '1';
 		}
 		filtered[y][width] = '\0';
 	}
@@ -72,7 +78,10 @@ int	check_map_flood(t_map *map)
 	char **mask = create_empty_map(height, width);
 	if (!mask)
 		return(1);
-	flood_fill_masked(map->map, start_x, start_y, width, height, mask);
+	if (flood_fill_masked(map->map, start_x, start_y, width, height, mask) < 0)
+		return (1);
+	ft_print_chartable(mask);
+	printf("\n");
 	map->map = build_filtered_map(map->map, mask, height, width);
 	for (int i = 0; i < height; i++)
 		free(mask[i]);
@@ -92,7 +101,7 @@ t_map *tab_map(t_node *lst_map, int max_width)
 	map->map = malloc(sizeof(char *) * (size + 1));
 	if (!map->map)
 		return(NULL);
-	map->sizex = size;
+	map->sizey = size;
 	i = 0;
 	while (i < size)
 	{
@@ -105,7 +114,8 @@ t_map *tab_map(t_node *lst_map, int max_width)
 		i ++;
 	}
 	map->sizex = max_width;
-	check_map_flood(map);
+	if (check_map_flood(map) == 1)
+		return (NULL);
 	return(map);
 }
 
@@ -117,7 +127,6 @@ t_map *read_map(int fd, char *line)
 	t_node *new;
 	t_node *last;
 
-	printf("read map \n");
 	map_list = ft_new(line);
 	last = map_list;
 	max_width = 0;
