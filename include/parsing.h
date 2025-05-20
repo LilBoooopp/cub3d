@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:46:15 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/19 19:01:47 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/20 15:19:54 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ t_node	*ft_new(char *content);
 t_map	*read_map(int fd, char *line);
 t_node	*ft_new(char *content);
 int		ft_size(t_node *lst);
+char	**create_empty_map(int height, int width);
 
 #endif

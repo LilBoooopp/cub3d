@@ -3,18 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:33:13 by plbuet            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/05/19 19:50:05 by plbuet           ###   ########.fr       */
-=======
-/*   Updated: 2025/05/19 19:02:50 by cbopp            ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2025/05/20 15:18:00 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parsing.h"
+
+char **create_empty_map(int height, int width)
+{
+	char **map = malloc(sizeof(char *) * (height + 1));
+	if (!map)
+		return (NULL);
+	for (int y = 0; y < height; y++)
+	{
+		map[y] = malloc(width + 1);
+		if (!map[y])
+			return (NULL); // à compléter avec libération en cas d'erreur
+		ft_memset(map[y], '0', width);
+		map[y][width] = '\0';
+	}
+	map[height] = NULL;
+	return (map);
+}
 
 int	ft_size(t_node *lst)
 {

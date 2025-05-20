@@ -6,36 +6,78 @@
 /*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/20 13:15:25 by plbuet           ###   ########.fr       */
+/*   Updated: 2025/05/20 15:20:49 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parsing.h"
 
-int	check_map(t_map *map)
+void flood_fill_masked(char **map, int x, int y, int width, int height, char **mask)
 {
-	int	i = 0;
-	int	j = 0;
+	if (x < 0 || y < 0 || x >= width || y >= height)
+		return;
+	char c = map[y][x];
+	if (c == ' ' || c == '\0' || c == '1' || mask[y][x] == 'x')
+		return;
 
-	while (i < map->sizey)
+	mask[y][x] = 'x'; // accessible
+
+	flood_fill_masked(map, x + 1, y, width, height, mask);
+	flood_fill_masked(map, x - 1, y, width, height, mask);
+	flood_fill_masked(map, x, y + 1, width, height, mask);
+	flood_fill_masked(map, x, y - 1, width, height, mask);
+}
+
+char **build_filtered_map(char **original, char **mask, int height, int width)
+{
+	char **filtered = malloc(sizeof(char *) * (height + 1));
+	for (int y = 0; y < height; y++)
 	{
-		j = 0;
-		while (j < map->sizex)
+		filtered[y] = malloc(width + 1);
+		for (int x = 0; x < width; x++)
 		{
-			if (map->map[i][j] == 'N' || map->map[i][j] == 'S' || map->map[i][j] == 'E' || map->map[i][j] == 'W')
-			{
-				map->player_x = j;
-				map->player_y = i;
-				map->orientation = map->map[i][j];
-			}
-			else if (map->map[i][j] == ' ' || map->map[i][j] == '1' || map->map[i][j] == '0')
-				continue;
+			if (mask[y][x] == 'x' || original[y][x] == '1')
+				filtered[y][x] = original[y][x]; // zone visitée ou mur
 			else
-				return (1);
+				filtered[y][x] = ' ';
 		}
-		i ++;
+		filtered[y][width] = '\0';
 	}
-	return (0);
+	filtered[height] = NULL;
+	return filtered;
+}
+
+int	check_map_flood(t_map *map)
+{
+	int width = ft_strlen(map->map[0]);
+	int height = 0;
+
+	while (map->map[height])
+		height++;
+	int start_x = -1, start_y = -1;
+	for (int y = 0; y < height; y++)
+	{
+		for (int x = 0; map->map[y][x]; x++)
+		{
+			if (ft_strchr("NSEW", map->map[y][x]))
+			{
+				start_x = x;
+				start_y = y;
+				break;
+			}
+		}
+	}
+	if (start_x == -1)
+		return(1);
+	char **mask = create_empty_map(height, width);
+	if (!mask)
+		return(1);
+	flood_fill_masked(map->map, start_x, start_y, width, height, mask);
+	map->map = build_filtered_map(map->map, mask, height, width);
+	for (int i = 0; i < height; i++)
+		free(mask[i]);
+	free(mask);
+	return(0);
 }
 
 t_map *tab_map(t_node *lst_map, int max_width)
@@ -63,7 +105,7 @@ t_map *tab_map(t_node *lst_map, int max_width)
 		i ++;
 	}
 	map->sizex = max_width;
-	check_map(map);
+	check_map_flood(map);
 	return(map);
 }
 

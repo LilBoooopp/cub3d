@@ -6,11 +6,7 @@
 /*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/05/19 19:55:35 by plbuet           ###   ########.fr       */
-=======
-/*   Updated: 2025/05/19 22:51:36 by cbopp            ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2025/05/20 15:19:43 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +24,8 @@ static void	set_false(bool *keys)
 
 void	init_player(t_player *player, t_map *map)
 {
-<<<<<<< HEAD
-	player->pos = set_vec2(map->player_x, map->player_y);
-=======
+	(void)map;
 	player->pos = set_vec2(25.5, 2.5);
->>>>>>> main
 	player->dir = set_vec2(0, -1);
 	player->plane = set_vec2(0.8, 0);
 }
