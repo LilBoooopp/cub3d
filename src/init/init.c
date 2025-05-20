@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 14:22:00 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/20 16:27:06 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_player(t_player *player)
 {
 	player->pos = set_vec2(25.5, 2.5);
 	player->dir = set_vec2(0, -1);
-	player->plane = set_vec2(0.5, 0);
+	player->plane = set_vec2(0.8, 0);
 }
 double gettime(void)
 {

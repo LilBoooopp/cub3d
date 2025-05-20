@@ -41,7 +41,8 @@ INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
 MLX_DIR = src/mlx/
 MLX_SRC =  \
 	draw.c \
-	mlx_helper.c
+	mlx_helper.c \
+	mlx_helper2.c
 MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
 
 PARSING_DIR = src/parsing/
@@ -77,7 +78,8 @@ UTILS_SRC =  \
 	img_math.c \
 	map_math.c \
 	math_vec.c \
-	util_vec.c
+	util_vec.c \
+	util_veci.c
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
 
 ALL_SRC = $(SRC) $(INIT) $(MLX) $(PARSING) $(PLAYER) $(RENDER) $(UTILS)

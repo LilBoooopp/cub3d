@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:13:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 15:03:50 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/20 17:33:48 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map)
 
 	end.x = map_pos.x + p->dir.x * 100;
 	end.y = map_pos.y + p->dir.y * 100;
-	draw_line(map, map_pos, end, 0x0000FFFF);
+	draw_line(map, map_pos, end, 0xFF00FFFF);
 }
 
 void	draw_player(t_cub *cub, t_player *player, t_img *map)
@@ -53,11 +53,11 @@ void	init_minimap(t_map *m, t_img *map)
 			if (m->map[(int)idx.y][(int)idx.x] == '1')
 				draw_pixels(map, vec2_add(vec2_mult(idx, m->tile_size),
 					vec2_div(m->tile_size, set_vec2(2, 2))),
-					m->tile_size, 0xa58b77);
+					m->tile_size, 0xFFb08243);
 			if (m->map[(int)idx.y][(int)idx.x] == '0')
 				draw_pixels(map, vec2_add(vec2_mult(idx, m->tile_size),
 					vec2_div(m->tile_size, set_vec2(2, 2))),
-					m->tile_size, 0xa55aFF);
+					m->tile_size, 0xFFdeda68);
 			idx.x += 1;
 		}
 		idx.y += 1;
@@ -69,9 +69,9 @@ void	render_map(t_cub *cub, t_img *img, t_player *player)
 	t_img	map;
 
 	map = make_image(cub, set_vec2(cub->map->screenx,
-			cub->map->screeny), 0xa55a77);
+			cub->map->screeny), 0x00000000);
 	init_minimap(cub->map, &map);
 	draw_player(cub, player, &map);
-	drawtoimg(&map, img, set_vec2(980, 0));
+	draw_image_transparent(&map, img, set_vec2(980, 0));
 	mlx_destroy_image(cub->mlx, map.img);
 }
