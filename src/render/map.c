@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:13:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 17:47:21 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/21 15:44:40 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,18 @@ void	init_minimap(t_map *m, t_img *map)
 	t_vec2i	idx;
 	int		col;
 
-	m->t_size = set_vec2(m->screenx / m->sizex, m->screeny / m->sizey);
-	idx.y = 0;
-	while (idx.y < m->sizey)
+	m->t_size = set_vec2(1.0 + m->screenx / m->sizex,
+				1.0 + m->screeny / m->sizey);
+	idx.y = -1;
+	while (++idx.y < m->sizey)
 	{
-		idx.x = 0;
-		while (idx.x < m->sizex)
+		idx.x = -1;
+		while (++idx.x < m->sizex)
 		{
 			if (m->map[idx.y][idx.x] == '1')
-				col = 0xFFb08243;
+				col = MAP_WALL;
 			else if (m->map[idx.y][idx.x] == '0')
-				col = 0xFFdeda68;
+				col = MAP_EMPTY;
 			else
 			{
 				idx.x += 1;
@@ -62,9 +63,7 @@ void	init_minimap(t_map *m, t_img *map)
 			}
 			draw_rect(map, set_vec2(idx.x * m->t_size.x, idx.y * m->t_size.y),
 					set_vec2(m->t_size.x, m->t_size.y), col);
-			idx.x += 1;
 		}
-		idx.y += 1;
 	}
 }
 

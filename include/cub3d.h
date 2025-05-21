@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 17:47:47 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/20 19:44:18 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 1080
+
+# define MAP_WALL 0xFFb08243
+# define MAP_EMPTY 0xFFdeda68
 
 # define MOVE_SPEED 3.0
 # define ROT_SPEED 2.0
