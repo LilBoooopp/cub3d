@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 16:06:56 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/21 17:28:41 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,10 @@ typedef struct s_map
 	int		tile_size;
 	char	**map;
 	char	orientation;
+	double	playerx;
+	double	playery;
+	int		tmp_x;
+	int		tmp_y;
 }	t_map;
 
 typedef struct s_texture

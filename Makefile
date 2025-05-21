@@ -49,6 +49,7 @@ PARSING_SRC =  \
 	handle_map.c \
 	init_texture.c \
 	open_files.c \
+	rescale_map.c\
 	utils.c
 PARSING = $(addprefix $(PARSING_DIR), $(PARSING_SRC))
 

@@ -6,12 +6,57 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:33:13 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/20 15:48:57 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/21 15:34:19 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parsing.h"
 
+int	find_char(t_map *map, int x, int y)
+{
+	if (map->map[y][x] == '\0')
+		return (0);
+	if (ft_strchr("NSEW", map->map[y][x]))
+	{
+		map->playerx = x;
+		map->playery = y;
+		map->orientation = map->map[y][x];
+		return (1);
+	}
+	else if (map->map[y][x] != '0' && map->map[y][x] != '1' && map->map[y][x] != ' ')
+	{
+		printf("%c\n", map->map[y][x]);
+		perror("Error invalide char\n");
+		return (2);
+	}
+	return (0);
+}
+
+int	search_player(t_map *map)
+{
+	int	y;
+	int	x;
+	int	find;
+
+	x = 0;
+	y = 0;
+	find = 0;
+	while (y < map->sizey)
+	{
+		x = 0;
+		while(x < map->sizex)
+		{
+			if (find_char(map, x, y))
+				find ++;
+			
+			x ++;
+		}
+		y ++;
+	}
+	if (find != 1)
+		return (-1);
+	return (0);
+}
 char **create_empty_map(int height, int width)
 {
 	char **map = malloc(sizeof(char *) * (height + 1));
@@ -22,7 +67,7 @@ char **create_empty_map(int height, int width)
 		map[y] = malloc(width + 1);
 		if (!map[y])
 			return (NULL); // à compléter avec libération en cas d'erreur
-		ft_memset(map[y], '1', width);
+		ft_memset(map[y], ' ', width);
 		map[y][width] = '\0';
 	}
 	map[height] = NULL;

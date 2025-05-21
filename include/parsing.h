@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:46:15 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/20 15:19:54 by plbuet           ###   ########.fr       */
+/*   Updated: 2025/05/21 17:55:12 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ t_map	*read_map(int fd, char *line);
 t_node	*ft_new(char *content);
 int		ft_size(t_node *lst);
 char	**create_empty_map(int height, int width);
+int		search_player(t_map *map);
+int		rescale(char **map, int height, int width);
 
 #endif
