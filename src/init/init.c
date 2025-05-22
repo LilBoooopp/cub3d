@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/21 14:20:58 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/22 15:05:56 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	set_false(bool *keys)
 void	init_player(t_player *player, t_map *map)
 {
 	(void)map;
-	player->pos = set_vec2(25.5, 2.5);
+	player->pos = set_vec2(map->playerx, map->playery);
 	player->dir = set_vec2(0, -1);
 	player->plane = set_vec2(0.8, 0);
 }
@@ -40,7 +40,7 @@ int	init(t_cub *cub, char ** v)
 {
 	cub->map = ini_map(cub, v);
 	if (!cub->map)
-		return(1);
+		return (1);
 	cub->map->screenx = 300;
 	cub->map->screeny = 300;
 	cub->mlx = mlx_init();
@@ -52,5 +52,5 @@ int	init(t_cub *cub, char ** v)
 	set_false(cub->keys);
 	init_player(&cub->player, cub->map);
 	cub->mlx_win = mlx_new_window(cub->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
-	return (1);
+	return (0);
 }

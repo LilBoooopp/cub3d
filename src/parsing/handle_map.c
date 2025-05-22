@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/21 18:10:37 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/22 17:23:34 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ int	check_map_flood(t_map *map, int max_width)
 		i ++;
 	}
 	free(mask);
-	map->map = rescale(map->map, map->sizey, map->sizex);
+	map->map = rescale(map);
+	search_player(map);
 	return (0);
 }
 
