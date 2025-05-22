@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:46:15 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/21 17:55:12 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/22 14:28:41 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ t_node	*ft_new(char *content);
 int		ft_size(t_node *lst);
 char	**create_empty_map(int height, int width);
 int		search_player(t_map *map);
-int		rescale(char **map, int height, int width);
+char	**rescale(char **map, int height, int width);
 
 #endif
