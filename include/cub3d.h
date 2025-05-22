@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 19:44:18 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/23 01:08:30 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,7 @@ void	change_debug(t_cub *cub);
 void	draw_big_fps(t_cub *cub);
 void	draw_debug(t_cub *cub);
 void	draw_debug_rays(t_cub *c, t_img *m, t_vec2 pos);
-void	draw_digit(t_cub *c, char d, int ox, int oy, int s);
+void	draw_digit(t_cub *c, char d, t_vec2i oi, int s);
 void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map);
 void	draw_menu(t_cub *c);
 void	draw_player(t_cub *cub, t_player *player, t_img *map);
@@ -281,6 +281,7 @@ t_vec2	vec2_sub(t_vec2 vec1, t_vec2 vec2);
 t_vec2i	vecdtoi(t_vec2 vec2);
 t_vec3	set_vec3(double x, double y, double z);
 t_vec4	set_vec4(int r, int g, int b, int a);
+t_vec2i	set_vec2i(int x, int y);
 
 /* === AUTO GENERATED PROTOTYPES END   === */
 

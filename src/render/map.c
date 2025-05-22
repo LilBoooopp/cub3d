@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:13:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/21 15:44:40 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/23 01:10:29 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_minimap(t_map *m, t_img *map)
 	int		col;
 
 	m->t_size = set_vec2(1.0 + m->screenx / m->sizex,
-				1.0 + m->screeny / m->sizey);
+			1.0 + m->screeny / m->sizey);
 	idx.y = -1;
 	while (++idx.y < m->sizey)
 	{
@@ -62,7 +62,7 @@ void	init_minimap(t_map *m, t_img *map)
 				continue ;
 			}
 			draw_rect(map, set_vec2(idx.x * m->t_size.x, idx.y * m->t_size.y),
-					set_vec2(m->t_size.x, m->t_size.y), col);
+				set_vec2(m->t_size.x, m->t_size.y), col);
 		}
 	}
 }
@@ -72,7 +72,7 @@ void	render_map(t_cub *cub, t_img *img, t_player *player)
 	t_img	map;
 
 	map = make_image(cub, set_vec2(cub->map->screenx,
-			cub->map->screeny), 0x00000000);
+				cub->map->screeny), 0x00000000);
 	init_minimap(cub->map, &map);
 	draw_player(cub, player, &map);
 	draw_image_transparent(&map, img, set_vec2(980, 0));

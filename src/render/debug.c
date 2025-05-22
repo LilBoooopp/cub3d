@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:01:04 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 14:13:11 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/23 01:08:08 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_big_fps(t_cub *cub)
 	i = 0;
 	while (buf[i])
 	{
-		draw_digit(cub, buf[i], x, 10, scale);
+		draw_digit(cub, buf[i], set_vec2i(x, 10), scale);
 		x += 6 * scale;
 		i++;
 	}

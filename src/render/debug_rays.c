@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 14:08:17 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 17:57:05 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/23 01:10:50 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static void	draw_one_ray(t_cub *c, t_img *map, t_vec2 map_pos, int x)
 	perform_dda(&r, c);
 	if (r.side == 0)
 		pd = ((r.map.x - c->player.pos.x
-			+ (1 - r.step.x) / 2) / r.ray_dir.x);
+					+ (1 - r.step.x) / 2) / r.ray_dir.x);
 	else
 		pd = ((r.map.y - c->player.pos.y
-			+ (1 - r.step.y) / 2) / r.ray_dir.y);
+					+ (1 - r.step.y) / 2) / r.ray_dir.y);
 	hit.x = c->player.pos.x + r.ray_dir.x * pd;
 	hit.y = c->player.pos.y + r.ray_dir.y * pd;
 	hit.x *= c->map->t_size.x;

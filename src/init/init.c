@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 16:27:06 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/23 01:09:28 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ void	init_player(t_player *player)
 	player->dir = set_vec2(0, -1);
 	player->plane = set_vec2(0.8, 0);
 }
-double gettime(void)
+
+double	gettime(void)
 {
 	struct timespec	ts;
 
 	clock_gettime(CLOCK_MONOTONIC, &ts);
 	return (ts.tv_sec + ((ts.tv_nsec / 1000000000.0)));
 }
-int	init(t_cub *cub, char ** v)
+
+int	init(t_cub *cub, char **v)
 {
 	cub->map = ini_map(cub, v);
 	cub->map->screenx = 300;
