@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/21 17:28:41 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/23 17:33:29 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 1080
 
+# define MAP_WALL 0xFFb08243
+# define MAP_EMPTY 0xFFdeda68
+
 # define MOVE_SPEED 3.0
 # define ROT_SPEED 2.0
 # define TILE_SIZE 1
@@ -154,7 +157,7 @@ typedef struct s_map
 	int		sizey;
 	int		screenx;
 	int		screeny;
-	int		tile_size;
+	t_vec2	t_size;
 	char	**map;
 	char	orientation;
 	double	playerx;
@@ -236,6 +239,8 @@ void	draw_rotated_image(t_img *t, t_img *s, t_vec2 pos, double ang);
 void	drawtoimg(t_img *src, t_img *dst, t_vec2 pos);
 void	mlx_set_img(t_img *img, unsigned int color);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void	draw_image_transparent(t_img *src, t_img *dst, t_vec2 pos);
+void	draw_rect(t_img *im, t_vec2 orig, t_vec2 size, int color);
 
 /* player */
 int	handle_input(int keycode, t_cub *cub);
@@ -257,7 +262,7 @@ void	change_debug(t_cub *cub);
 void	draw_big_fps(t_cub *cub);
 void	draw_debug(t_cub *cub);
 void	draw_debug_rays(t_cub *c, t_img *m, t_vec2 pos);
-void	draw_digit(t_cub *c, char d, int ox, int oy, int s);
+void	draw_digit(t_cub *c, char d, t_vec2i oi, int s);
 void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map);
 void	draw_menu(t_cub *c);
 void	draw_player(t_cub *cub, t_player *player, t_img *map);
@@ -280,6 +285,7 @@ t_vec2	vec2_sub(t_vec2 vec1, t_vec2 vec2);
 t_vec2i	vecdtoi(t_vec2 vec2);
 t_vec3	set_vec3(double x, double y, double z);
 t_vec4	set_vec4(int r, int g, int b, int a);
+t_vec2i	set_vec2i(int x, int y);
 
 /* === AUTO GENERATED PROTOTYPES END   === */
 

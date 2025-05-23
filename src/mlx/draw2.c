@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_utils.c                                        :+:      :+:    :+:   */
+/*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 19:45:49 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 20:10:00 by cbopp            ###   ########.fr       */
+/*   Created: 2025/05/20 17:41:29 by cbopp             #+#    #+#             */
+/*   Updated: 2025/05/20 17:42:47 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_ray(t_cub *cub, t_raycast *ray, int x)
+void	draw_rect(t_img *im, t_vec2 orig, t_vec2 size, int color)
 {
-	ray->cam_x = 2 * x / (double)WIN_WIDTH - 1;
-	ray->ray_dir = vec2_add(cub->player.dir, set_vec2(cub->player.plane.x
-				* ray->cam_x, cub->player.plane.y * ray->cam_x));
-	ray->map = vecdtoi(cub->player.pos);
-	ray->delta_dist = set_vec2(
-			fabs(1.0 / ray->ray_dir.x), fabs(1.0 / ray->ray_dir.y));
-	ray->step = set_raydir(ray);
-	set_side_dist(ray, cub->player);
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < size.y)
+	{
+		x = 0;
+		while (x < size.x)
+		{
+			my_mlx_pixel_put(im, orig.x + x, orig.y + y, color);
+			x++;
+		}
+		y++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:13:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 14:45:11 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/23 01:10:29 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map)
 
 	end.x = map_pos.x + p->dir.x * 100;
 	end.y = map_pos.y + p->dir.y * 100;
-	draw_line(map, map_pos, end, 0x0000FFFF);
+	draw_line(map, map_pos, end, 0xFF00FFFF);
 }
 
 void	draw_player(t_cub *cub, t_player *player, t_img *map)
@@ -30,12 +30,41 @@ void	draw_player(t_cub *cub, t_player *player, t_img *map)
 	map_pos = fix_pos(cub, map, player->pos);
 	if (cub->debug >= 2)
 		draw_debug_rays(cub, map, map_pos);
-	box = make_image(cub, set_vec2(25, 25), 0xFF000000);
-	draw_pixels(&box, get_center(&box), box.size, 0x00FF0000);
+	box = make_image(cub, set_vec2(12, 12), 0xFF000000);
+	draw_pixels(&box, get_center(&box), box.size, 0xFFFF0000);
 	angle = atan2(player->dir.y, player->dir.x);
 	draw_rotated_image(map, &box, map_pos, angle);
 	mlx_destroy_image(cub->mlx, box.img);
-	draw_dir(player, map_pos, map);
+	if (cub->ismap && cub->debug > 1)
+		draw_dir(player, map_pos, map);
+}
+
+void	init_minimap(t_map *m, t_img *map)
+{
+	t_vec2i	idx;
+	int		col;
+
+	m->t_size = set_vec2(1.0 + m->screenx / m->sizex,
+			1.0 + m->screeny / m->sizey);
+	idx.y = -1;
+	while (++idx.y < m->sizey)
+	{
+		idx.x = -1;
+		while (++idx.x < m->sizex)
+		{
+			if (m->map[idx.y][idx.x] == '1')
+				col = MAP_WALL;
+			else if (m->map[idx.y][idx.x] == '0')
+				col = MAP_EMPTY;
+			else
+			{
+				idx.x += 1;
+				continue ;
+			}
+			draw_rect(map, set_vec2(idx.x * m->t_size.x, idx.y * m->t_size.y),
+				set_vec2(m->t_size.x, m->t_size.y), col);
+		}
+	}
 }
 
 void	render_map(t_cub *cub, t_img *img, t_player *player)
@@ -43,8 +72,9 @@ void	render_map(t_cub *cub, t_img *img, t_player *player)
 	t_img	map;
 
 	map = make_image(cub, set_vec2(cub->map->screenx,
-			cub->map->screeny), 0xa55a77);
+				cub->map->screeny), 0x00000000);
+	init_minimap(cub->map, &map);
 	draw_player(cub, player, &map);
-	drawtoimg(&map, img, set_vec2(980, 0));
+	draw_image_transparent(&map, img, set_vec2(980, 0));
 	mlx_destroy_image(cub->mlx, map.img);
 }

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 20:58:11 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/18 19:06:50 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/23 01:07:37 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	draw_px(t_cub *c, int x, int y)
 	mlx_pixel_put(c->mlx, c->mlx_win, x, y, col);
 }
 
-void	draw_digit(t_cub *c, char d, int ox, int oy, int s)
+void	draw_digit(t_cub *c, char d, t_vec2i oi, int s)
 {
 	int	x;
 	int	y;
@@ -49,7 +49,7 @@ void	draw_digit(t_cub *c, char d, int ox, int oy, int s)
 		{
 			idx = y * 5 + x;
 			if (g_digit[d - '0'][idx] == '1')
-				draw_px(c, ox + x * s, oy + y * s);
+				draw_px(c, oi.x + x * s, oi.y + y * s);
 			x++;
 		}
 		y++;

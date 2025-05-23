@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/22 17:33:59 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/23 17:33:22 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,16 @@ void	init_player(t_player *player, t_map *map)
 	player->dir = set_vec2(0, -1);
 	player->plane = set_vec2(0.8, 0);
 }
-double gettime(void)
+
+double	gettime(void)
 {
 	struct timespec	ts;
 
 	clock_gettime(CLOCK_MONOTONIC, &ts);
 	return (ts.tv_sec + ((ts.tv_nsec / 1000000000.0)));
 }
-int	init(t_cub *cub, char ** v)
+
+int	init(t_cub *cub, char **v)
 {
 	cub->map = ini_map(cub, v);
 	if (!cub->map)
