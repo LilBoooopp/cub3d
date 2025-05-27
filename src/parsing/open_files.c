@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/27 14:32:16 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/27 14:35:15 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ t_map	*openFiles(char *name_files, t_texture *texture)
 		if (*line != '\n')
 			extract_texture(line, texture);
 	}
-	if (check_file(texture->ea, ".xpm", 4, 1) == 0 || check_file(texture->we, ".xpm", 4, 1) ||
-		check_file(texture->n, ".xpm", 4, 1) || check_file(texture->s, ".xpm", 4, 1))
-	{
-		perror("Error\n incorect name files\n");
-		free (texture);
-		return (NULL);
-	}
+	// if (check_file(texture->ea, ".xpm", 4, 1) == 0 || check_file(texture->we, ".xpm", 4, 1) ||
+	// 	check_file(texture->n, ".xpm", 4, 1) || check_file(texture->s, ".xpm", 4, 1))
+	// {
+	// 	perror("Error\n incorect name files\n");
+	// 	free (texture);
+	// 	return (NULL);
+	// }
 	return (read_map(fd, line));
 }
 
