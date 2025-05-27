@@ -6,26 +6,47 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:14:20 by pbuet             #+#    #+#             */
-/*   Updated: 2025/05/22 17:24:56 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/27 14:26:52 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parsing.h"
 
+
+// int is_adjacent_to_non_wall(char **map, int y, int x, t_map strmap)
+// {
+// 	const char *non_walls = "0NSEW";
+// 	int dx[] = {1, -1, 0, 0,  1,  1, -1, -1};
+// 	int dy[] = {0, 0,  1, -1, 1, -1,  1, -1};
+// 	int i;
+
+// 	for (i = 0; i < 8; i++)
+// 	{
+// 		int ny = y + dy[i];
+// 		int nx = x + dx[i];
+// 		if (ny >= 0 && ny < strmap.sizey && nx >= 0 && nx < strmap.sizex)
+// 		{
+// 			if (ft_strchr(non_walls, map[ny][nx]))
+// 				return 1;
+// 		}
+// 	}
+// 	return 0;
+// }
+
 int is_adjacent_to_non_wall(char **map, int y, int x, t_map strmap)
 {
 	const char *non_walls = "0NSEW";
-	int dx[] = {1, -1, 0, 0};
-	int dy[] = {0, 0, 1, -1};
+	int dx[] = {1, -1, 0, 0,  1,  1, -1, -1};
+	int dy[] = {0, 0,  1, -1, 1, -1,  1, -1};
+	int i;
 
-	for (int i = 0; i < 4; i++)
+	i = 0;
+	while ( i < 8)
 	{
-		int ny = y + dy[i];
-		int nx = x + dx[i];
-
-		if (ny >= 0 && ny < strmap.sizey && nx >= 0 && nx < strmap.sizex)
-			if (ft_strchr(non_walls, map[ny][nx]))
+		if (y + dy[i] >= 0 && y + dy[i] < strmap.sizey &&  x + dx[i] >= 0 &&  x + dx[i] < strmap.sizex)
+			if (ft_strchr(non_walls, map[y + dy[i]][x + dx[i]]))
 				return (1);
+		i ++;
 	}
 	return (0);
 }
@@ -106,10 +127,14 @@ char	**rescale(t_map *strmap)
 	char **cropped;
 	
 	find_map_bound(strmap, &max_x, &max_y);
-	if (strmap->tmp_x > 0) (strmap->tmp_x)--;
-	if (strmap->tmp_y > 0) (strmap->tmp_y)--;
-	if (max_x < strmap->sizex - 1) (max_x)++;
-	if (max_y < strmap->sizey - 1) (max_y)++;
+	if (strmap->tmp_x > 0)
+		strmap->tmp_x--;
+	if (strmap->tmp_y > 0)
+		strmap->tmp_y--;
+	if (max_x < strmap->sizex - 1)
+		max_x++;
+	if (max_y < strmap->sizey - 1)
+		max_y++;
 	new_width = max_x - strmap->tmp_x + 1;
 	new_height = max_y - strmap->tmp_y + 1;
 	cropped = croccroc(*strmap, new_height, new_width);
