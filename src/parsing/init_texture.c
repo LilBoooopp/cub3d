@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:45:32 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/19 19:02:46 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/26 11:51:45 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,3 +79,4 @@ void	c_point(char *line, t_texture *texture)
 		texture->full ++;
 	}
 }
+
