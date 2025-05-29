@@ -6,11 +6,23 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 18:54:15 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/29 18:32:26 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	set_bg(t_img *back, t_cub *c)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	parse_rgbchar(c->texture.f, &r, &g, &b);
+	c->texture.floor = (r << 16) | (g << 8) | b;
+	parse_rgbchar(c->texture.f, &r, &g, &b);
+	c->texture.ceiling = (r << 16) | (g << 8) | b;
+}
 
 int	render(t_cub *cub)
 {
