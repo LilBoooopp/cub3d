@@ -6,24 +6,32 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/30 12:17:37 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/30 14:19:36 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief Gets and sets the color of the ceiling and floor.
+ * @param back Background t_img
+ * @param c t_cub struct
+ */
 void	set_bg(t_img *back, t_cub *c)
 {
 	int	r;
 	int	g;
 	int	b;
 
+	printf("floor: %s, ceiling: %s\n", c->texture.f, c->texture.c);
 	parse_rgbhex(c->texture.c, &r, &g, &b);
 	c->texture.ceiling = (r << 16) | (g << 8) | b;
+	printf("ceiling: %d\n", c->texture.ceiling);
 	draw_pixels(back, set_vec2(WIN_WIDTH / 2, WIN_HEIGHT / 4),
 		set_vec2(WIN_WIDTH, WIN_HEIGHT / 2), c->texture.ceiling);
 	parse_rgbhex(c->texture.f, &r, &g, &b);
 	c->texture.floor = (r << 16) | (g << 8) | b;
+	printf("floor: %d\n", c->texture.floor);
 	draw_pixels(back, set_vec2(WIN_WIDTH / 2, WIN_HEIGHT * 0.75),
 		set_vec2(WIN_WIDTH, WIN_HEIGHT / 2), c->texture.floor);
 }
