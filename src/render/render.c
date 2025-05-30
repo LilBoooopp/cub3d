@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/29 18:32:26 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/30 12:17:37 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@ void	set_bg(t_img *back, t_cub *c)
 	int	g;
 	int	b;
 
-	parse_rgbchar(c->texture.f, &r, &g, &b);
-	c->texture.floor = (r << 16) | (g << 8) | b;
-	parse_rgbchar(c->texture.f, &r, &g, &b);
+	parse_rgbhex(c->texture.c, &r, &g, &b);
 	c->texture.ceiling = (r << 16) | (g << 8) | b;
+	draw_pixels(back, set_vec2(WIN_WIDTH / 2, WIN_HEIGHT / 4),
+		set_vec2(WIN_WIDTH, WIN_HEIGHT / 2), c->texture.ceiling);
+	parse_rgbhex(c->texture.f, &r, &g, &b);
+	c->texture.floor = (r << 16) | (g << 8) | b;
+	draw_pixels(back, set_vec2(WIN_WIDTH / 2, WIN_HEIGHT * 0.75),
+		set_vec2(WIN_WIDTH, WIN_HEIGHT / 2), c->texture.floor);
 }
 
 int	render(t_cub *cub)
@@ -33,7 +37,7 @@ int	render(t_cub *cub)
 	back.size = set_vec2(WIN_WIDTH, WIN_HEIGHT);
 	back.img = mlx_new_image(cub->mlx, back.size.x, back.size.y);
 	back.addr = mlx_get_data_addr(back.img, &back.bpp, &back.len, &back.end);
-	mlx_set_img(&back, 0xFFFFFF);
+	set_bg(&back, cub);
 	cast_rays(cub, &back);
 	if (cub->ismap == 1)
 		render_map(cub, &back, &cub->player);

@@ -6,7 +6,7 @@
 #    By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/10 21:12:44 by hdougoud          #+#    #+#              #
-#    Updated: 2025/05/30 00:40:35 by cbopp            ###   ########.fr        #
+#    Updated: 2025/05/30 12:11:29 by cbopp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ LIBFT_SRCS = 	$(LIBFT_DIR)/ft_isascii.c	$(LIBFT_DIR)/ft_memcpy.c 		$(LIBFT_DIR)/
 				$(LIBFT_DIR)/ft_memcmp.c	$(LIBFT_DIR)/ft_putnbr_fd.c		$(LIBFT_DIR)/ft_strjoin.c \
 				$(LIBFT_DIR)/ft_strnstr.c	$(LIBFT_DIR)/ft_atol.c			$(LIBFT_DIR)/ft_safe_free.c \
 				$(LIBFT_DIR)/tables.c		$(LIBFT_DIR)/ft_realloc.c		$(LIBFT_DIR)/set.c \
-				$(LIBFT_DIR)/ft_free_tab.c	$(LIBFT_DIR)/ft_array_sort.c	$(LIFTB_DIR)/ft_hex.c
+				$(LIBFT_DIR)/ft_free_tab.c	$(LIBFT_DIR)/ft_array_sort.c	$(LIFTB_DIR)/ft_hex.c \
+				$(LIBFT_DIR)/ft_rgb.c
 
 #BONUS_SOURCES
 LIBFTBONUS =	$(LIBFT_DIR)/ft_lstadd_back_bonus.c \
