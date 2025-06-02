@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/29 18:31:56 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/02 10:18:20 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,16 @@ typedef struct s_vec4
 	int	a;
 }	t_vec4;
 
+typedef struct s_img
+{
+	void	*img;
+	t_vec2	size;
+	char	*addr;
+	int		bpp;
+	int		len;
+	int		end;
+}	t_img;
+
 /**
  * @brief player struct
  * @param pos Player position vector.
@@ -166,7 +176,7 @@ typedef struct s_map
 	int		tmp_y;
 }	t_map;
 
-typedef struct s_texture
+typedef struct s_tex
 {
 	char	*n;
 	char	*s;
@@ -177,7 +187,7 @@ typedef struct s_texture
 	char	c[7];
 	int		ceiling;
 	int		full;
-}	t_texture;
+}	t_tex;
 
 typedef struct s_cub
 {
@@ -185,7 +195,7 @@ typedef struct s_cub
 	void		*mlx_win;
 	t_player	player;
 	t_map		*map;
-	t_texture	texture;
+	t_tex		tex;
 	int			debug;
 	bool		keys[70000];
 	double		frame_time;
@@ -194,6 +204,10 @@ typedef struct s_cub
 	t_state		state;
 	int			menu_sel;
 	int			ismap;
+	t_img		north;
+	t_img		east;
+	t_img		south;
+	t_img		west;
 }	t_cub;
 
 typedef struct s_raycast
@@ -212,16 +226,6 @@ typedef struct s_raycast
 	int		draw_end;
 	int		color;
 }	t_raycast;
-
-typedef struct s_img
-{
-	void	*img;
-	t_vec2	size;
-	char	*addr;
-	int		bpp;
-	int		len;
-	int		end;
-}	t_img;
 
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */
@@ -273,6 +277,7 @@ void	init_ray(t_cub *cub, t_raycast *ray, int x);
 void	perform_dda(t_raycast *ray, t_cub *cub);
 void	render_map(t_cub *cub, t_img *img, t_player *player);
 void	set_side_dist(t_raycast *ray, t_player player);
+void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x);
 
 /* utils */
 int	close_window(t_cub *cub);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:45:32 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/26 11:51:45 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/30 17:34:58 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parsing.h"
 
-void	spHex(int rgb, int i, t_texture *texture, int fc)
+void	spHex(int rgb, int i, t_tex *texture, int fc)
 {
 	char digits[] = "0123456789ABCDEF";
 	
@@ -28,7 +28,7 @@ void	spHex(int rgb, int i, t_texture *texture, int fc)
 	}
 }
 
-int	color(char *s, int fc, t_texture *texture)
+int	color(char *s, int fc, t_tex *texture)
 {
 	int		rgb;
 	int		i;
@@ -56,7 +56,7 @@ int	color(char *s, int fc, t_texture *texture)
 	return (0);
 }
 
-void	c_point(char *line, t_texture *texture)
+void	c_point(char *line, t_tex *texture)
 {
 	if (ft_strncmp(line, "WE", 2) == 0 && !texture->we)
 	{

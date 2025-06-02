@@ -51,7 +51,7 @@ PARSING_SRC =  \
 	handle_map.c \
 	init_texture.c \
 	open_files.c \
-	rescale_map.c\
+	rescale_map.c \
 	utils.c
 PARSING = $(addprefix $(PARSING_DIR), $(PARSING_SRC))
 
@@ -71,6 +71,7 @@ RENDER_SRC =  \
 	ray_utils.c \
 	rays.c \
 	render.c \
+	texture.c \
 	update.c
 RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
 

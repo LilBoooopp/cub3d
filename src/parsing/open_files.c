@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/27 14:35:15 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/30 17:35:46 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	extract_texture(char *line, t_texture *texture)
+void	extract_texture(char *line, t_tex *texture)
 {
 	int	i;
 
@@ -48,7 +48,7 @@ int check_file(char *name_files, char *extension, size_t size, int clos)
 	return (fd);
 }
 
-t_map	*openFiles(char *name_files, t_texture *texture)
+t_map	*openFiles(char *name_files, t_tex *texture)
 {
 	int		fd;
 	char	*line;
@@ -76,9 +76,9 @@ t_map	*openFiles(char *name_files, t_texture *texture)
 t_map	*ini_map(t_cub *cub, char **v)
 {
 	t_map		*map;
-	t_texture	*texture;
+	t_tex	*texture;
 
-	texture = malloc(sizeof(t_texture));
+	texture = malloc(sizeof(t_tex));
 	if (!texture)
 		return (NULL);
 	texture->full = 0;
@@ -91,7 +91,7 @@ t_map	*ini_map(t_cub *cub, char **v)
 	map = openFiles(v[1], texture);
 	if (!map)
 		return (NULL);
-	cub->texture = *texture;
+	cub->tex = *texture;
 	return (map);
 }
 

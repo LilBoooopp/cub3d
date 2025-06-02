@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:46:15 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/22 17:23:25 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/30 17:34:45 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ typedef struct s_node
 	struct s_node	*next;
 }t_node;
 
-void	spHex(int rgb, int i, t_texture *texture, int fc);
-int		color(char *s, int fc, t_texture *texture);
-void	c_point(char *line, t_texture *texture);
+void	spHex(int rgb, int i, t_tex *texture, int fc);
+int		color(char *s, int fc, t_tex *texture);
+void	c_point(char *line, t_tex *texture);
 t_node	*ft_new(char *content);
 t_map	*read_map(int fd, char *line);
 t_node	*ft_new(char *content);

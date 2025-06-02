@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/30 14:37:06 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/05/30 17:36:45 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	set_bg(t_img *back, t_cub *c)
 	int	g;
 	int	b;
 
-	parse_rgbhex(c->texture.c, &r, &g, &b);
-	c->texture.ceiling = (r << 16) | (g << 8) | b;
+	parse_rgbhex(c->tex.c, &r, &g, &b);
+	c->tex.ceiling = (r << 16) | (g << 8) | b;
 	draw_pixels(back, set_vec2(WIN_WIDTH / 2, WIN_HEIGHT / 4),
-		set_vec2(WIN_WIDTH, WIN_HEIGHT / 2), c->texture.ceiling);
-	parse_rgbhex(c->texture.f, &r, &g, &b);
-	c->texture.floor = (r << 16) | (g << 8) | b;
+		set_vec2(WIN_WIDTH, WIN_HEIGHT / 2), c->tex.ceiling);
+	parse_rgbhex(c->tex.f, &r, &g, &b);
+	c->tex.floor = (r << 16) | (g << 8) | b;
 	draw_pixels(back, set_vec2(WIN_WIDTH / 2, WIN_HEIGHT * 0.75),
-		set_vec2(WIN_WIDTH, WIN_HEIGHT / 2), c->texture.floor);
+		set_vec2(WIN_WIDTH, WIN_HEIGHT / 2), c->tex.floor);
 }
 
 int	render(t_cub *cub)
