@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:45:32 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/30 17:34:58 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/02 23:30:49 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,26 @@ int	color(char *s, int fc, t_tex *texture)
 
 void	c_point(char *line, t_tex *texture)
 {
+	line = ft_strtrim(line, "\n");
 	if (ft_strncmp(line, "WE", 2) == 0 && !texture->we)
 	{
 		texture->we = &line[3];
-		texture->full ++;
+		texture->full++;
 	}
 	else if (ft_strncmp(line, "NO", 2) == 0 && !texture->n)
 	{
 		texture->n = &line[3];
-		texture->full ++;
+		texture->full++;
 	}
 	else if (ft_strncmp(line, "SO", 2) == 0 && !texture->s)
 	{
 		texture->s = &line[3];
-		texture->full ++;
+		texture->full++;
 	}
 	else if (ft_strncmp(line, "EA", 2) == 0 && !texture->ea)
 	{
 		texture->ea = &line[3];
-		texture->full ++;
+		texture->full++;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/02 10:18:20 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/02 23:46:15 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ typedef struct s_vec4
 typedef struct s_img
 {
 	void	*img;
-	t_vec2	size;
+	t_vec2i	size;
 	char	*addr;
 	int		bpp;
 	int		len;
@@ -237,6 +237,7 @@ void	init_player(t_player *player, t_map *map);
 /* mlx */
 int	get_pixel(t_img *img, t_vec2 pos);
 t_img	make_image(t_cub *cub, t_vec2 size, int color);
+t_img	setup_xpm(t_cub *c, char *xpm, t_vec2 size);
 t_vec2	get_rotated_position(t_vec2 center, t_vec2 local, double angle);
 t_vec2	rotate_point(t_vec2 rel, double angle);
 void	draw_line(t_img *img, t_vec2 start, t_vec2 end, int color);
@@ -278,6 +279,8 @@ void	perform_dda(t_raycast *ray, t_cub *cub);
 void	render_map(t_cub *cub, t_img *img, t_player *player);
 void	set_side_dist(t_raycast *ray, t_player player);
 void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x);
+void	draw_stripe(t_img *img, t_raycast *ray, int x);
+void	open_xpm(t_cub *c);
 
 /* utils */
 int	close_window(t_cub *cub);
@@ -293,6 +296,7 @@ t_vec2i	vecdtoi(t_vec2 vec2);
 t_vec3	set_vec3(double x, double y, double z);
 t_vec4	set_vec4(int r, int g, int b, int a);
 t_vec2i	set_vec2i(int x, int y);
+t_vec2	itovec(t_vec2i veci);
 
 /* === AUTO GENERATED PROTOTYPES END   === */
 

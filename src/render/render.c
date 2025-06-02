@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/30 17:36:45 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/02 23:46:26 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	render(t_cub *cub)
 
 	if (cub->state == STATE_MENU)
 		return (draw_menu(cub), 0);
-	back.size = set_vec2(WIN_WIDTH, WIN_HEIGHT);
+	back.size = set_vec2i(WIN_WIDTH, WIN_HEIGHT);
 	back.img = mlx_new_image(cub->mlx, back.size.x, back.size.y);
 	back.addr = mlx_get_data_addr(back.img, &back.bpp, &back.len, &back.end);
 	set_bg(&back, cub);

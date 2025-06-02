@@ -6,11 +6,19 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/30 17:35:46 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/02 23:42:38 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+void	open_xpm(t_cub *c)
+{
+	c->north = setup_xpm(c, c->tex.n, set_vec2(626, 417));
+	c->east = setup_xpm(c, c->tex.ea, set_vec2(626, 417));
+	c->south = setup_xpm(c, c->tex.s, set_vec2(626, 417));
+	c->west = setup_xpm(c, c->tex.we, set_vec2(626, 417));
+}
 
 void	extract_texture(char *line, t_tex *texture)
 {
@@ -63,13 +71,13 @@ t_map	*openFiles(char *name_files, t_tex *texture)
 		if (*line != '\n')
 			extract_texture(line, texture);
 	}
-	// if (check_file(texture->ea, ".xpm", 4, 1) == 0 || check_file(texture->we, ".xpm", 4, 1) ||
-	// 	check_file(texture->n, ".xpm", 4, 1) || check_file(texture->s, ".xpm", 4, 1))
-	// {
-	// 	perror("Error\n incorect name files\n");
-	// 	free (texture);
-	// 	return (NULL);
-	// }
+	if (!check_file(texture->ea, ".xpm", 4, 1) || !check_file(texture->we, ".xpm", 4, 1)||
+		!check_file(texture->n, ".xpm", 4, 1) || !check_file(texture->s, ".xpm", 4, 1))
+	{
+		perror("Error\n incorect name files");
+		free (texture);
+		return (NULL);
+	}
 	return (read_map(fd, line));
 }
 

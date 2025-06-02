@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:27:54 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/05/30 00:44:48 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/02 23:06:55 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	**ft_asort_char(char **tab);
 char	**ft_split(char const *s, char c);
+void	ft_trim_nl(char *s);
 
 long	ft_atol(const char *str);
 

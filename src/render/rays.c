@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/02 10:18:59 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/02 11:20:13 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,25 +67,25 @@ void	perform_dda(t_raycast *ray, t_cub *cub)
 	}
 }
 
-// static void	draw_stripe(t_img *img, t_raycast *ray, int x)
-// {
-// 	int	y;
+void	draw_stripe(t_img *img, t_raycast *ray, int x)
+{
+	int	y;
 
-// 	ray->line_h = (int)(WIN_HEIGHT / ray->perp_dist);
-// 	ray->draw_start = -ray->line_h / 2 + WIN_HEIGHT / 2;
-// 	if (ray->draw_start < 0)
-// 		ray->draw_start = 0;
-// 	ray->draw_end = ray->line_h / 2 + WIN_HEIGHT / 2;
-// 	if (ray->draw_end >= WIN_HEIGHT)
-// 		ray->draw_end = WIN_HEIGHT - 1;
-// 	if (ray->side)
-// 		ray->color = 0x008ea832;
-// 	else
-// 		ray->color = 0x00323ea8;
-// 	y = ray->draw_start;
-// 	while (y < ray->draw_end && ray->hit)
-// 		my_mlx_pixel_put(img, x, y++, ray->color);
-// }
+	ray->line_h = (int)(WIN_HEIGHT / ray->perp_dist);
+	ray->draw_start = -ray->line_h / 2 + WIN_HEIGHT / 2;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_h / 2 + WIN_HEIGHT / 2;
+	if (ray->draw_end >= WIN_HEIGHT)
+		ray->draw_end = WIN_HEIGHT - 1;
+	if (ray->side)
+		ray->color = 0x008ea832;
+	else
+		ray->color = 0x00323ea8;
+	y = ray->draw_start;
+	while (y < ray->draw_end && ray->hit)
+		my_mlx_pixel_put(img, x, y++, ray->color);
+}
 
 void	cast_rays(t_cub *cub, t_img *img)
 {
