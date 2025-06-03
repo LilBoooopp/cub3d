@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/02 23:46:15 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/03 13:37:37 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,7 +279,7 @@ void	perform_dda(t_raycast *ray, t_cub *cub);
 void	render_map(t_cub *cub, t_img *img, t_player *player);
 void	set_side_dist(t_raycast *ray, t_player player);
 void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x);
-void	draw_stripe(t_img *img, t_raycast *ray, int x);
+void	draw_stripe(t_raycast *ray);
 void	open_xpm(t_cub *c);
 
 /* utils */
@@ -297,6 +297,7 @@ t_vec3	set_vec3(double x, double y, double z);
 t_vec4	set_vec4(int r, int g, int b, int a);
 t_vec2i	set_vec2i(int x, int y);
 t_vec2	itovec(t_vec2i veci);
+void	free_all(t_cub *c);
 
 /* === AUTO GENERATED PROTOTYPES END   === */
 

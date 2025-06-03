@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 20:58:11 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/30 12:16:52 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/03 13:38:41 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_px(t_cub *c, int x, int y)
 {
 	int	col;
 
-	col = 0xFFFFFF;
+	col = 0x000000;
 	mlx_pixel_put(c->mlx, c->mlx_win, x, y, col);
 }
 

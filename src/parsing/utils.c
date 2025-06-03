@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:33:13 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/22 17:15:20 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/03 13:58:14 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	find_char(t_map *map, int x, int y)
 		map->playerx = x;
 		map->playery = y;
 		map->orientation = map->map[y][x];
+		map->map[y][x] = '0';
 		return (1);
 	}
 	else if (map->map[y][x] != '0' && map->map[y][x] != '1' && map->map[y][x] != ' ')

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:32:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/02 11:22:39 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/03 13:43:55 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ static int	compute_tex_x(t_raycast *ray, t_cub *c, t_img *tex)
 		wall_x = c->player.pos.x + ray->perp_dist * ray->ray_dir.x;
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * (double)tex->size.x);
+	if ((ray->side == 0 && ray->ray_dir.x > 0)
+		|| (ray->side == 1 && ray->ray_dir.y < 0))
+		tex_x = tex->size.x - tex_x - 1;
 	return (tex_x);
 }
 
@@ -44,7 +47,7 @@ void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x)
 	t_vec2	texv;
 	int		y;
 
-	draw_stripe(img, ray, x);
+	draw_stripe(ray);
 	tex = select_text(ray, c);
 	texv.x = compute_tex_x(ray, c, tex);
 	y = ray->draw_start;
