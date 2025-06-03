@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:33:13 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/22 17:15:20 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/27 15:14:31 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char **create_empty_map(int height, int width)
 		map[y] = malloc(width + 1);
 		if (!map[y])
 			return (NULL); // à compléter avec libération en cas d'erreur
-		ft_memset(map[y], ' ', width);
+		ft_memset(map[y], '1', width);
 		map[y][width] = '\0';
 	}
 	map[height] = NULL;

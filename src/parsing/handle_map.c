@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/23 17:36:15 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/05/27 15:14:57 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	flood_fill_masked(t_map map, int x, int y, char **mask)
 	c = map.map[y][x];
 	if (c == ' ' || c == '\0')
 		return (-1);
-	if (c == '1' || mask[y][x] == 'x')
+	if (c == '1' || mask[y][x] == '0')
 		return (0);
 	mask[y][x] = 'x';
 	if (flood_fill_masked(map, x + 1, y, mask) < 0)
@@ -44,9 +44,13 @@ char **build_filtered_map(char **original, char **mask, int width, int height)
 	y = 0;
 	x = 0;
 	filtered = malloc(sizeof(char *) * (height + 1));
+	if (!filtered)
+		return (NULL);
 	while ( y < height)
 	{
 		filtered[y] = malloc(width + 1);
+		if (!filtered[y])
+			return (free_tab(filtered), NULL);
 		x = 0;
 		while (x < width)
 		{
@@ -65,27 +69,23 @@ char **build_filtered_map(char **original, char **mask, int width, int height)
 
 int	check_map_flood(t_map *map, int max_width)
 {
-	int	i;
+	char **mask;
 
-	i = 0;
 	map->sizex = max_width;
 	if (search_player(map) < 0)
 	{
 		perror("Invalid map\n");
 		return (1);
 	}
-	char **mask = create_empty_map(map->sizey, map->sizex);
+	mask = create_empty_map(map->sizey, map->sizex);
 	if (!mask)
 		return (1);
 	if (flood_fill_masked(*map, map->playerx, map->playery, mask) < 0)
 		return (1);
-	map->map = build_filtered_map(map->map, mask, map->sizex, map->sizey);
-	while (i < map->sizey)
-	{
-		free(mask[i]);
-		i ++;
-	}
-	free(mask);
+	// map->map = build_filtered_map(map->map, mask, map->sizex, map->sizey);
+	map->map = mask;
+	ft_print_chartable(map->map);
+	free_tab(mask);
 	map->map = rescale(map);
 	search_player(map);
 	return (0);
