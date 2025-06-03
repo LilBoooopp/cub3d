@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:13:56 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/02 23:41:43 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/03 10:48:39 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,11 @@ t_img	setup_xpm(t_cub *c, char *xpm, t_vec2 size)
 
 	img = make_image(c, size, 0x00000000);
 	img.img = mlx_xpm_file_to_image(c->mlx, xpm, &img.size.x, &img.size.y);
+	if (!img.img)
+	{
+		img.img = NULL;
+		return (img); // return empty img on failure
+	}
+	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.len, &img.end);
 	return (img);
 }
