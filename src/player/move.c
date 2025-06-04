@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 19:41:35 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 01:10:22 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 01:24:10 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	move_right(t_player *p, t_map *m, double spd)
 	n.x = p->pos.x - p->dir.y * spd;
 	n.y = p->pos.y + p->dir.x * spd;
 	if (m->map[(int)p->pos.y][(int)n.x] == '0')
-			p->pos.x = n.x / TILE_SIZE;
+		p->pos.x = n.x / TILE_SIZE;
 	if (m->map[(int)n.y][(int)p->pos.x] == '0')
 		p->pos.y = n.y / TILE_SIZE;
 }

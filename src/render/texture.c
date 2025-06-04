@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:32:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/03 13:43:55 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 01:23:41 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,22 @@ static int	compute_tex_x(t_raycast *ray, t_cub *c, t_img *tex)
 void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x)
 {
 	t_img	*tex;
-	t_vec2	texv;
+	t_vec2i	texv;
 	int		y;
+	double	step;
+	double	tex_pos;
 
 	draw_stripe(ray);
 	tex = select_text(ray, c);
 	texv.x = compute_tex_x(ray, c, tex);
 	y = ray->draw_start;
+	step = (double)tex->size.y / (double)ray->line_h;
+	tex_pos = (ray->draw_start - WIN_HEIGHT / 2.0f + ray->line_h / 2.0) * step;
 	while (y < ray->draw_end)
 	{
-		texv.y = (y - ray->draw_start) * tex->size.y / ray->line_h;
-		my_mlx_pixel_put(img, x, y, get_pixel(tex, texv));
+		texv.y = (int)tex_pos;
+		tex_pos += step;
+		my_mlx_pixel_put(img, x, y, get_pixel(tex, itovec(texv)));
 		y++;
-
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 01:00:16 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 01:23:14 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	cast_rays(t_cub *cub, t_img *img)
 	{
 		init_ray(cub, &ray, x);
 		perform_dda(&ray, cub);
-		printf("%f\n", p->pos.x);
 		if (ray.side == 0)
 			ray.perp_dist = ((ray.map.x - p->pos.x + (1 - ray.step.x)
 						/ 2) / ray.ray_dir.x);
