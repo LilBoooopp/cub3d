@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:45:49 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/20 20:10:00 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 00:55:02 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_ray(t_cub *cub, t_raycast *ray, int x)
 {
-	ray->cam_x = 2 * x / (double)WIN_WIDTH - 1;
+	ray->cam_x = 2.0f * x / (double)WIN_WIDTH - 1.0f;
 	ray->ray_dir = vec2_add(cub->player.dir, set_vec2(cub->player.plane.x
 				* ray->cam_x, cub->player.plane.y * ray->cam_x));
 	ray->map = vecdtoi(cub->player.pos);

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 19:41:35 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/17 20:52:57 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 01:10:22 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	move_forward(t_player *p, t_map *m, double spd)
 	n.x = p->pos.x + p->dir.x * spd;
 	n.y = p->pos.y + p->dir.y * spd;
 	if (m->map[(int)p->pos.y][(int)n.x] == '0')
-		p->pos.x = n.x;
+		p->pos.x = n.x / TILE_SIZE;
 	if (m->map[(int)n.y][(int)p->pos.x] == '0')
-		p->pos.y = n.y;
+		p->pos.y = n.y / TILE_SIZE;
 }
 
 void	move_backward(t_player *p, t_map *m, double spd)
@@ -31,9 +31,9 @@ void	move_backward(t_player *p, t_map *m, double spd)
 	n.x = p->pos.x - p->dir.x * spd;
 	n.y = p->pos.y - p->dir.y * spd;
 	if (m->map[(int)p->pos.y][(int)n.x] == '0')
-		p->pos.x = n.x;
+		p->pos.x = n.x / TILE_SIZE;
 	if (m->map[(int)n.y][(int)p->pos.x] == '0')
-		p->pos.y = n.y;
+		p->pos.y = n.y / TILE_SIZE;
 }
 
 void	move_right(t_player *p, t_map *m, double spd)
@@ -43,9 +43,9 @@ void	move_right(t_player *p, t_map *m, double spd)
 	n.x = p->pos.x - p->dir.y * spd;
 	n.y = p->pos.y + p->dir.x * spd;
 	if (m->map[(int)p->pos.y][(int)n.x] == '0')
-		p->pos.x = n.x;
+			p->pos.x = n.x / TILE_SIZE;
 	if (m->map[(int)n.y][(int)p->pos.x] == '0')
-		p->pos.y = n.y;
+		p->pos.y = n.y / TILE_SIZE;
 }
 
 void	move_left(t_player *p, t_map *m, double spd)
@@ -55,20 +55,24 @@ void	move_left(t_player *p, t_map *m, double spd)
 	n.x = p->pos.x + p->dir.y * spd;
 	n.y = p->pos.y - p->dir.x * spd;
 	if (m->map[(int)p->pos.y][(int)n.x] == '0')
-		p->pos.x = n.x;
+		p->pos.x = n.x / TILE_SIZE;
 	if (m->map[(int)n.y][(int)p->pos.x] == '0')
-		p->pos.y = n.y;
+		p->pos.y = n.y / TILE_SIZE;
 }
 
 void	rotate(t_player *p, double angle)
 {
 	double	old_dir;
 	double	old_plane;
+	double	c;
+	double	s;
 
+	c = cos(angle);
+	s = sin(angle);
 	old_dir = p->dir.x;
 	old_plane = p->plane.x;
-	p->dir.x = p->dir.x * cos(angle) - p->dir.y * sin(angle);
-	p->dir.y = old_dir * sin(angle) + p->dir.y * cos(angle);
-	p->plane.x = p->plane.x * cos(angle) - p->plane.y * sin(angle);
-	p->plane.y = old_plane * sin(angle) + p->plane.y * cos(angle);
+	p->dir.x = p->dir.x * c - p->dir.y * s;
+	p->dir.y = old_dir * s + p->dir.y * c;
+	p->plane.x = p->plane.x * c - p->plane.y * s;
+	p->plane.y = old_plane * s + p->plane.y * c;
 }

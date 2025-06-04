@@ -3,7 +3,7 @@ NAME = cub3d
 CC   = cc
 INC = include
 RM   = rm -rf
-FLAGS = -Werror -Wextra -Wall -g -I$(INC) -fsanitize=address
+FLAGS = -Werror -Wextra -Wall -g -I$(INC) #-fsanitize=address
 MAKE := make --no-print-directory
 
 #────────────────────────────  LIBFT SECTION  ────────────────────────────────#

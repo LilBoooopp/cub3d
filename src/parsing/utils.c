@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:33:13 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/03 13:58:14 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 00:49:31 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	find_char(t_map *map, int x, int y)
 		return (0);
 	if (ft_strchr("NSEW", map->map[y][x]))
 	{
-		map->playerx = x;
-		map->playery = y;
+		map->playerx = x + 0.5f;
+		map->playery = y + 0.5f;
 		map->orientation = map->map[y][x];
 		map->map[y][x] = '0';
 		return (1);
@@ -48,11 +48,11 @@ int	search_player(t_map *map)
 		while(x < map->sizex)
 		{
 			if (find_char(map, x, y))
-				find ++;
+				find++;
 			
-			x ++;
+			x++;
 		}
-		y ++;
+		y++;
 	}
 	if (find != 1)
 		return (-1);
