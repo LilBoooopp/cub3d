@@ -6,11 +6,24 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:45:49 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 00:55:02 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 13:52:50 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	*render_thread(void *arg)
+{
+	t_thrdata	*td;
+	t_cub		*cub;
+	t_img		*img;
+
+	td = (t_thrdata *)arg;
+	cub = td->cub;
+	img = td->img;
+	cast_rays(cub, img, td->x_start, td->x_end);
+	return (NULL);
+}
 
 void	init_ray(t_cub *cub, t_raycast *ray, int x)
 {

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 01:23:14 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 13:51:12 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ void	draw_stripe(t_raycast *ray)
 		ray->color = 0x00323ea8;
 }
 
-void	cast_rays(t_cub *cub, t_img *img)
+void	cast_rays(t_cub *cub, t_img *img, int x_start, int x_end)
 {
 	t_raycast	ray;
 	t_player	*p;
 	int			x;
 
-	x = -1;
 	p = &cub->player;
-	while (++x < WIN_WIDTH)
+	x = x_start - 1;
+	while (++x < x_end)
 	{
 		init_ray(cub, &ray, x);
 		perform_dda(&ray, cub);

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/03 13:37:37 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 14:03:51 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,14 @@
 # include <time.h>
 # include "../libft/libft.h"
 # include <sys/time.h>
+# include <pthread.h>
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 1080
+
+# ifndef NUM_THREADS
+#  define NUM_THREADS 15
+# endif
 
 # define MAP_WALL 0xFFb08243
 # define MAP_EMPTY 0xFFdeda68
@@ -227,6 +232,14 @@ typedef struct s_raycast
 	int		color;
 }	t_raycast;
 
+typedef struct s_thrdata
+{
+	t_cub	*cub;
+	t_img	*img;
+	int		x_start;
+	int		x_end;
+}	t_thrdata;
+
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */
 double	gettime(void);
@@ -235,7 +248,7 @@ int		init(t_cub *cub, char ** v);
 void	init_player(t_player *player, t_map *map);
 
 /* mlx */
-int	get_pixel(t_img *img, t_vec2 pos);
+int		get_pixel(t_img *img, t_vec2 pos);
 t_img	make_image(t_cub *cub, t_vec2 size, int color);
 t_img	setup_xpm(t_cub *c, char *xpm, t_vec2 size);
 t_vec2	get_rotated_position(t_vec2 center, t_vec2 local, double angle);
@@ -250,8 +263,8 @@ void	draw_image_transparent(t_img *src, t_img *dst, t_vec2 pos);
 void	draw_rect(t_img *im, t_vec2 orig, t_vec2 size, int color);
 
 /* player */
-int	handle_input(int keycode, t_cub *cub);
-int	handle_keyrelease(int kc, t_cub *cub);
+int		handle_input(int keycode, t_cub *cub);
+int		handle_keyrelease(int kc, t_cub *cub);
 void	move_backward(t_player *p, t_map *m, double spd);
 void	move_forward(t_player *p, t_map *m, double spd);
 void	move_left(t_player *p, t_map *m, double spd);
@@ -260,11 +273,11 @@ void	rotate(t_player *p, double angle);
 void	smooth_input(t_cub *cub);
 
 /* render */
-int	handle_menu(int key, t_cub *c);
-int	render(t_cub *cub);
-int	update(t_cub *cub);
+int		handle_menu(int key, t_cub *c);
+int		render(t_cub *cub);
+int		update(t_cub *cub);
 t_vec2i	set_raydir(t_raycast *ray);
-void	cast_rays(t_cub *cub, t_img *img);
+void	cast_rays(t_cub *cub, t_img *img, int x_start, int x_end);
 void	change_debug(t_cub *cub);
 void	draw_big_fps(t_cub *cub);
 void	draw_debug(t_cub *cub);
@@ -281,10 +294,11 @@ void	set_side_dist(t_raycast *ray, t_player player);
 void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x);
 void	draw_stripe(t_raycast *ray);
 void	open_xpm(t_cub *c);
+void	*render_thread(void *arg);
 
 /* utils */
-int	close_window(t_cub *cub);
-int	is_in_bounds(t_img *img, t_vec2 point);
+int		close_window(t_cub *cub);
+int		is_in_bounds(t_img *img, t_vec2 point);
 t_vec2	fix_pos(t_cub *cub, t_img *dst, t_vec2 pos);
 t_vec2	get_center(t_img *img);
 t_vec2	set_vec2(double x, double y);
