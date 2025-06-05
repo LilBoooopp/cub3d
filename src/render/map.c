@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:13:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/02 23:45:01 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 14:08:16 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	init_minimap(t_map *m, t_img *map)
 	}
 }
 
-void	render_map(t_cub *cub, t_img *img, t_player *player)
+void	*render_map(t_cub *cub, t_img *img, t_player *player)
 {
 	t_img	map;
 
@@ -78,4 +78,5 @@ void	render_map(t_cub *cub, t_img *img, t_player *player)
 	draw_player(cub, player, &map);
 	draw_image_transparent(&map, img, set_vec2(980, 0));
 	mlx_destroy_image(cub->mlx, map.img);
+	return (NULL);
 }

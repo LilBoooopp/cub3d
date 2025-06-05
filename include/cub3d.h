@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 14:03:51 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 14:19:15 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,12 @@ typedef struct s_thrdata
 	int		x_end;
 }	t_thrdata;
 
+typedef struct s_mapdata
+{
+	t_cub	*cub;
+	t_img	*img;
+}	t_mapdata;
+
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */
 double	gettime(void);
@@ -289,7 +295,7 @@ void	draw_player(t_cub *cub, t_player *player, t_img *map);
 void	draw_px(t_cub *c, int x, int y);
 void	init_ray(t_cub *cub, t_raycast *ray, int x);
 void	perform_dda(t_raycast *ray, t_cub *cub);
-void	render_map(t_cub *cub, t_img *img, t_player *player);
+void	*render_map(t_cub *cub, t_img *img, t_player *player);
 void	set_side_dist(t_raycast *ray, t_player player);
 void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x);
 void	draw_stripe(t_raycast *ray);
