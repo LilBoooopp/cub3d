@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 14:19:15 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 21:27:40 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,7 +243,7 @@ typedef struct s_thrdata
 typedef struct s_mapdata
 {
 	t_cub	*cub;
-	t_img	*img;
+	t_img	img;
 }	t_mapdata;
 
 /* === AUTO GENERATED PROTOTYPES START === */
@@ -301,6 +301,13 @@ void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x);
 void	draw_stripe(t_raycast *ray);
 void	open_xpm(t_cub *c);
 void	*render_thread(void *arg);
+void	*render_map_thread(void *arg);
+void	set_bg(t_img *back, t_cub *c);
+void	init_back_buffer(t_cub *cub, t_img *back);
+void	create_map_thread(t_cub *cub, pthread_t *thread, t_mapdata *md);
+void	finalize_back_buffer(t_cub *cub, t_img *back);
+void	join_threads(pthread_t *threads, int count);
+void	init_minimap(t_map *m, t_img *map);
 
 /* utils */
 int		close_window(t_cub *cub);

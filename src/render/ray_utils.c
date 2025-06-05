@@ -6,42 +6,55 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:45:49 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 18:11:30 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 21:29:38 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// void	init_back_buffer(t_cub *cub, t_img *back)
-// {
-// 	back->size = set_vec2i(WIN_WIDTH, WIN_HEIGHT);
-// 	back->img = mlx_new_image(cub->mlx, back->size.x, back->size.y);
-// 	back->addr = mlx_get_data_addr(back->img, &back->bpp, &back->len,
-// 			&back->end);
-// 	set_bg(back, cub);
-// }
+void	init_back_buffer(t_cub *cub, t_img *back)
+{
+	back->size = set_vec2i(WIN_WIDTH, WIN_HEIGHT);
+	back->img = mlx_new_image(cub->mlx, back->size.x, back->size.y);
+	back->addr = mlx_get_data_addr(back->img, &back->bpp, &back->len,
+			&back->end);
+	set_bg(back, cub);
+}
+
+void	finalize_back_buffer(t_cub *cub, t_img *back)
+{
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win, back->img, 0, 0);
+	if (cub->debug > 0)
+		draw_big_fps(cub);
+	mlx_destroy_image(cub->mlx, back->img);
+}
+
+void	join_threads(pthread_t *threads, int count)
+{
+	int	i;
+
+	i = 0;
+	while (i < count)
+	{
+		pthread_join(threads[i], NULL);
+		i++;
+	}
+}
 
 void	*render_thread(void *arg)
 {
 	t_thrdata	*td;
-	t_cub		*cub;
-	t_img		*img;
 
 	td = (t_thrdata *)arg;
-	cub = td->cub;
-	img = td->img;
-	cast_rays(cub, img, td->x_start, td->x_end);
+	cast_rays(td->cub, td->img, td->x_start, td->x_end);
 	return (NULL);
 }
 
-// void	create_map_thread(t_cub *cub, t_img *back, pthread_t *thread)
-// {
-// 	static t_mapdata	md;
-
-// 	md.cub = cub;
-// 	md.img = back;
-// 	pthread_create(thread, NULL, render_map, &md);
-// }
+void	create_map_thread(t_cub *cub, pthread_t *thread, t_mapdata *md)
+{
+	md->cub = cub;
+	pthread_create(thread, NULL, render_map_thread, md);
+}
 
 void	init_ray(t_cub *cub, t_raycast *ray, int x)
 {

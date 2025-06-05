@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 13:51:12 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 20:19:49 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ void	cast_rays(t_cub *cub, t_img *img, int x_start, int x_end)
 		perform_dda(&ray, cub);
 		if (ray.side == 0)
 			ray.perp_dist = ((ray.map.x - p->pos.x + (1 - ray.step.x)
-						/ 2) / ray.ray_dir.x);
+						/ 2.0f) / ray.ray_dir.x);
 		else
 			ray.perp_dist = ((ray.map.y - p->pos.y + (1 - ray.step.y)
-						/ 2) / ray.ray_dir.y);
+						/ 2.0f) / ray.ray_dir.y);
 		if (ray.hit)
 			draw_texture(cub, img, &ray, x);
 	}
