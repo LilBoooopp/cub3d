@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 19:45:49 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 21:29:38 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/05 21:45:00 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,6 @@ void	join_threads(pthread_t *threads, int count)
 		pthread_join(threads[i], NULL);
 		i++;
 	}
-}
-
-void	*render_thread(void *arg)
-{
-	t_thrdata	*td;
-
-	td = (t_thrdata *)arg;
-	cast_rays(td->cub, td->img, td->x_start, td->x_end);
-	return (NULL);
 }
 
 void	create_map_thread(t_cub *cub, pthread_t *thread, t_mapdata *md)
