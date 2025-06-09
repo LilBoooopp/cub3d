@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/09 16:14:20 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 17:34:52 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,7 @@ typedef struct s_cub
 {
 	void		*mlx;
 	void		*mlx_win;
+	t_img		back;
 	t_player	player;
 	t_map		*map;
 	t_tex		tex;
@@ -256,7 +257,7 @@ void	init_player(t_player *player, t_map *map);
 /* mlx */
 int		get_pixel(t_img *img, t_vec2 pos);
 t_img	make_image(t_cub *cub, t_vec2 size, int color);
-t_img	setup_xpm(t_cub *c, char *xpm, t_vec2 size);
+t_img	setup_xpm(t_cub *c, char *xpm);
 t_vec2	get_rotated_position(t_vec2 center, t_vec2 local, double angle);
 t_vec2	rotate_point(t_vec2 rel, double angle);
 void	draw_line(t_img *img, t_vec2 start, t_vec2 end, int color);

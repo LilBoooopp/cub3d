@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:13:56 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 00:33:28 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 17:34:15 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,10 @@ void	draw_image_transparent(t_img *src, t_img *dst, t_vec2 pos)
 		copy_trans_row(src, dst, pos, y);
 }
 
-t_img	setup_xpm(t_cub *c, char *xpm, t_vec2 size)
+t_img	setup_xpm(t_cub *c, char *xpm)
 {
 	t_img	img;
 
-	img = make_image(c, size, 0x00000000);
 	img.img = mlx_xpm_file_to_image(c->mlx, xpm, &img.size.x, &img.size.y);
 	if (!img.img)
 	{

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 21:45:57 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 17:19:21 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	render(t_cub *cub)
 	join_threads(threads, NUM_THREADS + 1);
 	draw_image_transparent(&md.img, &back,
 		set_vec2((double)WIN_WIDTH - md.img.size.x, 0));
-	mlx_destroy_image(cub->mlx, md.img.img);
+	mlx_destroy_image(cub->mlx, &md.img);
 	finalize_back_buffer(cub, &back);
 	return (0);
 }
