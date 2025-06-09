@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 20:19:49 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 18:53:28 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	cast_rays(t_cub *cub, t_img *img, int x_start, int x_end)
 	x = x_start - 1;
 	while (++x < x_end)
 	{
+		ft_bzero(&ray, sizeof(t_raycast));
 		init_ray(cub, &ray, x);
 		perform_dda(&ray, cub);
 		if (ray.side == 0)
