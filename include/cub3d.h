@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/09 17:34:52 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 18:41:54 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,85 +247,96 @@ typedef struct s_mapdata
 	t_img	img;
 }	t_mapdata;
 
+typedef struct s_spawn_args
+{
+	t_cub		*cub;
+	t_img		*back;
+	int			slice;
+	pthread_t	*threads;
+	t_thrdata	*td;
+}	t_spawn_args;
+
 /* === AUTO GENERATED PROTOTYPES START === */
 /* init */
-double	gettime(void);
-t_map	*ini_map(t_cub *cub, char **v);
-int		init(t_cub *cub, char ** v);
-void	init_player(t_player *player, t_map *map);
+double			gettime(void);
+t_map			*ini_map(t_cub *cub, char **v);
+int				init(t_cub *cub, char ** v);
+void			init_player(t_player *player, t_map *map);
 
 /* mlx */
-int		get_pixel(t_img *img, t_vec2 pos);
-t_img	make_image(t_cub *cub, t_vec2 size, int color);
-t_img	setup_xpm(t_cub *c, char *xpm);
-t_vec2	get_rotated_position(t_vec2 center, t_vec2 local, double angle);
-t_vec2	rotate_point(t_vec2 rel, double angle);
-void	draw_line(t_img *img, t_vec2 start, t_vec2 end, int color);
-void	draw_pixels(t_img *img, t_vec2 pos, t_vec2 size, int color);
-void	draw_rotated_image(t_img *t, t_img *s, t_vec2 pos, double ang);
-void	drawtoimg(t_img *src, t_img *dst, t_vec2 pos);
-void	mlx_set_img(t_img *img, unsigned int color);
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-void	draw_image_transparent(t_img *src, t_img *dst, t_vec2 pos);
-void	draw_rect(t_img *im, t_vec2 orig, t_vec2 size, int color);
+int				get_pixel(t_img *img, t_vec2 pos);
+t_img			make_image(t_cub *cub, t_vec2 size, int color);
+t_img			setup_xpm(t_cub *c, char *xpm);
+t_vec2			get_rotated_position(t_vec2 center, t_vec2 local, double angle);
+t_vec2			rotate_point(t_vec2 rel, double angle);
+void			draw_line(t_img *img, t_vec2 start, t_vec2 end, int color);
+void			draw_pixels(t_img *img, t_vec2 pos, t_vec2 size, int color);
+void			draw_rotated_image(t_img *t, t_img *s, t_vec2 pos, double ang);
+void			drawtoimg(t_img *src, t_img *dst, t_vec2 pos);
+void			mlx_set_img(t_img *img, unsigned int color);
+void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void			draw_image_transparent(t_img *src, t_img *dst, t_vec2 pos);
+void			draw_rect(t_img *im, t_vec2 orig, t_vec2 size, int color);
 
 /* player */
-int		handle_input(int keycode, t_cub *cub);
-int		handle_keyrelease(int kc, t_cub *cub);
-void	move_backward(t_player *p, t_map *m, double spd);
-void	move_forward(t_player *p, t_map *m, double spd);
-void	move_left(t_player *p, t_map *m, double spd);
-void	move_right(t_player *p, t_map *m, double spd);
-void	rotate(t_player *p, double angle);
-void	smooth_input(t_cub *cub);
+int				handle_input(int keycode, t_cub *cub);
+int				handle_keyrelease(int kc, t_cub *cub);
+void			move_backward(t_player *p, t_map *m, double spd);
+void			move_forward(t_player *p, t_map *m, double spd);
+void			move_left(t_player *p, t_map *m, double spd);
+void			move_right(t_player *p, t_map *m, double spd);
+void			rotate(t_player *p, double angle);
+void			smooth_input(t_cub *cub);
 
 /* render */
-int		handle_menu(int key, t_cub *c);
-int		render(t_cub *cub);
-int		update(t_cub *cub);
-t_vec2i	set_raydir(t_raycast *ray);
-void	cast_rays(t_cub *cub, t_img *img, int x_start, int x_end);
-void	change_debug(t_cub *cub);
-void	draw_big_fps(t_cub *cub);
-void	draw_debug(t_cub *cub);
-void	draw_debug_rays(t_cub *c, t_img *m, t_vec2 pos);
-void	draw_digit(t_cub *c, char d, t_vec2i oi, int s);
-void	draw_dir(t_player *p, t_vec2 map_pos, t_img *map);
-void	draw_menu(t_cub *c);
-void	draw_player(t_cub *cub, t_player *player, t_img *map);
-void	draw_px(t_cub *c, int x, int y);
-void	init_ray(t_cub *cub, t_raycast *ray, int x);
-void	perform_dda(t_raycast *ray, t_cub *cub);
-void	*render_map(t_cub *cub, t_img *img, t_player *player);
-void	set_side_dist(t_raycast *ray, t_player player);
-void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x);
-void	draw_stripe(t_raycast *ray);
-void	open_xpm(t_cub *c);
-void	*render_thread(void *arg);
-void	*render_map_thread(void *arg);
-void	set_bg(t_img *back, t_cub *c);
-void	init_back_buffer(t_cub *cub, t_img *back);
-void	create_map_thread(t_cub *cub, pthread_t *thread, t_mapdata *md);
-void	finalize_back_buffer(t_cub *cub, t_img *back);
-void	join_threads(pthread_t *threads, int count);
-void	init_minimap(t_map *m, t_img *map);
+int				handle_menu(int key, t_cub *c);
+int				render(t_cub *cub);
+int				update(t_cub *cub);
+t_vec2i			set_raydir(t_raycast *ray);
+void			cast_rays(t_cub *cub, t_img *img, int x_start, int x_end);
+void			change_debug(t_cub *cub);
+void			draw_big_fps(t_cub *cub);
+void			draw_debug(t_cub *cub);
+void			draw_debug_rays(t_cub *c, t_img *m, t_vec2 pos);
+void			draw_digit(t_cub *c, char d, t_vec2i oi, int s);
+void			draw_dir(t_player *p, t_vec2 map_pos, t_img *map);
+void			draw_menu(t_cub *c);
+void			draw_player(t_cub *cub, t_player *player, t_img *map);
+void			draw_px(t_cub *c, int x, int y);
+void			init_ray(t_cub *cub, t_raycast *ray, int x);
+void			perform_dda(t_raycast *ray, t_cub *cub);
+void			*render_map(t_cub *cub, t_img *img, t_player *player);
+void			set_side_dist(t_raycast *ray, t_player player);
+void			draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x);
+void			draw_stripe(t_raycast *ray);
+void			open_xpm(t_cub *c);
+void			*render_thread(void *arg);
+void			*render_map_thread(void *arg);
+void			set_bg(t_img *back, t_cub *c);
+void			init_back_buffer(t_cub *cub, t_img *back);
+void			create_map_thread(t_cub *cub, pthread_t *thread, t_mapdata *md);
+void			finalize_back_buffer(t_cub *cub, t_img *back);
+void			join_threads(pthread_t *threads, int count);
+void			init_minimap(t_map *m, t_img *map);
 
 /* utils */
-int		close_window(t_cub *cub);
-int		is_in_bounds(t_img *img, t_vec2 point);
-t_vec2	fix_pos(t_cub *cub, t_img *dst, t_vec2 pos);
-t_vec2	get_center(t_img *img);
-t_vec2	set_vec2(double x, double y);
-t_vec2	vec2_add(t_vec2 vec1, t_vec2 vec2);
-t_vec2	vec2_div(t_vec2 vec1, t_vec2 vec2);
-t_vec2	vec2_mult(t_vec2 vec1, t_vec2 vec2);
-t_vec2	vec2_sub(t_vec2 vec1, t_vec2 vec2);
-t_vec2i	vecdtoi(t_vec2 vec2);
-t_vec3	set_vec3(double x, double y, double z);
-t_vec4	set_vec4(int r, int g, int b, int a);
-t_vec2i	set_vec2i(int x, int y);
-t_vec2	itovec(t_vec2i veci);
-void	free_all(t_cub *c);
+int				close_window(t_cub *cub);
+int				is_in_bounds(t_img *img, t_vec2 point);
+t_vec2			fix_pos(t_cub *cub, t_img *dst, t_vec2 pos);
+t_vec2			get_center(t_img *img);
+t_vec2			set_vec2(double x, double y);
+t_vec2			vec2_add(t_vec2 vec1, t_vec2 vec2);
+t_vec2			vec2_div(t_vec2 vec1, t_vec2 vec2);
+t_vec2			vec2_mult(t_vec2 vec1, t_vec2 vec2);
+t_vec2			vec2_sub(t_vec2 vec1, t_vec2 vec2);
+t_vec2i			vecdtoi(t_vec2 vec2);
+t_vec3			set_vec3(double x, double y, double z);
+t_vec4			set_vec4(int r, int g, int b, int a);
+t_vec2i			set_vec2i(int x, int y);
+t_vec2			itovec(t_vec2i veci);
+void			free_all(t_cub *c);
+t_spawn_args	setup_args(t_cub *c, t_img *back, pthread_t *threads,
+	t_thrdata *td);
 
 /* === AUTO GENERATED PROTOTYPES END   === */
 

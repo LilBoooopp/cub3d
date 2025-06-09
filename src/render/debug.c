@@ -6,11 +6,23 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:01:04 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/23 01:08:08 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 18:41:18 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+t_spawn_args	setup_args(t_cub *c, t_img *back, pthread_t *threads,
+	t_thrdata *td)
+{
+	t_spawn_args	arg;
+
+	arg.cub = c;
+	arg.back = back;
+	arg.threads = threads;
+	arg.td = td;
+	return (arg);
+}
 
 void	draw_big_fps(t_cub *cub)
 {
