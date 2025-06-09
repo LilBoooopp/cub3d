@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/23 17:36:15 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/09 15:30:05 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,6 @@ t_map *read_map(int fd, char *line)
 		last = new;
 	}
 	close(fd);
-	free (line);
 	return (tab_map(map_list, max_width));
 }
 

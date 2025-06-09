@@ -3,155 +3,109 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 13:49:32 by hdougoud          #+#    #+#             */
-/*   Updated: 2024/12/09 15:46:46 by hdougoud         ###   ########.fr       */
+/*   Created: 2025/06/09 15:38:57 by pbuet             #+#    #+#             */
+/*   Updated: 2025/06/09 15:49:31 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-static char	*combine_line(char *line, char *buff)
-{
-	char	*joined_line;
 
+char	*ft_read_st_save(int fd, char *st_save)
+{
+	char	*buff;
+	int		read_bytes;
+
+	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buff)
 		return (NULL);
-	if (line == NULL)
+	read_bytes = 1;
+	while (!gnl_strchr(st_save, '\n') && read_bytes != 0)
 	{
-		joined_line = ft_strdup(buff);
-		if (joined_line == NULL)
+		read_bytes = read(fd, buff, BUFFER_SIZE);
+		if (read_bytes == -1)
 		{
-			safe_free((void **) &line);
+			free(buff);
+			free(st_save);
 			return (NULL);
 		}
+		buff[read_bytes] = '\0';
+		st_save = gnl_strjoin(st_save, buff);
 	}
-	else
-	{
-		joined_line = ft_strjoin(line, buff);
-		if (joined_line == NULL)
-		{
-			safe_free((void **) &line);
-			return (NULL);
-		}
-	}
-	safe_free((void **) &line);
-	return (joined_line);
+	free(buff);
+	return (st_save);
 }
 
-static char	*read_line(int fd, char *current_line)
+char	*ft_get_line(char *st_save)
 {
-	int		bytes_read;
-	char	buff[BUFFER_SIZE + 1];
+	int		c;
+	char	*s;
 
-	buff[0] = '\0';
-	while (1)
-	{
-		if (ft_gnl_strchr(buff) == 1)
-			break ;
-		bytes_read = read(fd, buff, BUFFER_SIZE);
-		if (bytes_read == -1)
-		{
-			safe_free((void **) &current_line);
-			return (NULL);
-		}
-		if (bytes_read == 0)
-			break ;
-		buff[bytes_read] = '\0';
-		current_line = combine_line(current_line, buff);
-		if (current_line == NULL)
-			return (NULL);
-	}
-	if (bytes_read == 0 && current_line == NULL)
+	c = 0;
+	while (st_save[c] != '\0' && st_save[c] != '\n')
+		c++;
+	s = (char *)malloc(sizeof(char) * (c + 2));
+	if (!s)
 		return (NULL);
-	return (current_line);
+	c = 0;
+	while (st_save[c] != '\0' && st_save[c] != '\n')
+	{
+		s[c] = st_save[c];
+		c++;
+	}
+	if (st_save[c] == '\n')
+	{
+		s[c] = st_save[c];
+		c++;
+	}
+	s[c] = '\0';
+	return (s);
 }
 
-static char	*manage_stash(char *line, char **stash)
+char	*ft_st_save(char *st_save)
 {
-	char	*backup;
-	char	*complete_line;
-	int		i;
-	int		j;
+	int		c;
+	int		w;
+	char	*s;
 
-	backup = line;
-	i = 0;
-	while (line[i] && line[i] != '\n')
-		i++;
-	if (line[i] == '\0' || line[i + 1] == '\0')
-		return (line);
-	i++;
-	backup += i;
-	*stash = ft_strdup(backup);
-	if (!*stash)
-		return (free(line), NULL);
-	complete_line = malloc(sizeof(char) * (i + 1));
-	if (!complete_line)
-		return (free(line), NULL);
-	j = -1;
-	while (++j < i)
-		complete_line[j] = line[j];
-	complete_line[j] = '\0';
-	free(line);
-	return (complete_line);
-}
-
-static char	*add_stash(char **stash, char *final_line)
-{
-	final_line = ft_strdup(*stash);
-	safe_free((void **) stash);
-	return (final_line);
+	c = 0;
+	while (st_save[c] && st_save[c] != '\n')
+		c++;
+	if (!st_save[c])
+	{
+		free(st_save);
+		return (NULL);
+	}
+	s = (char *)malloc(sizeof(char) * gnl_strlen(st_save) - c + 1);
+	if (!s)
+		return (NULL);
+	c++;
+	w = 0;
+	while (st_save[c])
+		s[w++] = st_save[c++];
+	s[w] = '\0';
+	free(st_save);
+	return (s);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*stash[MAXFD];
-	char		*final_line;
+	char		*line;
+	static char	*st_save;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	st_save = ft_read_st_save(fd, st_save);
+	if (!st_save)
 		return (NULL);
-	final_line = NULL;
-	if (stash[fd])
+	line = ft_get_line(st_save);
+	st_save = ft_st_save(st_save);
+	if (!line || !*line)
 	{
-		final_line = add_stash(&stash[fd], final_line);
-		if (!final_line)
-			return (NULL);
-	}
-	final_line = read_line(fd, final_line);
-	if (final_line == NULL)
-	{
-		safe_free((void **) &stash[fd]);
+		free(line);
 		return (NULL);
 	}
-	final_line = manage_stash(final_line, &stash[fd]);
-	if (final_line == NULL)
-	{
-		safe_free((void **) &stash[fd]);
-		return (NULL);
-	}
-	return (final_line);
+	return (line);
 }
-
-// #include <fcntl.h>
-
-// int main(void)
-// {
-// 	int i = 0;
-//     int fd = open("test.txt", O_RDONLY);
-// 	char *line;
-
-// 	if (fd == -1)
-// 	{
-// 		printf("Open failed\n");
-// 		return (1);
-// 	}    
-// 	while (i < 15)
-// 	{
-// 		line = get_next_line(fd);
-// 	    printf("Result %s\n", line);
-// 		free(line);
-// 		i++;
-// 	}
-// 	return (0);
-// }

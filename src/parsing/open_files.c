@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/09 16:23:21 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 16:23:35 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	extract_texture(char *line, t_tex *texture)
 
 	i = 0;
 	if(line[i] == 'F')
-		color(&line[i + 1], 0, texture);
+		color(ft_strdup(&line[i + 1]), 0, texture);
 	else if(line[i] == 'C')
-		color(&line[i + 1], 1, texture);
+		color(ft_strdup(&line[i + 1]), 1, texture);
 	else
 		c_point(line, texture);
 }

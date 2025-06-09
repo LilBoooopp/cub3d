@@ -1,0 +1,21 @@
+static char *pattern[] = {
+"16 16 2 1",
+". c #FFFFFF",
+"o c #87CEFA",
+"oooooooo........",
+"oooooooo........",
+"oooooooo........",
+"oooooooo........",
+"oooooooo........",
+"oooooooo........",
+"oooooooo........",
+"oooooooo........",
+"........oooooooo",
+"........oooooooo",
+"........oooooooo",
+"........oooooooo",
+"........oooooooo",
+"........oooooooo",
+"........oooooooo",
+"........oooooooo"
+};

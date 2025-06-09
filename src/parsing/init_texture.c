@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:45:32 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/09 16:23:03 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 16:23:44 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,42 +42,46 @@ int	color(char *s, int fc, t_tex *texture)
 		if (rgb > 255 || rgb < 0)
 			break;
 		spHex(rgb, i, texture, fc);
-		i ++;
+		i++;
 	}
 	while(i >= 0)
 	{
 		free(tmp[i]);
-		i --;
+		i--;
 	}
 	free(tmp);
 	if (rgb > 255 || rgb < 0)
 		return (1);
-	texture->full ++;
+	texture->full++;
+	free(s);
 	return (0);
 }
 
 void	c_point(char *line, t_tex *texture)
 {
-	line = ft_strtrim(line, "\n");
-	if (ft_strncmp(line, "WE", 2) == 0 && !texture->we)
+	char *tmp;
+
+	tmp = ft_strtrim(line, "\n");
+	if (ft_strncmp(tmp, "WE", 2) == 0 && !texture->we)
 	{
-		texture->we = &line[3];
+		texture->we = ft_strdup(&tmp[3]);
 		texture->full++;
 	}
-	else if (ft_strncmp(line, "NO", 2) == 0 && !texture->n)
+	else if (ft_strncmp(tmp, "NO", 2) == 0 && !texture->n)
 	{
-		texture->n = &line[3];
+		texture->n = ft_strdup(&tmp[3]);
 		texture->full++;
 	}
-	else if (ft_strncmp(line, "SO", 2) == 0 && !texture->s)
+	else if (ft_strncmp(tmp, "SO", 2) == 0 && !texture->s)
 	{
-		texture->s = &line[3];
+		texture->s = ft_strdup(&tmp[3]);
 		texture->full++;
 	}
-	else if (ft_strncmp(line, "EA", 2) == 0 && !texture->ea)
+	else if (ft_strncmp(tmp, "EA", 2) == 0 && !texture->ea)
 	{
-		texture->ea = &line[3];
+		texture->ea = ft_strdup(&tmp[3]);
 		texture->full++;
 	}
+	free(tmp);
 }
 

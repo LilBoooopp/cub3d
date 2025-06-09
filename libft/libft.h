@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:27:54 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/02 23:06:55 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 15:48:54 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,9 @@ int		print_hex_pf(unsigned int un, int *value, char param);
 # define MAXFD 256
 
 char	*get_next_line(int fd);
-int		ft_gnl_strchr(char *str);
+char	*gnl_strjoin(char *s1, char *s2);
+char	*gnl_strchr(char *s, int c);
+size_t	gnl_strlen(char *str);
 
 //---------------------------------- Tables ------------------------------------
 

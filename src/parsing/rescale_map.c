@@ -6,32 +6,11 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:14:20 by pbuet             #+#    #+#             */
-/*   Updated: 2025/05/27 14:26:52 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/09 15:20:34 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parsing.h"
-
-
-// int is_adjacent_to_non_wall(char **map, int y, int x, t_map strmap)
-// {
-// 	const char *non_walls = "0NSEW";
-// 	int dx[] = {1, -1, 0, 0,  1,  1, -1, -1};
-// 	int dy[] = {0, 0,  1, -1, 1, -1,  1, -1};
-// 	int i;
-
-// 	for (i = 0; i < 8; i++)
-// 	{
-// 		int ny = y + dy[i];
-// 		int nx = x + dx[i];
-// 		if (ny >= 0 && ny < strmap.sizey && nx >= 0 && nx < strmap.sizex)
-// 		{
-// 			if (ft_strchr(non_walls, map[ny][nx]))
-// 				return 1;
-// 		}
-// 	}
-// 	return 0;
-// }
 
 int is_adjacent_to_non_wall(char **map, int y, int x, t_map strmap)
 {
@@ -50,6 +29,7 @@ int is_adjacent_to_non_wall(char **map, int y, int x, t_map strmap)
 	}
 	return (0);
 }
+
 void	cleaning_walls(t_map strmap, char **cropped, int new_height, int new_width)
 {
 	int		x;
@@ -70,6 +50,7 @@ void	cleaning_walls(t_map strmap, char **cropped, int new_height, int new_width)
 		}
 	}
 }
+
 char **croccroc(t_map map, int new_height, int new_width)
 {
 	char	**cropped;
@@ -118,6 +99,7 @@ void	find_map_bound(t_map *strmap, int *max_x, int *max_y)
 		}
 	}
 }
+
 char	**rescale(t_map *strmap)
 {
 	int max_x = 0;
@@ -141,6 +123,6 @@ char	**rescale(t_map *strmap)
 	cleaning_walls(*strmap, cropped, new_height, new_width);
 	strmap->sizex = new_width;
 	strmap->sizey = new_height;
-	ft_print_chartable(cropped);
+	free(strmap->map);
 	return (cropped);
 }
