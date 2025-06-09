@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/09 17:16:36 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/09 17:42:36 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ t_map *read_map(int fd, char *line)
 	t_node *last;
 
 	map_list = ft_new(line);
+	free(line);
 	last = map_list;
 	max_width = 0;
 	while((line = get_next_line(fd)))
@@ -140,9 +141,11 @@ t_map *read_map(int fd, char *line)
 		new = ft_new(line);
 		if (!new)
 			return (NULL);
+		free(line);
 		last->next = new;
 		last = new;
 	}
+	free(line);
 	close(fd);
 	return (tab_map(map_list, max_width));
 }

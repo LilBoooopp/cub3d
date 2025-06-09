@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:33:13 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/05 00:49:31 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 17:24:52 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_node	*ft_new(char *content)
 	new = malloc(sizeof(t_node));
 	if (new == NULL)
 		return (NULL);
-	new->content = content;
+	new->content = ft_strdup(content);
 	new->next = NULL;
 	return (new);
 }
