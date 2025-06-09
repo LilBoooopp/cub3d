@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:55:19 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/09 17:14:48 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 17:09:10 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	main(int ac, char **av)
 	mlx_hook(cub.mlx_win, 17, 0, close_window, &cub);
 	mlx_loop_hook(cub.mlx, update, &cub);
 	mlx_loop(cub.mlx);
-	free_all(&cub);
+	close_window(&cub);
 	return (0);
 }

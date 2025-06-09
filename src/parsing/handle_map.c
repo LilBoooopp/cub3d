@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/09 16:47:42 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/09 17:16:36 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,15 @@ char **build_filtered_map(char **original, char **mask, int width, int height)
 		y ++;
 	}
 	filtered[height] = NULL;
+	ft_free_chartable(original);
 	return (filtered);
 }
 
 int	
 check_map_flood(t_map *map, int max_width)
 {
+	char **tmp;
+
 	map->sizex = max_width;
 	if (search_player(map) < 0)
 	{
@@ -77,7 +80,8 @@ check_map_flood(t_map *map, int max_width)
 		return (1);
 	if (flood_fill_masked(*map, map->playerx, map->playery, mask) < 0)
 		return (1);
-	map->map = build_filtered_map(map->map, mask, map->sizex, map->sizey);
+	tmp = build_filtered_map(map->map, mask, map->sizex, map->sizey);
+	map->map = tmp;
 	ft_free_chartable(mask);
 	map->map = rescale(map);
 	search_player(map);
@@ -91,6 +95,7 @@ t_map *tab_map(t_node *lst_map, int max_width)
 	int		len;
 	t_map	*map;
 	t_node	*last;
+
 	size = ft_size(lst_map);
 	map = malloc(sizeof(t_map));
 	map->map = malloc(sizeof(char *) * (size + 1));
@@ -109,8 +114,9 @@ t_map *tab_map(t_node *lst_map, int max_width)
 		lst_map = lst_map->next;
 		free(last->content);
 		free(last);
-		i ++;
+		i++;
 	}
+	map->map[i] = NULL;
 	if (check_map_flood(map, max_width) == 1)
 		return (NULL);
 	return (map);
