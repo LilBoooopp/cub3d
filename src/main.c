@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:55:19 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/03 10:59:48 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 17:14:48 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return(1);
+	ft_bzero(&cub, sizeof(cub));
 	if (init(&cub, av))
 		return (1);
 	mlx_hook(cub.mlx_win, 2, 1l << 0, handle_input, &cub);

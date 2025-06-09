@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/09 16:23:35 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/09 16:39:10 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	open_xpm(t_cub *c)
 {
-	c->north = setup_xpm(c, c->tex.n, set_vec2(626, 417));
-	c->east = setup_xpm(c, c->tex.ea, set_vec2(626, 417));
-	c->south = setup_xpm(c, c->tex.s, set_vec2(626, 417));
-	c->west = setup_xpm(c, c->tex.we, set_vec2(626, 417));
+	c->north = setup_xpm(c, c->tex.n);
+	c->east = setup_xpm(c, c->tex.ea);
+	c->south = setup_xpm(c, c->tex.s);
+	c->west = setup_xpm(c, c->tex.we);
 }
 
 void	extract_texture(char *line, t_tex *texture)
@@ -100,6 +100,7 @@ t_map	*ini_map(t_cub *cub, char **v)
 	if (!map)
 		return (NULL);
 	cub->tex = *texture;
+	free(texture);
 	return (map);
 }
 

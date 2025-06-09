@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 01:14:20 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 17:26:26 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	init(t_cub *cub, char **v)
 		return (1);
 	cub->map->screenx = 300;
 	cub->map->screeny = 300;
+	cub->mlx = NULL;
 	cub->mlx = mlx_init();
 	cub->frame_time = gettime();
 	cub->debug = 1;

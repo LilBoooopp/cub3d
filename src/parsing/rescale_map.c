@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:14:20 by pbuet             #+#    #+#             */
-/*   Updated: 2025/06/09 15:20:34 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/09 16:45:36 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,6 @@ char	**rescale(t_map *strmap)
 	cleaning_walls(*strmap, cropped, new_height, new_width);
 	strmap->sizex = new_width;
 	strmap->sizey = new_height;
-	free(strmap->map);
+	ft_free_chartable(strmap->map);
 	return (cropped);
 }
