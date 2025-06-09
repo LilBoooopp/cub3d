@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:32:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 01:23:41 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 16:40:16 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x)
 	texv.x = compute_tex_x(ray, c, tex);
 	y = ray->draw_start;
 	step = (double)tex->size.y / (double)ray->line_h;
-	tex_pos = (ray->draw_start - WIN_HEIGHT / 2.0f + ray->line_h / 2.0) * step;
+	tex_pos = (ray->draw_start - WIN_HEIGHT / 2.0 + ray->line_h / 2.0) * step;
 	while (y < ray->draw_end)
 	{
 		texv.y = (int)tex_pos;

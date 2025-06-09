@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/02 23:42:38 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/09 16:23:21 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_map	*openFiles(char *name_files, t_tex *texture)
 		!check_file(texture->n, ".xpm", 4, 1) || !check_file(texture->s, ".xpm", 4, 1))
 	{
 		perror("Error\n incorect name files");
-		free (texture);
+		free(texture);
 		return (NULL);
 	}
 	return (read_map(fd, line));

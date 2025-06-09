@@ -1,9 +1,9 @@
-C 255,255,255
+C 255,255,200
 F 235,52,192
 NO ./resources/grey-tile-portal.xpm
-SO ./resources/grey-tile-portal.xpm
-WE ./resources/grey-tile-portal.xpm
-EA ./resources/grey-tile-portal.xpm
+SO ./resources/marioquestion_1.xpm
+WE ./resources/sky_1.xpm
+EA ./resources/grass_1.xpm
 
 
 
@@ -12,7 +12,7 @@ EA ./resources/grey-tile-portal.xpm
         101100000111000000N000001
         1001000000000000000000001
 111111111011000001110000000000001       1111
-100000000011110111111111110111011       1001
+100000000011111111111111110111011       1001
 11110101111111011100000010001101        1111
 11110101111111011101010010001111
 11000000110101011100000010001
