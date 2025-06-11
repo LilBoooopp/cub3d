@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/09 18:41:54 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/11 16:28:47 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@
 #  define key_DOWN	0x7D
 #  define key_ENTER	0x24
 #  define key_ESC	0x35
+#  define key_LCTRL	0x01
+#  define key_SPACE	0x2c
 # else
 #  include "../mlx_linux/mlx.h"
 #  define key_A		'a'
@@ -81,6 +83,8 @@
 #  define key_DOWN	65364
 #  define key_ENTER	65293
 #  define key_ESC	65307
+#  define key_LCTRL	65507
+#  define key_SPACE	32
 # endif
 
 # include <stdio.h>
@@ -106,6 +110,12 @@
 
 # define MOVE_SPEED 3.0
 # define ROT_SPEED 2.0
+# define JUMP_VEL 8.0
+# define GRAVITY 15.0
+# define MAX_HEIGHT \
+	(JUMP_VEL * JUMP_VEL / (2.0 / GRAVITY))
+# define JUMP_VIEW_SCALE 10.0
+
 # define TILE_SIZE 1
 
 extern const char	*g_digit[10];
@@ -164,6 +174,9 @@ typedef struct s_player
 	t_vec2	pos;
 	t_vec2	dir;
 	t_vec2	plane;
+	double	z_pos;
+	double	z_vel;
+	int		is_jumping;
 }	t_player;
 
 typedef struct s_map
@@ -256,7 +269,6 @@ typedef struct s_spawn_args
 	t_thrdata	*td;
 }	t_spawn_args;
 
-/* === AUTO GENERATED PROTOTYPES START === */
 /* init */
 double			gettime(void);
 t_map			*ini_map(t_cub *cub, char **v);
@@ -287,6 +299,7 @@ void			move_left(t_player *p, t_map *m, double spd);
 void			move_right(t_player *p, t_map *m, double spd);
 void			rotate(t_player *p, double angle);
 void			smooth_input(t_cub *cub);
+void			jump(t_cub *cub);
 
 /* render */
 int				handle_menu(int key, t_cub *c);
@@ -337,7 +350,5 @@ t_vec2			itovec(t_vec2i veci);
 void			free_all(t_cub *c);
 t_spawn_args	setup_args(t_cub *c, t_img *back, pthread_t *threads,
 	t_thrdata *td);
-
-/* === AUTO GENERATED PROTOTYPES END   === */
 
 #endif
