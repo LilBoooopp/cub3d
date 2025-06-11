@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/11 16:28:47 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/11 16:33:56 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,10 @@
 # define MOVE_SPEED 3.0
 # define ROT_SPEED 2.0
 # define JUMP_VEL 8.0
-# define GRAVITY 15.0
+# define GRAVITY 20.0
 # define MAX_HEIGHT \
 	(JUMP_VEL * JUMP_VEL / (2.0 / GRAVITY))
-# define JUMP_VIEW_SCALE 10.0
+# define JUMP_VIEW_SCALE 30.0
 
 # define TILE_SIZE 1
 

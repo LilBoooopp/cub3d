@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:32:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/11 16:27:34 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/11 16:34:47 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int	apply_vert_offset(t_cub *c, t_raycast *ray)
 	orig_start = ray->draw_start;
 	off = (int)(c->player.z_pos * (WIN_HEIGHT / 2.0) / MAX_HEIGHT
 			* JUMP_VIEW_SCALE);
-	ray->draw_start -= off;
-	if (ray->draw_start < 0)
-		ray->draw_start = 0;
-	ray->draw_end -= off;
+	ray->draw_start = orig_start + off;
+	if (ray->draw_start >= WIN_HEIGHT)
+		ray->draw_start = WIN_HEIGHT - 1;
+	ray->draw_end = ray->draw_end + off;
 	if (ray->draw_end >= WIN_HEIGHT)
 		ray->draw_end = WIN_HEIGHT - 1;
 	return (orig_start);
@@ -76,7 +76,7 @@ void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x)
 		texv.y = (int)pos;
 		pos += (double)tex->size.y / ray->line_h;
 		my_mlx_pixel_put(img, x, ray->draw_start,
-				get_pixel(tex, itovec(texv)));
+			get_pixel(tex, itovec(texv)));
 		ray->draw_start++;
 	}
 }
