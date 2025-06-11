@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:25 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/05 01:24:45 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/11 16:25:04 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	handle_input(int keycode, t_cub *cub)
 		change_debug(cub);
 	if (cub->keys[key_M])
 		cub->ismap *= -1;
+	if (cub->keys[key_SPACE] && !cub->player.is_jumping)
+		jump(cub);
 	return (0);
 }
 // printf("player x: %f, y: %f\n", cub->player.pos.x, cub->player.pos.y);

@@ -58,7 +58,8 @@ PARSING = $(addprefix $(PARSING_DIR), $(PARSING_SRC))
 PLAYER_DIR = src/player/
 PLAYER_SRC =  \
 	input.c \
-	move.c
+	move.c \
+	move2.c
 PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
 
 RENDER_DIR = src/render/
