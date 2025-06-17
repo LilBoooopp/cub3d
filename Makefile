@@ -68,6 +68,7 @@ RENDER_SRC =  \
 	debug_rays.c \
 	font.c \
 	map.c \
+	map_utils.c \
 	menu.c \
 	ray_utils.c \
 	rays.c \

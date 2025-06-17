@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:13:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/17 18:36:04 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/17 23:36:03 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,10 @@ void	init_minimap(t_map *m, t_img *map)
 		{
 			if (m->map[idx.y][idx.x] == '1')
 				col = MAP_WALL;
-			else if (m->map[idx.y][idx.x] == '0'
-					|| m->map[idx.y][idx.x] == 'N')
+			else if (m->map[idx.y][idx.x] == '0')
 				col = MAP_EMPTY;
 			else
-			{
-				idx.x += 1;
 				continue ;
-			}
 			draw_rect(map, set_vec2(idx.x * m->t_size.x, idx.y * m->t_size.y),
 				set_vec2(m->t_size.x, m->t_size.y), col);
 		}
