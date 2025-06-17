@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:13:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/09 17:24:49 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:36:04 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	init_minimap(t_map *m, t_img *map)
 	t_vec2i	idx;
 	int		col;
 
-	m->t_size = set_vec2(1.0 + m->screenx / m->sizex,
-			1.0 + m->screeny / m->sizey);
+	m->t_size = set_vec2(0.0 + m->screenx / m->sizex,
+			0.0 + m->screeny / m->sizey);
 	idx.y = -1;
 	while (++idx.y < m->sizey)
 	{
