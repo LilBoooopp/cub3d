@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 14:08:17 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/23 01:10:50 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/17 16:54:14 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void	draw_one_ray(t_cub *c, t_img *map, t_vec2 map_pos, int x)
 					+ (1 - r.step.y) / 2) / r.ray_dir.y);
 	hit.x = c->player.pos.x + r.ray_dir.x * pd;
 	hit.y = c->player.pos.y + r.ray_dir.y * pd;
-	hit.x *= c->map->t_size.x;
-	hit.y *= c->map->t_size.y;
+	hit.x *= c->map->t_size;
+	hit.y *= c->map->t_size;
 	draw_line(map, map_pos, hit, 0xFF00FF00);
 }
 

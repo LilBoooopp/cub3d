@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:13:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/09 17:24:49 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/17 16:53:49 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	init_minimap(t_map *m, t_img *map)
 	t_vec2i	idx;
 	int		col;
 
-	m->t_size = set_vec2(1.0 + m->screenx / m->sizex,
-			1.0 + m->screeny / m->sizey);
+	m->t_size = (int)fmax(m->sizex, m->sizey);
 	idx.y = -1;
 	while (++idx.y < m->sizey)
 	{
@@ -62,8 +61,8 @@ void	init_minimap(t_map *m, t_img *map)
 				idx.x += 1;
 				continue ;
 			}
-			draw_rect(map, set_vec2(idx.x * m->t_size.x, idx.y * m->t_size.y),
-				set_vec2(m->t_size.x, m->t_size.y), col);
+			draw_rect(map, set_vec2(idx.x * m->t_size, idx.y * m->t_size),
+				set_vec2(m->t_size, m->t_size), col);
 		}
 	}
 }

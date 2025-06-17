@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/11 16:33:56 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/17 16:51:30 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ typedef struct s_map
 	int		sizey;
 	int		screenx;
 	int		screeny;
-	t_vec2	t_size;
+	int		t_size;
 	char	**map;
 	char	orientation;
 	double	playerx;
