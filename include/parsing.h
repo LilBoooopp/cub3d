@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:46:15 by plbuet            #+#    #+#             */
-/*   Updated: 2025/05/30 17:34:45 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 20:07:36 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int		ft_size(t_node *lst);
 char	**create_empty_map(int height, int width);
 int		search_player(t_map *map);
 char	**rescale(t_map *strmap);
-
+void 	free_texture(t_cub *cub);
+void	close_gnl(char *line, int fd);
+int		node_map(t_map *map, int max_width, t_node *lst_map, int size);
 #endif

@@ -52,7 +52,9 @@ PARSING_SRC =  \
 	init_texture.c \
 	open_files.c \
 	rescale_map.c \
-	utils.c
+	utils.c \
+	free_texture.c \
+	init_map.c
 PARSING = $(addprefix $(PARSING_DIR), $(PARSING_SRC))
 
 PLAYER_DIR = src/player/

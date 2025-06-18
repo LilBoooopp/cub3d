@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/09 17:41:47 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/18 19:46:53 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_map	*openFiles(char *name_files, t_tex *texture)
 		!check_file(texture->n, ".xpm", 4, 1) || !check_file(texture->s, ".xpm", 4, 1))
 	{
 		perror("Error\n incorect name files");
+		close_gnl(temp, fd);
 		return (NULL);
 	}
 	return (read_map(fd, temp));
@@ -99,10 +100,13 @@ t_map	*ini_map(t_cub *cub, char **v)
 	texture->we = NULL;
 	texture->ea = NULL;
 	map = openFiles(v[1], texture);
-	if (!map)
-		return (NULL);
 	cub->tex = *texture;
 	free(texture);
+	if (!map)
+	{
+		free_texture(cub);
+		return (NULL);
+	}
 	return (map);
 }
 

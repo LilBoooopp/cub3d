@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/09 17:42:36 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/18 20:07:32 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ char **build_filtered_map(char **original, char **mask, int width, int height)
 	return (filtered);
 }
 
-int	
-check_map_flood(t_map *map, int max_width)
+int	check_map_flood(t_map *map, int max_width)
 {
 	char **tmp;
 
@@ -79,7 +78,11 @@ check_map_flood(t_map *map, int max_width)
 	if (!mask)
 		return (1);
 	if (flood_fill_masked(*map, map->playerx, map->playery, mask) < 0)
-		return (1);
+	{
+		ft_free_chartable(map->map);
+		ft_free_chartable(mask);
+		return(1);
+	}
 	tmp = build_filtered_map(map->map, mask, map->sizex, map->sizey);
 	map->map = tmp;
 	ft_free_chartable(mask);
@@ -90,11 +93,8 @@ check_map_flood(t_map *map, int max_width)
 
 t_map *tab_map(t_node *lst_map, int max_width)
 {
-	int		i;
 	int		size;
-	int		len;
 	t_map	*map;
-	t_node	*last;
 
 	size = ft_size(lst_map);
 	map = malloc(sizeof(t_map));
@@ -102,23 +102,12 @@ t_map *tab_map(t_node *lst_map, int max_width)
 	if (!map->map || !map)
 		return (NULL);
 	map->sizey = size;
-	i = 0;
-	while (i < size)
-	{
-		map->map[i] = malloc(sizeof(char) * (max_width + 1));
-		len = ft_strlen(lst_map->content);
-		ft_memcpy(map->map[i], lst_map->content, len);
-		ft_memset(map->map[i] + (len - 1), ' ', max_width - len);
-		map->map[i][max_width - 1] = '\0';
-		last = lst_map;
-		lst_map = lst_map->next;
-		free(last->content);
-		free(last);
-		i++;
-	}
-	map->map[i] = NULL;
+	node_map(map, max_width, lst_map, size);
 	if (check_map_flood(map, max_width) == 1)
-		return (NULL);
+	{
+		free(map);
+		return(NULL);
+	}
 	return (map);
 }
 
