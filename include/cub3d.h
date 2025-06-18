@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 23:22:47 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 23:40:02 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,7 @@ typedef struct s_map
 	int		screeny;
 	t_vec2	t_size;
 	char	**map;
+	bool	**explored;
 	char	orientation;
 	double	playerx;
 	double	playery;
@@ -384,6 +385,7 @@ void			finalize_back_buffer(t_cub *cub, t_img *back);
 void			join_threads(pthread_t *threads, int count);
 void			init_minimap(t_map *m, t_img *map);
 void			draw_hud(t_cub *cub, t_img *dst);
+void			reveal_surr(t_map *map, t_vec2 pos, int radius);
 
 /* utils */
 int				close_window(t_cub *cub);

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:25 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 22:02:58 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 23:34:36 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ void	smooth_input(t_cub *cub)
 
 	lin = MOVE_SPEED * cub->delta;
 	rot = ROT_SPEED * cub->delta;
-	if (cub->keys[key_ESC])
+	if (cub->keys[KEY_ESC])
 		close_window(cub);
-	if (cub->keys[key_W])
+	if (cub->keys[KEY_W])
 		move_forward(&cub->player, cub->map, lin);
-	if (cub->keys[key_S])
+	if (cub->keys[KEY_S])
 		move_backward(&cub->player, cub->map, lin);
-	if (cub->keys[key_A])
+	if (cub->keys[KEY_A])
 		move_left(&cub->player, cub->map, lin);
-	if (cub->keys[key_D])
+	if (cub->keys[KEY_D])
 		move_right(&cub->player, cub->map, lin);
-	if (cub->keys[key_LEFT])
+	if (cub->keys[KEY_LEFT])
 		rotate(&cub->player, -rot);
-	if (cub->keys[key_RIGHT])
+	if (cub->keys[KEY_RIGHT])
 		rotate(&cub->player, rot);
 }
 
@@ -68,11 +68,11 @@ int	handle_input(int keycode, t_cub *cub)
 		cub->keys[keycode] = true;
 	if (cub->state == STATE_MENU)
 		return (handle_menu(keycode, cub), 0);
-	if (cub->keys[key_G])
+	if (cub->keys[KEY_G])
 		change_debug(cub);
-	if (cub->keys[key_M])
+	if (cub->keys[KEY_M])
 		cub->ismap *= -1;
-	if (cub->keys[key_R])
+	if (cub->keys[KEY_R])
 		if (cub->hud.anim_state == IDLE)
 			set_anim_state(cub, RELOAD);
 	return (0);

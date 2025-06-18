@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:13:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/17 23:36:03 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 23:44:53 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	init_minimap(t_map *m, t_img *map)
 		idx.x = -1;
 		while (++idx.x < m->sizex)
 		{
+			if (!m->explored[idx.y][idx.x])
+				continue ;
 			if (m->map[idx.y][idx.x] == '1')
 				col = MAP_WALL;
 			else if (m->map[idx.y][idx.x] == '0')

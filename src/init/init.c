@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 20:59:02 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 23:34:43 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void	set_false(bool *keys)
 {
-	keys[key_W] = false;
-	keys[key_A] = false;
-	keys[key_S] = false;
-	keys[key_D] = false;
-	keys[key_LEFT] = false;
-	keys[key_RIGHT] = false;
+	keys[KEY_W] = false;
+	keys[KEY_A] = false;
+	keys[KEY_S] = false;
+	keys[KEY_D] = false;
+	keys[KEY_LEFT] = false;
+	keys[KEY_RIGHT] = false;
 }
 
 void	init_player(t_player *player, t_map *map)

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:55:03 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 21:40:54 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 23:34:15 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	mouse_press_handler(int button, int x, int y, void *param)
 	(void)x;
 	(void)y;
 	cub = (t_cub *)param;
-	if (button == key_LEFT_CLICK)
+	if (button == KEY_LEFT_CLICK)
 		if (cub->hud.anim_state == IDLE)
 			set_anim_state(cub, SHOOT);
 	return (0);

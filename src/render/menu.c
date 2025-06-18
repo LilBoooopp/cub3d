@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:15:56 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/19 13:54:19 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 23:34:10 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	handle_menu(int key, t_cub *c)
 {
 	if (c->state == STATE_MENU)
 	{
-		if (key == key_UP && c->menu_sel > 0)
+		if (key == KEY_UP && c->menu_sel > 0)
 			c->menu_sel--;
-		else if (key == key_DOWN && c->menu_sel < 2)
+		else if (key == KEY_DOWN && c->menu_sel < 2)
 			c->menu_sel++;
-		else if (key == key_ENTER)
+		else if (key == KEY_ENTER)
 		{
 			if (c->menu_sel == 0)
 				c->state = STATE_PLAY;

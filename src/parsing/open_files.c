@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/09 17:41:47 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/18 23:32:09 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ t_map	*ini_map(t_cub *cub, char **v)
 {
 	t_map		*map;
 	t_tex	*texture;
+	int		y;
 
 	texture = malloc(sizeof(t_tex));
 	if (!texture)
@@ -103,6 +104,10 @@ t_map	*ini_map(t_cub *cub, char **v)
 		return (NULL);
 	cub->tex = *texture;
 	free(texture);
+	map->explored = malloc(sizeof(bool *) * map->sizey);
+	y = -1;
+	while (++y < map->sizey)
+		map->explored[y] = ft_calloc(map->sizex, sizeof(bool));
 	return (map);
 }
 

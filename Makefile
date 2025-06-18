@@ -68,8 +68,6 @@ RENDER_SRC =  \
 	debug.c \
 	debug_rays.c \
 	font.c \
-	map.c \
-	map_utils.c \
 	menu.c \
 	ray_utils.c \
 	rays.c \
@@ -83,6 +81,12 @@ ANIM_SRC =  \
 	draw_hud.c
 ANIM = $(addprefix $(ANIM_DIR), $(ANIM_SRC))
 
+MAP_DIR = src/render/map/
+MAP_SRC =  \
+	map.c \
+	map_fog.c
+MAP = $(addprefix $(MAP_DIR), $(MAP_SRC))
+
 UTILS_DIR = src/utils/
 UTILS_SRC =  \
 	close.c \
@@ -93,8 +97,8 @@ UTILS_SRC =  \
 	util_veci.c
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
 
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PARSING) $(PLAYER) $(RENDER) $(ANIM) $(UTILS)
-vpath %.c src src/init src/mlx src/parsing src/player src/render src/render/anim src/utils
+ALL_SRC = $(SRC) $(INIT) $(MLX) $(PARSING) $(PLAYER) $(RENDER) $(ANIM) $(MAP) $(UTILS)
+vpath %.c src src/init src/mlx src/parsing src/player src/render src/render/anim src/render/map src/utils
 #--------------------------------------OBJECTS----------------------------------#
 OBJ_DIR  = Objects/
 OBJECTS  = $(patsubst %.c,$(OBJ_DIR)%.o,$(notdir $(ALL_SRC)))
