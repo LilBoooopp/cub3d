@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:25 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 21:35:22 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 22:02:58 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	set_anim_state(t_cub *cub, int state)
 		cub->hud.current_frame = 0;
 		cub->hud.frame_timer = 0.0;
 		cub->hud.frame_count = 4;
-		cub->hud.frame_duration = 0.1;
+		cub->hud.frame_duration = 0.075;
 	}
 	else if (state == RELOAD)
 	{
