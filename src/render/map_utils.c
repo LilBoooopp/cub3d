@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 21:09:15 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/17 23:32:37 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 23:17:31 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void	draw_cells(t_map *m, t_img *map, int *cols, int *rows)
 {
 	t_vec2i	idx;
 	int		col;
-	int		x0;
-	int		y0;
+	t_vec2i	delta;
 	int		w;
 
 	idx.y = -1;
@@ -66,13 +65,11 @@ void	draw_cells(t_map *m, t_img *map, int *cols, int *rows)
 				col = MAP_EMPTY;
 			else
 				continue ;
-			x0 = cols[idx.x];
-			y0 = rows[idx.y];
-			w = cols[idx.x + 1] - x0;
-			draw_rect(map, set_vec2((double)x0, (double)y0), set_vec2(
-				(double)w, (double)(rows[idx.y + 1] - y0)), col);
-			idx.x++;
+			delta.x = cols[idx.x];
+			delta.y = rows[idx.y];
+			w = cols[idx.x + 1] - delta.x;
+			draw_rect(map, set_vec2((double)delta.x, (double)delta.y), set_vec2(
+					(double)w, (double)(rows[idx.y + 1] - delta.y)), col);
 		}
-		idx.y++;
 	}
 }

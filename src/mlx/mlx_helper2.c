@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:13:56 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 23:02:21 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 23:15:54 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ t_img	scale_size(t_cub *cub, t_img src, double scale)
 	t_vec2	src_p;
 	int		color;
 
-	new = make_image(cub, set_vec2(src.size.x * scale, src.size.y * scale), 0x00000000);
+	new = make_image(cub, set_vec2(src.size.x * scale, src.size.y * scale),
+			0x00000000);
 	idx.y = 0;
 	while (idx.y < new.size.y)
 	{
@@ -34,6 +35,7 @@ t_img	scale_size(t_cub *cub, t_img src, double scale)
 		}
 		idx.y++;
 	}
+	mlx_destroy_image(cub->mlx, src.img);
 	return (new);
 }
 

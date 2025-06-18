@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:50:53 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 23:03:16 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 23:15:01 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ static void	load_anims(t_cub *cub, t_hud *hud)
 	char	*gun;
 	char	*file;
 	int		i;
+	char	*num;
 
 	i = 1;
 	hud->anim_shoot = malloc(sizeof(t_img) * 4);
 	hud->anim_reload = malloc(sizeof(t_img) * 9);
 	while (i < 15)
 	{
-		gun = ft_strjoin("resources/gun/gun_", ft_itoa(i));
+		num = ft_itoa(i);
+		gun = ft_strjoin("resources/gun/gun_", num);
 		file = ft_strjoin(gun, ".xpm");
 		free(gun);
 		if (i == 1)
@@ -33,6 +35,7 @@ static void	load_anims(t_cub *cub, t_hud *hud)
 		else
 			hud->anim_reload[i - 6] = scale_size(cub, setup_xpm(cub, file), 3);
 		free(file);
+		free(num);
 		i++;
 	}
 }
