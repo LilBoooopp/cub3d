@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 18:26:06 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 18:47:04 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,32 @@ typedef struct s_cub
 	t_img		west;
 }	t_cub;
 
+/**
+ * @brief raycasting structure
+ * @param cam_x X-coorinate in cameraspace.
+ * Ranges from -1 (left of screen) to 1 (right of screen).
+ * Used to calculate ray direction based on the players's field of view.
+ * @param ray_dir The direction the ray is pointing in world space.
+ * Calculated form s_player's direction and cam_x.
+ * @param map The map square the ray is currently in. Used for DDA traversal.
+ * @param side_dist Distance from the ray origin to
+ * the first x- or y-side it will hit.
+ * @param delta_dis Distance the ray must travel to go from one side of a
+ * square to the next x or y.
+ * @param step Direction to step in the grid: -1 or +1 depending on ray_dir.
+ * E.g, if ray_dir.x < 0 -> step.x = -1;
+ * @param hit A flag that becomes tru when the ray hits a wall.
+ * Ends the DDA loop.
+ * @param side Which side of the wall was hit:
+ * 0 = vertical (x-side), 1 = horisontal (y-side).
+ * @param perp_dist Distance from player to wall hit, adjusted to remove
+ * the fish-eye effect. Used to scale the heigh of the wall slice.
+ * @param line_h Heigh of the vertical stripe to draw on screen,
+ * based on perp_dist.
+ * @param draw_start Top pixel (y) of the wall slice to draw.
+ * @param draw_end Bottome pixel (y) of the wall slice to draw.
+ * @param color Color of teh wall to draw (based on side or texture).
+ */
 typedef struct s_raycast
 {
 	double	cam_x;
