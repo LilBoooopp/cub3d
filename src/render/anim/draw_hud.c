@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:30:57 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 21:52:36 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 22:10:18 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ void	draw_hud(t_cub *cub, t_img *dst)
 	t_vec2	pos;
 
 	img = anim_handler(cub, dst);
-	pos = set_vec2(WIN_WIDTH - 181, WIN_HEIGHT - 157);
+	pos = set_vec2(WIN_WIDTH - img.size.x, WIN_HEIGHT - img.size.y);
 	draw_image_transparent(&img, dst, pos);
 }

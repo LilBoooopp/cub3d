@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:50:53 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 21:24:59 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 23:03:16 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static void	load_anims(t_cub *cub, t_hud *hud)
 		file = ft_strjoin(gun, ".xpm");
 		free(gun);
 		if (i == 1)
-			hud->anim_idle = setup_xpm(cub, file);
+			hud->anim_idle = scale_size(cub, setup_xpm(cub, file), 3);
 		else if (i < 6)
-			hud->anim_shoot[i - 2] = setup_xpm(cub, file);
+			hud->anim_shoot[i - 2] = scale_size(cub, setup_xpm(cub, file), 3);
 		else
-			hud->anim_reload[i - 6] = setup_xpm(cub, file);
+			hud->anim_reload[i - 6] = scale_size(cub, setup_xpm(cub, file), 3);
 		free(file);
 		i++;
 	}
