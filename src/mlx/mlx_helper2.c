@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:13:56 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/09 17:34:15 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 21:59:40 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	copy_trans_row(t_img *src, t_img *dst, t_vec2 pos, int y)
 		color = *(unsigned int *)(sp
 				+ y * slen
 				+ x * (sbpp / 8));
-		if (color >> 24)
+		if ((color && 0xFF000000) != 0x00000000)
 		{
 			*(unsigned int *)(dst->addr
 					+ ((int)pos.y + y) * dst->len

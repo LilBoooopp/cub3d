@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:25 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 18:54:21 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 21:35:22 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,26 @@ int	handle_keyrelease(int kc, t_cub *cub)
 	return (0);
 }
 
+void	set_anim_state(t_cub *cub, int state)
+{
+	if (state == SHOOT)
+	{
+		cub->hud.anim_state = SHOOT;
+		cub->hud.current_frame = 0;
+		cub->hud.frame_timer = 0.0;
+		cub->hud.frame_count = 4;
+		cub->hud.frame_duration = 0.1;
+	}
+	else if (state == RELOAD)
+	{
+		cub->hud.anim_state = RELOAD;
+		cub->hud.current_frame = 0;
+		cub->hud.frame_timer = 0.0;
+		cub->hud.frame_count = 9;
+		cub->hud.frame_duration = 0.1;
+	}
+}
+
 int	handle_input(int keycode, t_cub *cub)
 {
 	if (keycode < 70000)
@@ -52,6 +72,9 @@ int	handle_input(int keycode, t_cub *cub)
 		change_debug(cub);
 	if (cub->keys[key_M])
 		cub->ismap *= -1;
+	if (cub->keys[key_R])
+		if (cub->hud.anim_state == IDLE)
+			set_anim_state(cub, RELOAD);
 	return (0);
 }
 // printf("player x: %f, y: %f\n", cub->player.pos.x, cub->player.pos.y);

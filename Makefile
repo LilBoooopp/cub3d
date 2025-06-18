@@ -35,7 +35,8 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
 
 INIT_DIR = src/init/
 INIT_SRC =  \
-	init.c
+	init.c \
+	init_hud.c
 INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
 
 MLX_DIR = src/mlx/
@@ -77,10 +78,14 @@ RENDER_SRC =  \
 	update.c
 RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
 
+ANIM_DIR = src/render/anim/
+ANIM_SRC =  \
+	draw_hud.c
+ANIM = $(addprefix $(ANIM_DIR), $(ANIM_SRC))
+
 UTILS_DIR = src/utils/
 UTILS_SRC =  \
 	close.c \
-	free_all.c \
 	img_math.c \
 	map_math.c \
 	math_vec.c \
@@ -88,8 +93,8 @@ UTILS_SRC =  \
 	util_veci.c
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_SRC))
 
-ALL_SRC = $(SRC) $(INIT) $(MLX) $(PARSING) $(PLAYER) $(RENDER) $(UTILS)
-vpath %.c src src/init src/mlx src/parsing src/player src/render src/utils
+ALL_SRC = $(SRC) $(INIT) $(MLX) $(PARSING) $(PLAYER) $(RENDER) $(ANIM) $(UTILS)
+vpath %.c src src/init src/mlx src/parsing src/player src/render src/render/anim src/utils
 #--------------------------------------OBJECTS----------------------------------#
 OBJ_DIR  = Objects/
 OBJECTS  = $(patsubst %.c,$(OBJ_DIR)%.o,$(notdir $(ALL_SRC)))

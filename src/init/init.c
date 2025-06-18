@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/09 17:26:26 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 20:59:02 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	init(t_cub *cub, char **v)
 	open_xpm(cub);
 	set_false(cub->keys);
 	init_player(&cub->player, cub->map);
+	init_hud(cub, &cub->hud);
 	cub->mlx_win = mlx_new_window(cub->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	return (0);
 }

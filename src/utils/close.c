@@ -6,11 +6,26 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:27:36 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/09 19:46:53 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 21:56:51 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	free_anim(t_cub *c)
+{
+	int	i;
+
+	mlx_destroy_image(c->mlx, c->hud.anim_idle.img);
+	i = 0;
+	while (i < 4)
+		mlx_destroy_image(c->mlx, c->hud.anim_shoot[i++].img);
+	i = 0;
+	while (i < 9)
+		mlx_destroy_image(c->mlx, c->hud.anim_reload[i++].img);
+	free(c->hud.anim_reload);
+	free(c->hud.anim_shoot);
+}
 
 static void	destroy_textures(t_cub *c)
 {
@@ -22,11 +37,11 @@ static void	destroy_textures(t_cub *c)
 	free(c->tex.n);
 	free(c->tex.s);
 	free(c->tex.ea);
+	free_anim(c);
 }
 
 int	close_window(t_cub *cub)
 {
-
 	destroy_textures(cub);
 	ft_free_chartable(cub->map->map);
 	free(cub->map);
