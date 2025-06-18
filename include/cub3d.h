@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 22:07:52 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 23:22:47 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,84 +15,84 @@
 
 # if defined(__APPLE__)
 #  include "../mlx_mac/mlx.h"
-#  define key_A				0x00
-#  define key_B				0x0B
-#  define key_C				0x08
-#  define key_D				0x02
-#  define key_E				0x0E
-#  define key_F				0x03
-#  define key_G				0x05
-#  define key_H				0x04
-#  define key_I				0x22
-#  define key_J				0x26
-#  define key_K				0x28
-#  define key_L				0x25
-#  define key_M				0x2E
-#  define key_N				0x2D
-#  define key_O				0x1F
-#  define key_P				0x23
-#  define key_Q				0x0C
-#  define key_R				0x0F
-#  define key_S				0x01
-#  define key_T				0x11
-#  define key_U				0x20
-#  define key_V				0x09
-#  define key_W				0x0D
-#  define key_X				0x07
-#  define key_Y				0x10
-#  define key_Z				0x06
-#  define key_LEFT			0x7B
-#  define key_RIGHT			0x7C
-#  define key_UP			0x7A
-#  define key_DOWN			0x7D
-#  define key_ENTER			0x24
-#  define key_ESC			0x35
-#  define key_LCTRL			0x3B
-#  define key_SPACE			0x31
-#  define key_LEFT_CLICK	0x02
-#  define key_RIGHT_CLICK	0x02
+#  define KEY_A				0x00
+#  define KEY_B				0x0B
+#  define KEY_C				0x08
+#  define KEY_D				0x02
+#  define KEY_E				0x0E
+#  define KEY_F				0x03
+#  define KEY_G				0x05
+#  define KEY_H				0x04
+#  define KEY_I				0x22
+#  define KEY_J				0x26
+#  define KEY_K				0x28
+#  define KEY_L				0x25
+#  define KEY_M				0x2E
+#  define KEY_N				0x2D
+#  define KEY_O				0x1F
+#  define KEY_P				0x23
+#  define KEY_Q				0x0C
+#  define KEY_R				0x0F
+#  define KEY_S				0x01
+#  define KEY_T				0x11
+#  define KEY_U				0x20
+#  define KEY_V				0x09
+#  define KEY_W				0x0D
+#  define KEY_X				0x07
+#  define KEY_Y				0x10
+#  define KEY_Z				0x06
+#  define KEY_LEFT			0x7B
+#  define KEY_RIGHT			0x7C
+#  define KEY_UP			0x7A
+#  define KEY_DOWN			0x7D
+#  define KEY_ENTER			0x24
+#  define KEY_ESC			0x35
+#  define KEY_LCTRL			0x3B
+#  define KEY_SPACE			0x31
+#  define KEY_LEFT_CLICK	0x02
+#  define KEY_RIGHT_CLICK	0x02
 # else
 #  include "../mlx_linux/mlx.h"
-#  define key_A				'a'
-#  define key_B				'b'
-#  define key_C				'c'
-#  define key_D				'd'
-#  define key_E				'e'
-#  define key_F				'f'
-#  define key_G				'g'
-#  define key_H				'h'
-#  define key_I				'i'
-#  define key_J				'j'
-#  define key_K				'k'
-#  define key_L				'l'
-#  define key_M				'm'
-#  define key_N				'n'
-#  define key_O				'o'
-#  define key_P				'p'
-#  define key_Q				'q'
-#  define key_R				'r'
-#  define key_S				's'
-#  define key_T				't'
-#  define key_U				'u'
-#  define key_V				'v'
-#  define key_W				'w'
-#  define key_X				'x'
-#  define key_Y				'y'
-#  define key_Z				'z'
-#  define key_LEFT			65361
-#  define key_RIGHT			65363
-#  define key_UP			65362
-#  define key_DOWN			65364
-#  define key_ENTER			65293
-#  define key_ESC			65307
-#  define key_LCTRL			65507
-#  define key_SPACE			32
-#  define key_LEFT_CLICK	1
-#  define key_RIGHT_CLICK	3
+#  define KEY_A				'a'
+#  define KEY_B				'b'
+#  define KEY_C				'c'
+#  define KEY_D				'd'
+#  define KEY_E				'e'
+#  define KEY_F				'f'
+#  define KEY_G				'g'
+#  define KEY_H				'h'
+#  define KEY_I				'i'
+#  define KEY_J				'j'
+#  define KEY_K				'k'
+#  define KEY_L				'l'
+#  define KEY_M				'm'
+#  define KEY_N				'n'
+#  define KEY_O				'o'
+#  define KEY_P				'p'
+#  define KEY_Q				'q'
+#  define KEY_R				'r'
+#  define KEY_S				's'
+#  define KEY_T				't'
+#  define KEY_U				'u'
+#  define KEY_V				'v'
+#  define KEY_W				'w'
+#  define KEY_X				'x'
+#  define KEY_Y				'y'
+#  define KEY_Z				'z'
+#  define KEY_LEFT			65361
+#  define KEY_RIGHT			65363
+#  define KEY_UP			65362
+#  define KEY_DOWN			65364
+#  define KEY_ENTER			65293
+#  define KEY_ESC			65307
+#  define KEY_LCTRL			65507
+#  define KEY_SPACE			32
+#  define KEY_LEFT_CLICK	1
+#  define KEY_RIGHT_CLICK	3
 # endif
 
 # include <stdio.h>
-#include <fcntl.h>
+# include <fcntl.h>
 # include <math.h>
 # include <stdlib.h>
 # include <ctype.h>
@@ -319,7 +319,7 @@ typedef struct s_spawn_args
 /* init */
 double			gettime(void);
 t_map			*ini_map(t_cub *cub, char **v);
-int				init(t_cub *cub, char ** v);
+int				init(t_cub *cub, char **v);
 void			init_player(t_player *player, t_map *map);
 void			init_hud(t_cub *cub, t_hud *hud);
 
@@ -328,7 +328,7 @@ int				get_pixel(t_img *img, t_vec2 pos);
 t_img			make_image(t_cub *cub, t_vec2 size, int color);
 t_img			setup_xpm(t_cub *c, char *xpm);
 t_vec2			get_rotated_position(t_vec2 center,
-	t_vec2 local, double angle);
+					t_vec2 local, double angle);
 t_vec2			rotate_point(t_vec2 rel, double angle);
 void			draw_line(t_img *img, t_vec2 start, t_vec2 end, int color);
 void			draw_pixels(t_img *img, t_vec2 pos, t_vec2 size, int color);
@@ -402,6 +402,6 @@ t_vec2i			set_vec2i(int x, int y);
 t_vec2			itovec(t_vec2i veci);
 void			free_all(t_cub *c);
 t_spawn_args	setup_args(t_cub *c, t_img *back, pthread_t *threads,
-	t_thrdata *td);
+					t_thrdata *td);
 
 #endif
