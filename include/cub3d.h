@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/11 16:33:56 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 18:26:06 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,6 +300,7 @@ void			move_right(t_player *p, t_map *m, double spd);
 void			rotate(t_player *p, double angle);
 void			smooth_input(t_cub *cub);
 void			jump(t_cub *cub);
+int				mouse_move(int x, int y, t_cub *cub);
 
 /* render */
 int				handle_menu(int key, t_cub *c);
