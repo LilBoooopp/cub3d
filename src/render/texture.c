@@ -6,28 +6,28 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:32:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/11 16:34:47 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 18:55:55 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	apply_vert_offset(t_cub *c, t_raycast *ray)
-{
-	int	orig_start;
-	int	off;
+// static int	apply_vert_offset(t_cub *c, t_raycast *ray)
+// {
+// 	int	orig_start;
+// 	int	off;
 
-	orig_start = ray->draw_start;
-	off = (int)(c->player.z_pos * (WIN_HEIGHT / 2.0) / MAX_HEIGHT
-			* JUMP_VIEW_SCALE);
-	ray->draw_start = orig_start + off;
-	if (ray->draw_start >= WIN_HEIGHT)
-		ray->draw_start = WIN_HEIGHT - 1;
-	ray->draw_end = ray->draw_end + off;
-	if (ray->draw_end >= WIN_HEIGHT)
-		ray->draw_end = WIN_HEIGHT - 1;
-	return (orig_start);
-}
+// 	orig_start = ray->draw_start;
+// 	off = (int)(c->player.z_pos * (WIN_HEIGHT / 2.0) / MAX_HEIGHT
+// 			* JUMP_VIEW_SCALE);
+// 	ray->draw_start = orig_start + off;
+// 	if (ray->draw_start >= WIN_HEIGHT)
+// 		ray->draw_start = WIN_HEIGHT - 1;
+// 	ray->draw_end = ray->draw_end + off;
+// 	if (ray->draw_end >= WIN_HEIGHT)
+// 		ray->draw_end = WIN_HEIGHT - 1;
+// 	return (orig_start);
+// }
 
 static t_img	*select_text(t_raycast *ray, t_cub *c)
 {
@@ -66,7 +66,7 @@ void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x)
 	double	pos;
 
 	draw_stripe(ray);
-	orig_start = apply_vert_offset(c, ray);
+	orig_start = ray->draw_start;
 	tex = select_text(ray, c);
 	texv.x = compute_tex_x(ray, c, tex);
 	pos = (orig_start - WIN_HEIGHT / 2.0 + ray->line_h / 2.0)

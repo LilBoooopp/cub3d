@@ -6,24 +6,18 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:55:03 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 18:26:01 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 18:53:49 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	jump(t_cub *cub)
-{
-	cub->player.is_jumping = 1;
-	cub->player.z_vel = JUMP_VEL;
-}
 
 static double	compute_mouse_angle(int x, int center)
 {
 	double	sensitivity;
 	double	delta_x;
 
-	sensitivity = 0.00002;
+	sensitivity = 0.002;
 	delta_x = x - center;
 	return (delta_x * sensitivity);
 }

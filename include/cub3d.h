@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 18:47:04 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 18:56:50 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,11 +110,11 @@
 
 # define MOVE_SPEED 3.0
 # define ROT_SPEED 2.0
-# define JUMP_VEL 8.0
-# define GRAVITY 20.0
-# define MAX_HEIGHT \
-	(JUMP_VEL * JUMP_VEL / (2.0 / GRAVITY))
-# define JUMP_VIEW_SCALE 30.0
+// # define JUMP_VEL 8.0
+// # define GRAVITY 20.0
+// # define MAX_HEIGHT 
+// 	(JUMP_VEL * JUMP_VEL / (2.0 / GRAVITY))
+// # define JUMP_VIEW_SCALE 30.0
 
 # define TILE_SIZE 1
 
@@ -174,9 +174,6 @@ typedef struct s_player
 	t_vec2	pos;
 	t_vec2	dir;
 	t_vec2	plane;
-	double	z_pos;
-	double	z_vel;
-	int		is_jumping;
 }	t_player;
 
 typedef struct s_map
@@ -325,7 +322,7 @@ void			move_left(t_player *p, t_map *m, double spd);
 void			move_right(t_player *p, t_map *m, double spd);
 void			rotate(t_player *p, double angle);
 void			smooth_input(t_cub *cub);
-void			jump(t_cub *cub);
+// void			jump(t_cub *cub);
 int				mouse_move(int x, int y, t_cub *cub);
 
 /* render */
