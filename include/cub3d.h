@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/19 17:01:19 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/19 17:20:48 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@
 # define WIN_HEIGHT 1080
 
 # ifndef NUM_THREADS
-#  define NUM_THREADS 10
+#  define NUM_THREADS 15
 # endif
 
 # define MAP_WALL 0xFFb08243
