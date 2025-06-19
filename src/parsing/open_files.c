@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/19 17:12:06 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/19 19:16:32 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	open_xpm(t_cub *c)
 	c->east = setup_xpm(c, c->tex.ea);
 	c->south = setup_xpm(c, c->tex.s);
 	c->west = setup_xpm(c, c->tex.we);
+	c->doors = setup_xpm(c, c->tex.door);
 }
 
 void	extract_texture(char *line, t_tex *texture)
@@ -102,6 +103,7 @@ t_map	*ini_map(t_cub *cub, char **v)
 	texture->ea = NULL;
 	map = openFiles(v[1], texture);
 	cub->tex = *texture;
+	cub->tex.door = ft_strdup("resources/vault.xpm");
 	free(texture);
 	if (!map)
 	{

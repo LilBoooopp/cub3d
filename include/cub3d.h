@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/19 18:27:53 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/19 19:02:14 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,7 @@ typedef struct s_tex
 	char	c[7];
 	int		ceiling;
 	int		full;
+	char	*door;
 }	t_tex;
 
 typedef struct s_hud
@@ -251,6 +252,7 @@ typedef struct s_cub
 	t_img		east;
 	t_img		south;
 	t_img		west;
+	t_img		doors;
 	t_hud		hud;
 }	t_cub;
 
