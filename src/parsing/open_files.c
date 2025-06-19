@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/18 23:32:09 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/19 16:43:26 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_map	*openFiles(char *name_files, t_tex *texture)
 		!check_file(texture->n, ".xpm", 4, 1) || !check_file(texture->s, ".xpm", 4, 1))
 	{
 		perror("Error\n incorect name files");
+		close_gnl(temp, fd);
 		return (NULL);
 	}
 	return (read_map(fd, temp));
@@ -100,10 +101,14 @@ t_map	*ini_map(t_cub *cub, char **v)
 	texture->we = NULL;
 	texture->ea = NULL;
 	map = openFiles(v[1], texture);
-	if (!map)
-		return (NULL);
+	search_player(map, 1);
 	cub->tex = *texture;
 	free(texture);
+	if (!map)
+	{
+		free_texture(cub);
+		return (NULL);
+	}
 	map->explored = malloc(sizeof(bool *) * map->sizey);
 	y = -1;
 	while (++y < map->sizey)

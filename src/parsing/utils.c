@@ -6,13 +6,13 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:33:13 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/09 17:24:52 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/19 16:18:10 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parsing.h"
 
-int	find_char(t_map *map, int x, int y)
+int	find_char(t_map *map, int x, int y, int end)
 {
 	if (map->map[y][x] == '\0')
 		return (0);
@@ -21,7 +21,8 @@ int	find_char(t_map *map, int x, int y)
 		map->playerx = x + 0.5f;
 		map->playery = y + 0.5f;
 		map->orientation = map->map[y][x];
-		map->map[y][x] = '0';
+		if (end)
+			map->map[y][x] = '0';
 		return (1);
 	}
 	else if (map->map[y][x] != '0' && map->map[y][x] != '1' && map->map[y][x] != ' ')
@@ -33,7 +34,7 @@ int	find_char(t_map *map, int x, int y)
 	return (0);
 }
 
-int	search_player(t_map *map)
+int	search_player(t_map *map, int end)
 {
 	int	y;
 	int	x;
@@ -47,7 +48,7 @@ int	search_player(t_map *map)
 		x = 0;
 		while(x < map->sizex)
 		{
-			if (find_char(map, x, y))
+			if (find_char(map, x, y, end))
 				find++;
 			
 			x++;

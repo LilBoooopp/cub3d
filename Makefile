@@ -49,7 +49,9 @@ MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
 
 PARSING_DIR = src/parsing/
 PARSING_SRC =  \
+	free_texture.c \
 	handle_map.c \
+	init_map.c \
 	init_texture.c \
 	open_files.c \
 	rescale_map.c \

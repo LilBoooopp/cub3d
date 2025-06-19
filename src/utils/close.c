@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:27:36 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 21:56:51 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/19 16:45:36 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,14 @@ static void	destroy_textures(t_cub *c)
 
 int	close_window(t_cub *cub)
 {
+	int	y;
+
 	destroy_textures(cub);
 	ft_free_chartable(cub->map->map);
+	y = -1;
+	while (++y < cub->map->sizey)
+		free(cub->map->explored[y]);
+	free(cub->map->explored);
 	free(cub->map);
 	mlx_destroy_window(cub->mlx, cub->mlx_win);
 	mlx_destroy_display(cub->mlx);
