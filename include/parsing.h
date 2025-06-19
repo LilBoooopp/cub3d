@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:46:15 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/18 20:07:36 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/19 16:18:20 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_map	*read_map(int fd, char *line);
 t_node	*ft_new(char *content);
 int		ft_size(t_node *lst);
 char	**create_empty_map(int height, int width);
-int		search_player(t_map *map);
+int		search_player(t_map *map, int end);
 char	**rescale(t_map *strmap);
 void 	free_texture(t_cub *cub);
 void	close_gnl(char *line, int fd);

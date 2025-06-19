@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/18 19:46:53 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/19 16:19:11 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ t_map	*ini_map(t_cub *cub, char **v)
 	texture->we = NULL;
 	texture->ea = NULL;
 	map = openFiles(v[1], texture);
+	search_player(map, 1);
 	cub->tex = *texture;
 	free(texture);
 	if (!map)

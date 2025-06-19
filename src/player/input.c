@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:25 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/11 16:25:04 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/19 16:03:53 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	smooth_input(t_cub *cub)
 		rotate(&cub->player, -rot);
 	if (cub->keys[key_RIGHT])
 		rotate(&cub->player, rot);
+	// printf("player x: %f, y: %f\n", cub->player.pos.x, cub->player.pos.y);
 }
 
 int	handle_keyrelease(int kc, t_cub *cub)
@@ -56,7 +57,6 @@ int	handle_input(int keycode, t_cub *cub)
 		jump(cub);
 	return (0);
 }
-// printf("player x: %f, y: %f\n", cub->player.pos.x, cub->player.pos.y);
 // printf("player dirx: %f, diry: %f\n", cub->player.dir.x, cub->player.dir.y);
 // printf("player planex: %f, planey: %f\n", cub->player.plane.x, 
 //cub->player.plane.y);
