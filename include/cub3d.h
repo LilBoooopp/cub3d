@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/19 12:57:33 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/19 17:01:19 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -353,6 +353,7 @@ void			smooth_input(t_cub *cub);
 int				mouse_move(int x, int y, t_cub *cub);
 int				mouse_press_handler(int button, int x, int y, void *param);
 void			set_anim_state(t_cub *cub, int state);
+void			center_mouse(t_cub *cub);
 
 /* render */
 int				handle_menu(int key, t_cub *c);

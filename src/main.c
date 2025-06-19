@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:55:19 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 23:20:53 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/19 17:01:26 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int ac, char **av)
 	if (init(&cub, av))
 		return (1);
 	mlx_mouse_hide(cub.mlx, cub.mlx_win);
+	center_mouse(&cub);
 	mlx_hook(cub.mlx_win, 2, 1l << 0, handle_input, &cub);
 	mlx_hook(cub.mlx_win, 3, 1L << 1, handle_keyrelease, &cub);
 	mlx_hook(cub.mlx_win, 4, 1L << 2, mouse_press_handler, &cub);

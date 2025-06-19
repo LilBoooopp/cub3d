@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:55:03 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 23:34:15 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/19 17:06:05 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static double	compute_mouse_angle(int x, int center)
 	return (delta_x * sensitivity);
 }
 
-static void	center_mouse(t_cub *cub)
+void	center_mouse(t_cub *cub)
 {
 	int	center_x;
 	int	center_y;
@@ -38,6 +38,8 @@ int	mouse_move(int x, int y, t_cub *cub)
 
 	(void)y;
 	center_x = WIN_WIDTH / 2;
+	if (cub->state == STATE_MENU)
+		return (0);
 	if (x != center_x)
 	{
 		rotate(&cub->player, compute_mouse_angle(x, center_x));

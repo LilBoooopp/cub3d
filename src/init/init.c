@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/19 16:38:54 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/19 17:04:11 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,26 @@ static void	set_false(bool *keys)
 void	init_player(t_player *player, t_map *map)
 {
 	player->pos = set_vec2(map->playerx, map->playery);
-	player->dir = set_vec2(0, -1);
-	player->plane = set_vec2(0.6, 0);
+	if (map->orientation == 'N')
+	{
+		player->dir = set_vec2(0, -1);
+		player->plane = set_vec2(0.65, 0);
+	}
+	else if (map->orientation == 'E')
+	{
+		player->dir = set_vec2(1, 0);
+		player->plane = set_vec2(0, 0.6);
+	}
+	else if (map->orientation == 'S')
+	{
+		player->dir = set_vec2(0, 1);
+		player->plane = set_vec2(-0.65, 0);
+	}
+	else
+	{
+		player->dir = set_vec2(-1, 0);
+		player->plane = set_vec2(0, -0.6);
+	}
 }
 
 double	gettime(void)
