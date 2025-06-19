@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 23:40:02 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/19 12:57:33 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -383,9 +383,10 @@ void			init_back_buffer(t_cub *cub, t_img *back);
 void			create_map_thread(t_cub *cub, pthread_t *thread, t_mapdata *md);
 void			finalize_back_buffer(t_cub *cub, t_img *back);
 void			join_threads(pthread_t *threads, int count);
-void			init_minimap(t_map *m, t_img *map);
+void			init_minimap(t_cub *c, t_map *m, t_img *map);
 void			draw_hud(t_cub *cub, t_img *dst);
 void			reveal_surr(t_map *map, t_vec2 pos, int radius);
+bool			is_tile_visible(t_map *m, t_vec2 pl_pos, t_vec2i tile);
 
 /* utils */
 int				close_window(t_cub *cub);

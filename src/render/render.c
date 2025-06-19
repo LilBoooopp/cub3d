@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 21:24:32 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/18 23:49:08 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	*render_map_thread(void *arg)
 
 	md = (t_mapdata *)arg;
 	mb = &md->img;
-	init_minimap(md->cub->map, mb);
+	init_minimap(md->cub, md->cub->map, mb);
 	draw_player(md->cub, &md->cub->player, mb);
 	return (NULL);
 }
