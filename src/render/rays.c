@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/09 18:53:28 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/19 17:52:35 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	perform_dda(t_raycast *ray, t_cub *cub)
 			ray->hit = 1;
 			break ;
 		}
-		if (cub->map->map[ray->map.y][ray->map.x] == '1')
+		if (cub->map->map[ray->map.y][ray->map.x] == '1' || cub->map->map[ray->map.y][ray->map.x] == 'P')
 			ray->hit = 1;
 	}
 }

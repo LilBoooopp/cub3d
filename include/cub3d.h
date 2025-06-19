@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/19 17:01:19 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/19 18:27:53 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,9 @@ typedef struct s_player
 	t_vec2	pos;
 	t_vec2	dir;
 	t_vec2	plane;
+	int		near_door;
+	int		door_x;
+	int		door_y;
 }	t_player;
 
 typedef struct s_map
@@ -408,4 +411,5 @@ void			free_all(t_cub *c);
 t_spawn_args	setup_args(t_cub *c, t_img *back, pthread_t *threads,
 					t_thrdata *td);
 
+void			near_to_door(t_raycast ray, t_cub *c);
 #endif
