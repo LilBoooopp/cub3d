@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_fog.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:35:53 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/19 12:59:22 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/20 11:13:08 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	is_tile_visible(t_map *m, t_vec2 pl_pos, t_vec2i tile)
 	{
 		if ((int)pos.x == tile.x && (int)pos.y == tile.y)
 			return (true);
-		if (m->map[(int)pos.y][(int)pos.x] == '1')
+		if (m->map[(int)pos.y][(int)pos.x] == '1' || m->map[(int)pos.y][(int)pos.x] == 'P')
 			return (false);
 		pos.x += dir.x;
 		pos.y += dir.y;

@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:32:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/19 19:10:17 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/20 11:19:26 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,35 +67,21 @@ void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x)
 
 	draw_stripe(ray);
 	orig_start = ray->draw_start;
+	near_to_door(*ray, c);
 	if (c->map->map[ray->map.y][ray->map.x] == '1')
-	{
 		tex = select_text(ray, c);
-		texv.x = compute_tex_x(ray, c, tex);
-		pos = (orig_start - WIN_HEIGHT / 2.0 + ray->line_h / 2.0)
-			* ((double)tex->size.y / ray->line_h);
-		while (ray->draw_start < ray->draw_end)
-		{
-			texv.y = (int)pos;
-			pos += (double)tex->size.y / ray->line_h;
-			my_mlx_pixel_put(img, x, ray->draw_start,
-				get_pixel(tex, itovec(texv)));
-			ray->draw_start++;
-		}
-	}
 	else
-	{
-		near_to_door(*ray, c);
 		tex = &c->doors;
-		texv.x = compute_tex_x(ray, c, tex);
-		pos = (orig_start - WIN_HEIGHT / 2.0 + ray->line_h / 2.0)
-			* ((double)tex->size.y / ray->line_h);
-		while (ray->draw_start < ray->draw_end)
-		{
-			texv.y = (int)pos;
-			pos += (double)tex->size.y / ray->line_h;
-			my_mlx_pixel_put(img, x, ray->draw_start,
-				get_pixel(tex, itovec(texv)));
-			ray->draw_start++;
-		}
+	texv.x = compute_tex_x(ray, c, tex);
+	pos = (orig_start - WIN_HEIGHT / 2.0 + ray->line_h / 2.0)
+		* ((double)tex->size.y / ray->line_h);
+	while (ray->draw_start < ray->draw_end)
+	{
+		texv.y = (int)pos;
+		pos += (double)tex->size.y / ray->line_h;
+		my_mlx_pixel_put(img, x, ray->draw_start,
+			get_pixel(tex, itovec(texv)));
+		ray->draw_start++;
 	}
+
 }
