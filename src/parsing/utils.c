@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:33:13 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/19 17:18:51 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/20 14:10:48 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,10 @@ int	search_player(t_map *map, int end)
 	while (y < map->sizey)
 	{
 		x = 0;
-		while(x < map->sizex)
+		while (x < map->sizex)
 		{
 			if (find_char(map, x, y, end))
-				find++;
-			
+				find ++;
 			x++;
 		}
 		y++;
@@ -60,18 +59,24 @@ int	search_player(t_map *map, int end)
 		return (-1);
 	return (0);
 }
-char **create_empty_map(int height, int width)
+
+char	**create_empty_map(int height, int width)
 {
-	char **map = malloc(sizeof(char *) * (height + 1));
+	char	**map;
+	int		y;
+
+	y = 0;
+	map = malloc(sizeof(char *) * (height + 1));
 	if (!map)
 		return (NULL);
-	for (int y = 0; y < height; y++)
+	while (y < height)
 	{
 		map[y] = malloc(width + 1);
 		if (!map[y])
-			return (NULL); // à compléter avec libération en cas d'erreur
+			return (NULL);
 		ft_memset(map[y], ' ', width);
 		map[y][width] = '\0';
+		y ++;
 	}
 	map[height] = NULL;
 	return (map);
@@ -101,4 +106,3 @@ t_node	*ft_new(char *content)
 	new->next = NULL;
 	return (new);
 }
-

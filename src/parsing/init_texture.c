@@ -6,25 +6,37 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:45:32 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/09 17:42:10 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/20 14:05:52 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parsing.h"
 
-void	spHex(int rgb, int i, t_tex *texture, int fc)
+void	ini_texture(t_tex *texture)
 {
-	char digits[] = "0123456789ABCDEF";
-	
+	texture->full = 0;
+	texture->c[0] = '\0';
+	texture->f[0] = '\0';
+	texture->n = NULL;
+	texture->s = NULL;
+	texture->we = NULL;
+	texture->ea = NULL;
+}
+
+void	sphex(int rgb, int i, t_tex *texture, int fc)
+{
+	char	*digits;
+
+	digits = "123456789ABCDEF";
 	if (fc == 0)
 	{
-		texture->f[i * 2]= digits[(rgb >> 4) & 0xF];
-		texture->f[i * 2 + 1]= digits[(rgb) & 0xF];
+		texture->f[i * 2] = digits[(rgb >> 4) & 0xF];
+		texture->f[i * 2 + 1] = digits[(rgb) & 0xF];
 	}
 	else
 	{
-		texture->c[i * 2]= digits[(rgb >> 4) & 0xF];
-		texture->c[i * 2 + 1]= digits[(rgb) & 0xF];
+		texture->c[i * 2] = digits[(rgb >> 4) & 0xF];
+		texture->c[i * 2 + 1] = digits[(rgb) & 0xF];
 	}
 }
 
@@ -40,11 +52,11 @@ int	color(char *s, int fc, t_tex *texture)
 	{
 		rgb = ft_atoi(tmp[i]);
 		if (rgb > 255 || rgb < 0)
-			break;
-		spHex(rgb, i, texture, fc);
+			break ;
+		sphex(rgb, i, texture, fc);
 		i++;
 	}
-	while(i >= 0)
+	while (i >= 0)
 	{
 		free(tmp[i]);
 		i--;
@@ -59,7 +71,7 @@ int	color(char *s, int fc, t_tex *texture)
 
 void	c_point(char *line, t_tex *texture)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strtrim(line, "\n");
 	if (ft_strncmp(tmp, "WE", 2) == 0 && !texture->we)
@@ -84,4 +96,3 @@ void	c_point(char *line, t_tex *texture)
 	}
 	free(tmp);
 }
-

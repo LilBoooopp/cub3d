@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/19 19:16:32 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/20 13:39:33 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,18 @@ void	extract_texture(char *line, t_tex *texture)
 	int	i;
 
 	i = 0;
-	if(line[i] == 'F')
+	if (line[i] == 'F')
 		color(ft_strdup(&line[i + 1]), 0, texture);
-	else if(line[i] == 'C')
+	else if (line[i] == 'C')
 		color(ft_strdup(&line[i + 1]), 1, texture);
 	else
 		c_point(line, texture);
 }
-int check_file(char *name_files, char *extension, size_t size, int clos)
+
+int	check_file(char *name_files, char *extension, size_t size, int clos)
 {
-	char *check;
-	int	fd;
+	char	*check;
+	int		fd;
 
 	check = ft_strrchr(name_files, '.');
 	if ((ft_strncmp(check, extension, size) == 1) || ft_strlen(check) != size)
@@ -44,7 +45,8 @@ int check_file(char *name_files, char *extension, size_t size, int clos)
 		printf("wrong extention name : %s\n", name_files);
 		return (0);
 	}
-	if ((fd = open(name_files, O_RDONLY)) == -1)
+	fd = open(name_files, O_RDONLY);
+	if (fd == -1)
 	{
 		printf("open failed for : %s\n", name_files);
 		return (0);
@@ -57,55 +59,47 @@ int check_file(char *name_files, char *extension, size_t size, int clos)
 	return (fd);
 }
 
-t_map	*openFiles(char *name_files, t_tex *texture)
+t_map	*openfiles(char *name_files, t_tex *texture)
 {
 	int		fd;
 	char	*line;
 	char	*temp;
 
-	if ((fd = check_file(name_files, ".cub", 4, 0)) == 0)
+	fd = check_file(name_files, ".cub", 4, 0);
+	if (fd == 0)
 	{
 		perror("Error\n incorect name files\n");
 		return (NULL);
 	}
-	while((line = get_next_line(fd)) && (texture->full < 6 || *line == '\n'))
+	line = get_next_line(fd);
+	while (line && (texture->full < 6 || *line == '\n'))
 	{
 		if (*line != '\n')
 			extract_texture(line, texture);
 		free(line);
+		line = get_next_line(fd);
 	}
 	temp = line;
-	if (!check_file(texture->ea, ".xpm", 4, 1) || !check_file(texture->we, ".xpm", 4, 1)||
-		!check_file(texture->n, ".xpm", 4, 1) || !check_file(texture->s, ".xpm", 4, 1))
-	{
-		perror("Error\n incorect name files");
-		close_gnl(temp, fd);
+	if (texture_check(texture, fd, temp))
 		return (NULL);
-	}
-	return (read_map(fd, temp));
+	return (read_map(fd, temp, 0, 0));
 }
 
 t_map	*ini_map(t_cub *cub, char **v)
 {
 	t_map		*map;
-	t_tex	*texture;
-	int		y;
+	t_tex		*texture;
+	int			y;
 
 	texture = malloc(sizeof(t_tex));
 	if (!texture)
 		return (NULL);
-	texture->full = 0;
-	texture->c[0] = '\0';
-	texture->f[0] = '\0';
-	texture->n = NULL;
-	texture->s = NULL;
-	texture->we = NULL;
-	texture->ea = NULL;
-	map = openFiles(v[1], texture);
+	ini_texture(texture);
+	map = openfiles(v[1], texture);
 	cub->tex = *texture;
-	cub->tex.door = ft_strdup("resources/vault.xpm");
 	free(texture);
-	if (!map)
+	cub->tex.door = ft_strdup("resources/vault.xpm");
+	if (!map || !check_file(cub->tex.door, ".xpm", 4, 1))
 	{
 		free_texture(cub);
 		return (NULL);
@@ -117,4 +111,3 @@ t_map	*ini_map(t_cub *cub, char **v)
 		map->explored[y] = ft_calloc(map->sizex, sizeof(bool));
 	return (map);
 }
-
