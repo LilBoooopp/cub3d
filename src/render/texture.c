@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:32:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/20 11:19:26 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/20 14:25:43 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,4 @@ void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x)
 			get_pixel(tex, itovec(texv)));
 		ray->draw_start++;
 	}
-
 }

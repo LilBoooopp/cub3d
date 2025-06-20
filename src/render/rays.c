@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/20 11:35:35 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/20 14:26:09 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	perform_dda(t_raycast *ray, t_cub *cub)
 			ray->hit = 1;
 			break ;
 		}
-		if (cub->map->map[ray->map.y][ray->map.x] == '1' || cub->map->map[ray->map.y][ray->map.x] == 'P')
+		if (cub->map->map[ray->map.y][ray->map.x] == '1'
+			|| cub->map->map[ray->map.y][ray->map.x] == 'P')
 			ray->hit = 1;
 	}
 }
@@ -105,5 +106,4 @@ void	cast_rays(t_cub *cub, t_img *img, int x_start, int x_end)
 		if (ray.hit)
 			draw_texture(cub, img, &ray, x);
 	}
-	
 }
