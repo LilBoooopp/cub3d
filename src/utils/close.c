@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:27:36 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/19 16:45:36 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/20 11:58:54 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ static void	destroy_textures(t_cub *c)
 	mlx_destroy_image(c->mlx, c->east.img);
 	mlx_destroy_image(c->mlx, c->south.img);
 	mlx_destroy_image(c->mlx, c->west.img);
+	mlx_destroy_image(c->mlx, c->doors.img);
 	free(c->tex.we);
 	free(c->tex.n);
 	free(c->tex.s);
 	free(c->tex.ea);
+	free(c->tex.door);
 	free_anim(c);
 }
 

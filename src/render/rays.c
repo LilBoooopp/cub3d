@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/09 18:53:28 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/20 14:26:09 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	perform_dda(t_raycast *ray, t_cub *cub)
 			ray->hit = 1;
 			break ;
 		}
-		if (cub->map->map[ray->map.y][ray->map.x] == '1')
+		if (cub->map->map[ray->map.y][ray->map.x] == '1'
+			|| cub->map->map[ray->map.y][ray->map.x] == 'P')
 			ray->hit = 1;
 	}
 }
@@ -90,6 +91,7 @@ void	cast_rays(t_cub *cub, t_img *img, int x_start, int x_end)
 
 	p = &cub->player;
 	x = x_start - 1;
+	cub->player.near_door = 0;
 	while (++x < x_end)
 	{
 		ft_bzero(&ray, sizeof(t_raycast));

@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/19 16:29:47 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/20 13:38:56 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,17 @@ int	flood_fill_masked(t_map map, int x, int y, char **mask)
 	return (0);
 }
 
-char **build_filtered_map(char **original, char **mask, int width, int height)
+char	**build_filtered_map(char **original, char **mask
+								, int width, int height)
 {
 	int		y;
 	int		x;
-	char **filtered;
+	char	**filtered;
 
 	y = 0;
 	x = 0;
 	filtered = malloc(sizeof(char *) * (height + 1));
-	while ( y < height)
+	while (y < height)
 	{
 		filtered[y] = malloc(width + 1);
 		x = 0;
@@ -66,7 +67,8 @@ char **build_filtered_map(char **original, char **mask, int width, int height)
 
 int	check_map_flood(t_map *map, int max_width)
 {
-	char **tmp;
+	char	**tmp;
+	char	**mask;
 
 	map->sizex = max_width;
 	if (search_player(map, 0) < 0)
@@ -74,14 +76,14 @@ int	check_map_flood(t_map *map, int max_width)
 		perror("Invalid map\n");
 		return (1);
 	}
-	char **mask = create_empty_map(map->sizey, map->sizex);
+	mask = create_empty_map(map->sizey, map->sizex);
 	if (!mask)
 		return (1);
 	if (flood_fill_masked(*map, map->playerx, map->playery, mask) < 0)
 	{
 		ft_free_chartable(map->map);
 		ft_free_chartable(mask);
-		return(1);
+		return (1);
 	}
 	tmp = build_filtered_map(map->map, mask, map->sizex, map->sizey);
 	map->map = tmp;
@@ -91,7 +93,7 @@ int	check_map_flood(t_map *map, int max_width)
 	return (0);
 }
 
-t_map *tab_map(t_node *lst_map, int max_width)
+t_map	*tab_map(t_node *lst_map, int max_width)
 {
 	int		size;
 	t_map	*map;
@@ -106,26 +108,25 @@ t_map *tab_map(t_node *lst_map, int max_width)
 	if (check_map_flood(map, max_width) == 1)
 	{
 		free(map);
-		return(NULL);
+		return (NULL);
 	}
 	return (map);
 }
 
-t_map *read_map(int fd, char *line)
+t_map	*read_map(int fd, char *line, int len, int max_width)
 {
-	int		max_width;
-	int		len;
-	t_node *map_list;
-	t_node *new;
-	t_node *last;
+	t_node	*map_list;
+	t_node	*new;
+	t_node	*last;
 
 	map_list = ft_new(line);
 	free(line);
 	last = map_list;
-	max_width = 0;
-	while((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
-		if ((len = ft_strlen(line)) > max_width)
+		len = ft_strlen(line);
+		if (len > max_width)
 			max_width = len;
 		new = ft_new(line);
 		if (!new)
@@ -133,9 +134,9 @@ t_map *read_map(int fd, char *line)
 		free(line);
 		last->next = new;
 		last = new;
+		line = get_next_line(fd);
 	}
 	free(line);
 	close(fd);
 	return (tab_map(map_list, max_width));
 }
-

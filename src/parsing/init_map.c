@@ -6,14 +6,16 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:47:45 by pbuet             #+#    #+#             */
-/*   Updated: 2025/06/19 15:10:38 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/20 14:16:36 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parsing.h"
+
 int	free_node(t_node *lst_map)
 {
 	t_node	*last;
+
 	while (lst_map->next != NULL)
 	{
 		last = lst_map;
@@ -21,12 +23,13 @@ int	free_node(t_node *lst_map)
 		free(last->content);
 		free(last);
 	}
-	return(1);
+	return (1);
 }
+
 int	node_map(t_map *map, int max_width, t_node *lst_map, int size)
 {
 	t_node	*last;
-	int 	len;
+	int		len;
 	int		i;
 
 	i = 0;
@@ -36,7 +39,7 @@ int	node_map(t_map *map, int max_width, t_node *lst_map, int size)
 		if (!map->map[i])
 		{
 			ft_free_chartable(map->map);
-			return(free_node(lst_map));
+			return (free_node(lst_map));
 		}
 		len = ft_strlen(lst_map->content);
 		ft_memcpy(map->map[i], lst_map->content, len);
@@ -49,5 +52,30 @@ int	node_map(t_map *map, int max_width, t_node *lst_map, int size)
 		i++;
 	}
 	map->map[i] = NULL;
+	return (0);
+}
+
+int	create_directions(t_directions	*dir)
+{
+	dir->dx = malloc(sizeof(int) * 8);
+	dir->dy = malloc(sizeof(int) * 8);
+	if (!dir->dx || !dir->dy)
+		return (1);
+	dir->dx[0] = 1;
+	dir->dy[0] = 0;
+	dir->dx[1] = -1;
+	dir->dy[1] = 0;
+	dir->dx[2] = 0;
+	dir->dy[2] = 1;
+	dir->dx[3] = 0;
+	dir->dy[3] = -1;
+	dir->dx[4] = 1;
+	dir->dy[4] = 1;
+	dir->dx[5] = 1;
+	dir->dy[5] = -1;
+	dir->dx[6] = -1;
+	dir->dy[6] = 1;
+	dir->dx[7] = -1;
+	dir->dy[7] = -1;
 	return (0);
 }

@@ -75,7 +75,8 @@ RENDER_SRC =  \
 	rays.c \
 	render.c \
 	texture.c \
-	update.c
+	update.c \
+	doors.c
 RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
 
 ANIM_DIR = src/render/anim/

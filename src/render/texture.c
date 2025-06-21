@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:32:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/19 18:58:40 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/21 15:24:45 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,11 @@ void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x)
 
 	draw_stripe(ray);
 	orig_start = ray->draw_start;
-	tex = select_text(ray, c);
+	near_to_door(*ray, c);
+	if (c->map->map[ray->map.y][ray->map.x] == '1')
+		tex = select_text(ray, c);
+	else
+		tex = &c->doors;
 	texv.x = compute_tex_x(ray, c, tex);
 	pos = (orig_start - WIN_HEIGHT / 2.0 + ray->line_h / 2.0)
 		* ((double)tex->size.y / ray->line_h);
