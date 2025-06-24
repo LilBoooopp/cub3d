@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 23:49:08 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/23 16:30:42 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	*render_thread(void *arg)
 	t_thrdata	*td;
 
 	td = (t_thrdata *)arg;
-	cast_rays(td->cub, td->img, td->x_start, td->x_end);
+	cast_rays_portal(td->cub, td->img, td->x_start, td->x_end, PORTAL_RECUR);
 	return (NULL);
 }
 

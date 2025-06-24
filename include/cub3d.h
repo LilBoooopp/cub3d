@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/21 15:24:18 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/23 21:05:13 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,9 @@
 // 	(JUMP_VEL * JUMP_VEL / (2.0 / GRAVITY))
 // # define JUMP_VIEW_SCALE 30.0
 
+# define PORTAL_RECUR 3
+# define PORTAL_COOLDOWN 2.0
+
 # define TILE_SIZE 1
 
 extern const char	*g_digit[10];
@@ -173,6 +176,35 @@ typedef struct s_img
 	int		len;
 	int		end;
 }	t_img;
+
+/**
+ * @brief Portal structure
+ * @param active	Is portal currently placed?
+ * @param pos		World-space intersection point (center)
+ * @param normal	Surface normal vector at placement
+ * @param last_time	Timestamp of last placement
+ * @param texture	Ring texture (200x200 XPM)
+ * @param linked	Pointer to paired portal
+ */
+typedef struct s_portal
+{
+	bool			active;
+	t_vec2			pos;
+	t_vec2			normal;
+	double			last_time;
+	t_img			*texture;
+	struct s_portal	*linked;
+}	t_portal;
+
+typedef struct s_prs
+{
+	t_cub		*cub;
+	t_img		*img;
+	t_raycast	*ray;
+	t_portal	*p;
+	int			x;
+	int			depth;
+}	t_prs;
 
 /**
  * @brief player struct
@@ -254,6 +286,10 @@ typedef struct s_cub
 	t_img		west;
 	t_img		doors;
 	t_hud		hud;
+	t_portal	portal_a;
+	t_portal	portal_b;
+	t_img		portal_orange;
+	t_img		portal_blue;
 }	t_cub;
 
 /**
@@ -359,6 +395,12 @@ int				mouse_move(int x, int y, t_cub *cub);
 int				mouse_press_handler(int button, int x, int y, void *param);
 void			set_anim_state(t_cub *cub, int state);
 void			center_mouse(t_cub *cub);
+void			init_portals(t_cub *cub);
+void			handle_portal_input(int keycode, t_cub *cub);
+void			compute_hit_point(t_cub *cub, t_raycast *ray, t_vec2 *hit);
+void			place_portal_at_center(t_cub *cub, t_portal *p);
+void	cast_rays_portal(t_cub *c, t_img *img, int x_start, int x_end,
+	int depth);
 
 /* render */
 int				handle_menu(int key, t_cub *c);

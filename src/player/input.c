@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:25 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/21 15:24:35 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/23 16:34:22 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	handle_input(int keycode, t_cub *cub)
 	if (cub->keys[KEY_R])
 		if (cub->hud.anim_state == IDLE)
 			set_anim_state(cub, RELOAD);
+	if (keycode == KEY_Q || keycode == KEY_E)
+			handle_portal_input(keycode, cub);
 	return (0);
 }
 // printf("player x: %f, y: %f\n", cub->player.pos.x, cub->player.pos.y);

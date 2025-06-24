@@ -62,21 +62,24 @@ PLAYER_DIR = src/player/
 PLAYER_SRC =  \
 	input.c \
 	move.c \
-	move2.c
+	move2.c \
+	portal.c \
+	portal_place.c \
+	portal_rays.c
 PLAYER = $(addprefix $(PLAYER_DIR), $(PLAYER_SRC))
 
 RENDER_DIR = src/render/
 RENDER_SRC =  \
 	debug.c \
 	debug_rays.c \
+	doors.c \
 	font.c \
 	menu.c \
 	ray_utils.c \
 	rays.c \
 	render.c \
 	texture.c \
-	update.c \
-	doors.c
+	update.c
 RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
 
 ANIM_DIR = src/render/anim/
