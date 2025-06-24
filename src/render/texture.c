@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:32:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/21 15:24:45 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/24 15:47:46 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 // 	return (orig_start);
 // }
 
-static t_img	*select_text(t_raycast *ray, t_cub *c)
+t_img	*select_text(t_raycast *ray, t_cub *c)
 {
 	if (ray->side == 0 && ray->ray_dir.x > 0)
 		return (&c->east);
@@ -41,7 +41,7 @@ static t_img	*select_text(t_raycast *ray, t_cub *c)
 		return (&c->north);
 }
 
-static int	compute_tex_x(t_raycast *ray, t_cub *c, t_img *tex)
+int	compute_tex_x(t_raycast *ray, t_cub *c, t_img *tex)
 {
 	double	wall_x;
 	int		tex_x;
@@ -58,14 +58,13 @@ static int	compute_tex_x(t_raycast *ray, t_cub *c, t_img *tex)
 	return (tex_x);
 }
 
-void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x)
+void	draw_wall(t_cub *c, t_img *img, t_raycast *ray, int x)
 {
 	t_img	*tex;
 	t_vec2i	texv;
 	int		orig_start;
 	double	pos;
 
-	draw_stripe(ray);
 	orig_start = ray->draw_start;
 	near_to_door(*ray, c);
 	if (c->map->map[ray->map.y][ray->map.x] == '1')
@@ -83,4 +82,47 @@ void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x)
 			get_pixel(tex, itovec(texv)));
 		ray->draw_start++;
 	}
+}
+
+static int	get_portal_index(t_cub *c, t_raycast *ray)
+{
+	int			i;
+	double		hx;
+	t_player	*p;
+
+	p = &c->player;
+	i = 0;
+	while (i < 2)
+	{
+		if (c->portals[i].active
+			&& ray->map.x == c->portals[i].map.x
+			&& ray->map.x == c->portals[i].map.y
+			&& ray->side == c->portals[i].side)
+		{
+			if (ray->side == 0)
+				hx = p->pos.y + ray->perp_dist * ray->ray_dir.y;
+			else
+				hx = p->pos.x + ray->perp_dist * ray->ray_dir.x;
+			hx -= floor(hx);
+			if (fabs(hx - c->portals[i].offset) <= PORTAL_SPAN / 2.0)
+				return (i);
+		}
+		i++;
+	}
+	return (-1);
+}
+
+void	draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x)
+{
+	int	pidx;
+
+	draw_stripe(ray);
+	near_to_door(*ray, c);
+	pidx = get_portal_index(c, ray);
+	if (pidx == 0)
+		draw_portal_blue(c, img, ray, x);
+	else if (pidx == 1)
+		draw_portal_orange(c, img, ray, x);
+	else
+		draw_wall(c, img, ray, x);
 }

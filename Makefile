@@ -36,13 +36,15 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_SRC))
 INIT_DIR = src/init/
 INIT_SRC =  \
 	init.c \
-	init_hud.c
+	init_hud.c \
+	portals.c
 INIT = $(addprefix $(INIT_DIR), $(INIT_SRC))
 
 MLX_DIR = src/mlx/
 MLX_SRC =  \
 	draw.c \
 	draw2.c \
+	draw_texture.c \
 	mlx_helper.c \
 	mlx_helper2.c
 MLX = $(addprefix $(MLX_DIR), $(MLX_SRC))
@@ -69,14 +71,14 @@ RENDER_DIR = src/render/
 RENDER_SRC =  \
 	debug.c \
 	debug_rays.c \
+	doors.c \
 	font.c \
 	menu.c \
 	ray_utils.c \
 	rays.c \
 	render.c \
 	texture.c \
-	update.c \
-	doors.c
+	update.c
 RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
 
 ANIM_DIR = src/render/anim/

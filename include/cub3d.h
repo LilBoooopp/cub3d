@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/21 15:24:18 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/24 15:49:47 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@
 
 # define TILE_SIZE 1
 
+# define PORTAL_SPAN 0.6
+
 extern const char	*g_digit[10];
 
 typedef enum e_state
@@ -232,6 +234,14 @@ typedef struct s_hud
 	t_img	*anim_reload;
 }	t_hud;
 
+typedef struct s_portal
+{
+	bool	active;
+	t_vec2i	map;
+	int		side;
+	double	offset;
+}	t_portal;
+
 typedef struct s_cub
 {
 	void		*mlx;
@@ -254,6 +264,9 @@ typedef struct s_cub
 	t_img		west;
 	t_img		doors;
 	t_hud		hud;
+	t_img		portal_blue;
+	t_img		portal_orange;
+	t_portal	portals[2];
 }	t_cub;
 
 /**
@@ -328,6 +341,7 @@ t_map			*ini_map(t_cub *cub, char **v);
 int				init(t_cub *cub, char **v);
 void			init_player(t_player *player, t_map *map);
 void			init_hud(t_cub *cub, t_hud *hud);
+void			init_portals(t_cub *cub);
 
 /* mlx */
 int				get_pixel(t_img *img, t_vec2 pos);
@@ -359,6 +373,9 @@ int				mouse_move(int x, int y, t_cub *cub);
 int				mouse_press_handler(int button, int x, int y, void *param);
 void			set_anim_state(t_cub *cub, int state);
 void			center_mouse(t_cub *cub);
+void			shoot_portals(t_cub *cub, int idx);
+void			draw_portal_blue(t_cub *c, t_img *img, t_raycast *ray, int x);
+void			draw_portal_orange(t_cub *c, t_img *img, t_raycast *ray, int x);
 
 /* render */
 int				handle_menu(int key, t_cub *c);
@@ -393,6 +410,8 @@ void			init_minimap(t_cub *c, t_map *m, t_img *map);
 void			draw_hud(t_cub *cub, t_img *dst);
 void			reveal_surr(t_map *map, t_vec2 pos, int radius);
 bool			is_tile_visible(t_map *m, t_vec2 pl_pos, t_vec2i tile, t_vec2 pl_dir);
+t_img			*select_text(t_raycast *ray, t_cub *c);
+int				compute_tex_x(t_raycast *ray, t_cub *c, t_img *tex);
 
 /* utils */
 int				close_window(t_cub *cub);
