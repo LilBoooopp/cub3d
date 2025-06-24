@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/23 21:05:13 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/24 14:28:34 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,15 +196,15 @@ typedef struct s_portal
 	struct s_portal	*linked;
 }	t_portal;
 
-typedef struct s_prs
-{
-	t_cub		*cub;
-	t_img		*img;
-	t_raycast	*ray;
-	t_portal	*p;
-	int			x;
-	int			depth;
-}	t_prs;
+// typedef struct s_prs
+// {
+// 	t_cub		*cub;
+// 	t_img		*img;
+// 	t_raycast	*ray;
+// 	t_portal	*p;
+// 	int			x;
+// 	int			depth;
+// }	t_prs;
 
 /**
  * @brief player struct
