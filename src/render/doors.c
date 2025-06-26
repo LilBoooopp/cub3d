@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:06:41 by pbuet             #+#    #+#             */
-/*   Updated: 2025/06/20 14:25:00 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/26 19:35:53 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,16 @@ void	near_to_door(t_raycast ray, t_cub *c)
 				+ (1 - ray.step.y) / 2.0f) / ray.ray_dir.y;
 	if (door_dist < 1.5)
 	{
-		c->player.near_door = 1;
+		if (c->map->map[ray.map.y][ray.map.x] == 'O')
+			c->player.near_c_door = 1;
+		else if (c->map->map[ray.map.y][ray.map.x] == 'P')
+			c->player.near_door = 1;
 		c->player.door_x = ray.map.x;
 		c->player.door_y = ray.map.y;
 	}
 	else
+	{
 		c->player.near_door = 0;
+		c->player.near_c_door = 0;
+	}
 }

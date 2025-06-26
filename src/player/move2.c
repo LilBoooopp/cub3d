@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:55:03 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/19 18:33:34 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/26 19:15:08 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,13 @@ int	mouse_press_handler(int button, int x, int y, void *param)
 			set_anim_state(cub, SHOOT);
 			if (cub->player.near_door == 1)
 			{
-				cub->map->map[cub->player.door_y][cub->player.door_x] = '0';
+				cub->map->map[cub->player.door_y][cub->player.door_x] = 'O';
 				cub->player.near_door = 0;
+			}
+			else if (cub->player.near_c_door == 1)
+			{
+				cub->map->map[cub->player.door_y][cub->player.door_x] = 'P';
+				cub->player.near_c_door = 0;
 			}
 		}
 	return (0);

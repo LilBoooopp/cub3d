@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:13:22 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/20 11:08:51 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/26 16:36:28 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	draw_tile(t_cub *c, t_map *m, t_img *map, t_vec2i idx)
 		return ;
 	if (m->map[idx.y][idx.x] == '1' || m->map[idx.y][idx.x] == 'P')
 		col = MAP_WALL;
-	else if (m->map[idx.y][idx.x] == '0')
+	else if (m->map[idx.y][idx.x] == '0' || m->map[idx.y][idx.x] == 'O')
 		col = MAP_EMPTY;
 	else
 		return ;

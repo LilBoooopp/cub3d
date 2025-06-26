@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/20 13:25:05 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/26 19:12:35 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	init(t_cub *cub, char **v)
 	cub->menu_sel = 0;
 	cub->ismap = -1;
 	cub->player.near_door = 0;
+	cub->player.near_c_door = 0;
 	open_xpm(cub);
 	set_false(cub->keys);
 	init_player(&cub->player, cub->map);

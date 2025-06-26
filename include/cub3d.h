@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/20 11:35:15 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/26 19:29:21 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ typedef struct s_player
 	t_vec2	dir;
 	t_vec2	plane;
 	int		near_door;
+	int		near_c_door;
 	int		door_x;
 	int		door_y;
 }	t_player;
@@ -412,6 +413,6 @@ t_vec2			itovec(t_vec2i veci);
 void			free_all(t_cub *c);
 t_spawn_args	setup_args(t_cub *c, t_img *back, pthread_t *threads,
 					t_thrdata *td);
-
+void			help_dda(t_raycast *ray);
 void			near_to_door(t_raycast ray, t_cub *c);
 #endif

@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   debug_rays.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 14:08:17 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/23 01:10:50 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/26 19:29:00 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	help_dda(t_raycast *ray)
+{
+		if (ray->side_dist.x < ray->side_dist.y)
+		{
+			ray->side_dist.x += ray->delta_dist.x;
+			ray->map.x += ray->step.x;
+			ray->side = 0;
+		}
+		else
+		{
+			ray->side_dist.y += ray->delta_dist.y;
+			ray->map.y += ray->step.y;
+			ray->side = 1;
+		}
+}
 
 static void	draw_one_ray(t_cub *c, t_img *map, t_vec2 map_pos, int x)
 {

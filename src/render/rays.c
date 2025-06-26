@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/20 14:26:09 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/26 19:45:31 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,13 @@ void	perform_dda(t_raycast *ray, t_cub *cub)
 	ray->hit = 0;
 	while (!ray->hit)
 	{
-		if (ray->side_dist.x < ray->side_dist.y)
+		if ( cub->map->map[ray->map.y][ray->map.x] == 'O')
 		{
-			ray->side_dist.x += ray->delta_dist.x;
-			ray->map.x += ray->step.x;
-			ray->side = 0;
+			cub->player.door_x = ray->map.x;
+			cub->player.door_y = ray->map.y;
+			cub->player.near_c_door = 1;
 		}
-		else
-		{
-			ray->side_dist.y += ray->delta_dist.y;
-			ray->map.y += ray->step.y;
-			ray->side = 1;
-		}
+		help_dda(ray);
 		if (ray->map.x < 0 || ray->map.x >= cub->map->sizex
 			|| ray->map.y < 0 || ray->map.y >= cub->map->sizey)
 		{
@@ -92,11 +87,13 @@ void	cast_rays(t_cub *cub, t_img *img, int x_start, int x_end)
 	p = &cub->player;
 	x = x_start - 1;
 	cub->player.near_door = 0;
+	cub->player.near_c_door = 0;
 	while (++x < x_end)
 	{
 		ft_bzero(&ray, sizeof(t_raycast));
 		init_ray(cub, &ray, x);
 		perform_dda(&ray, cub);
+		near_to_door(ray, cub);
 		if (ray.side == 0)
 			ray.perp_dist = ((ray.map.x - p->pos.x + (1 - ray.step.x)
 						/ 2.0f) / ray.ray_dir.x);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:25 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/21 15:22:57 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/26 19:32:43 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ int	handle_input(int keycode, t_cub *cub)
 	if (cub->keys[KEY_R])
 		if (cub->hud.anim_state == IDLE)
 			set_anim_state(cub, RELOAD);
+	if (cub->keys[KEY_M])
+		ft_print_chartable(cub->map->map);
 	return (0);
 }
