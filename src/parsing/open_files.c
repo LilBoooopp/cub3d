@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/02 11:54:47 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 17:36:34 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,22 @@ void	open_xpm(t_cub *c)
 
 void	extract_texture(char *line, t_tex *texture)
 {
-	int	i;
+	char	*tmp;
 
-	i = 0;
-	if (line[i] == 'F')
-		color(ft_strdup(&line[i + 1]), 0, texture);
-	else if (line[i] == 'C')
-		color(ft_strdup(&line[i + 1]), 1, texture);
+	tmp = ft_strtrim(line, "\n");
+	if (line[0] == 'F' && !texture->f && line[1] == ' ')
+	{
+		texture->f = ft_strdup(&tmp[2]);
+		texture->full++;
+	}
+	else if (line[0] == 'C' && !texture->c && line[1] == ' ')
+	{
+		texture->c = ft_strdup(&tmp[2]);
+		texture->full++;
+	}
 	else
-		c_point(line, texture);
+		c_point(texture, tmp);
+	free(tmp);
 }
 
 int	check_file(char *name_files, char *extension, size_t size, int clos)
@@ -80,7 +87,7 @@ t_map	*openfiles(char *name_files, t_tex *texture)
 		line = get_next_line(fd);
 	}
 	temp = line;
-	if (texture->full < 6 || texture_check(texture, fd, temp))
+	if (texture->full != 6 || texture_check(texture, fd, temp))
 	{
 		printf("erreur texture\n");
 		return (NULL);

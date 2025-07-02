@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:46:15 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/20 14:14:17 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 17:38:09 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@ typedef struct s_node
 
 typedef struct s_directions
 {
-	int *dx;
-	int *dy;
+	int	*dx;
+	int	*dy;
 }	t_directions;
 
-void	spHex(int rgb, int i, t_tex *texture, int fc);
-int		color(char *s, int fc, t_tex *texture);
-void	c_point(char *line, t_tex *texture);
+int		rgb_check(t_tex *texture);
+void	c_point(t_tex *texture, char *tmp);
 t_node	*ft_new(char *content);
 t_map	*read_map(int fd, char *line, int len, int max_width);
 t_node	*ft_new(char *content);

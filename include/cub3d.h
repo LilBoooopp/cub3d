@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 14:29:27 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:01:48 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,9 +213,9 @@ typedef struct s_tex
 	char	*s;
 	char	*we;
 	char	*ea;
-	char	f[7];
+	char	*f;
 	int		floor;
-	char	c[7];
+	char	*c;
 	int		ceiling;
 	int		full;
 	char	*door;

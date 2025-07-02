@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 23:49:08 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:37:28 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	set_bg(t_img *back, t_cub *c)
 	int	g;
 	int	b;
 
-	parse_rgbhex(c->tex.c, &r, &g, &b);
+	parse_rgbint(c->tex.c, &r, &g, &b);
 	c->tex.ceiling = (r << 16) | (g << 8) | b;
 	draw_pixels(back, set_vec2(WIN_WIDTH / 2, WIN_HEIGHT / 4),
 		set_vec2(WIN_WIDTH, WIN_HEIGHT / 2), c->tex.ceiling);
-	parse_rgbhex(c->tex.f, &r, &g, &b);
+	parse_rgbint(c->tex.f, &r, &g, &b);
 	c->tex.floor = (r << 16) | (g << 8) | b;
 	draw_pixels(back, set_vec2(WIN_WIDTH / 2, WIN_HEIGHT * 0.75),
 		set_vec2(WIN_WIDTH, WIN_HEIGHT / 2), c->tex.floor);

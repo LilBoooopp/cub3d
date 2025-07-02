@@ -6,19 +6,21 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/02 12:02:56 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 17:41:25 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"parsing.h"
+#include "parsing.h"
 
-int	flood_fill_masked(t_map map, int x, int y, char **mask)
+int	flood_fill_masked(t_map *map, int x, int y, char **mask)
 {
 	char	c;
 
-	if (x < 0 || y < 0 || x == map.sizex || y == map.sizey)
+	if (x < 0 || y < 0 || x == map->sizex || y == map->sizey)
 		return (-1);
-	c = map.map[y][x];
+	c = map->map[y][x];
+	if (c == ' ')
+		map->map[y][x] = '0';
 	if (c == '\0')
 		return (-1);
 	if (c == '1' || mask[y][x] == 'x')
@@ -52,12 +54,7 @@ char	**build_filtered_map(char **original, char **mask
 		while (x < width)
 		{
 			if (mask[y][x] == 'x')
-			{
-				if (original[y][x] != ' ')
-					filtered[y][x] = original[y][x];
-				else
-					filtered[y][x] = '0';
-			}
+				filtered[y][x] = original[y][x];
 			else
 				filtered[y][x] = '1';
 			x ++;
@@ -84,7 +81,7 @@ int	check_map_flood(t_map *map, int max_width)
 	mask = create_empty_map(map->sizey, map->sizex);
 	if (!mask)
 		return (1);
-	if (flood_fill_masked(*map, map->playerx, map->playery, mask) < 0)
+	if (flood_fill_masked(map, map->playerx, map->playery, mask) < 0)
 	{
 		ft_free_chartable(map->map);
 		ft_free_chartable(mask);

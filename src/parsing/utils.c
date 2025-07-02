@@ -6,11 +6,11 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:33:13 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/20 14:10:48 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 17:40:28 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"parsing.h"
+#include "parsing.h"
 
 int	find_char(t_map *map, int x, int y, int end)
 {

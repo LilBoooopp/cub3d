@@ -6,11 +6,11 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:14:20 by pbuet             #+#    #+#             */
-/*   Updated: 2025/06/20 14:17:27 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 17:40:37 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"parsing.h"
+#include "parsing.h"
 
 int	is_adjacent_to_non_wall(char **map, int y, int x, t_map strmap)
 {

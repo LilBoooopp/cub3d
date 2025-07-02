@@ -6,11 +6,11 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:47:45 by pbuet             #+#    #+#             */
-/*   Updated: 2025/06/20 14:16:36 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 17:26:20 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"parsing.h"
+#include "parsing.h"
 
 int	free_node(t_node *lst_map)
 {
