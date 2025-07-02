@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/02 17:41:25 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 19:37:54 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	check_map_flood(t_map *map, int max_width)
 	map->sizex = max_width;
 	if (search_player(map, 0) < 0)
 	{
-		perror("Invalid map\n");
+		error_msg("Invalid map\n");
 		return (1);
 	}
 	mask = create_empty_map(map->sizey, map->sizex);

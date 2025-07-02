@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/02 18:01:02 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 19:45:29 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,14 @@ int	check_file(char *name_files, char *extension, size_t size, int clos)
 	check = ft_strrchr(name_files, '.');
 	if ((ft_strncmp(check, extension, size) == 1) || ft_strlen(check) != size)
 	{
-		printf("wrong extention name : %s\n", name_files);
-		return (0);
+		error_msg("Wrong extention name");
+		return (-1);
 	}
-	fd = open(name_files, O_RDONLY);
+	fd = open(name_files, O_RDWR);
 	if (fd == -1)
-	{
-		printf("open failed for : %s\n", name_files);
-		return (0);
-	}
+		return (error_msg("Open failed"), -1);
 	if (clos == 1)
-	{
-		close(fd);
-		return (1);
-	}
+		return (close(fd), 1);
 	return (fd);
 }
 
@@ -77,11 +71,8 @@ t_map	*openfiles(char *name_files, t_tex *texture)
 	char	*temp;
 
 	fd = check_file(name_files, ".cub", 4, 0);
-	if (fd == 0)
-	{
-		perror("Error\n incorect name files\n");
+	if (fd == -1)
 		return (NULL);
-	}
 	line = get_next_line(fd);
 	while (line && (texture->full < 6 || *line == '\n'))
 	{
@@ -92,10 +83,7 @@ t_map	*openfiles(char *name_files, t_tex *texture)
 	}
 	temp = line;
 	if (texture->full != 6 || texture_check(texture, fd, temp))
-	{
-		printf("erreur texture\n");
 		return (NULL);
-	}
 	return (read_map(fd, temp, 0, 0));
 }
 
@@ -114,10 +102,7 @@ t_map	*ini_map(t_cub *cub, char **v)
 	free(texture);
 	cub->tex.door = ft_strdup("resources/vault.xpm");
 	if (!map || !check_file(cub->tex.door, ".xpm", 4, 1))
-	{
-		free_texture(cub);
-		return (NULL);
-	}
+		return (free_texture(cub), NULL);
 	search_player(map, 1);
 	map->explored = malloc(sizeof(bool *) * map->sizey);
 	y = -1;

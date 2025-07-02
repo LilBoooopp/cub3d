@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:23:19 by pbuet             #+#    #+#             */
-/*   Updated: 2025/07/02 17:40:51 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 19:49:09 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ int	rgb_check(t_tex *texture)
 	int	g;
 	int	b;
 
+	if (ft_isalphastr(texture->c))
+		return (1);
+	if (ft_isalphastr(texture->f))
+		return (1);
 	parse_rgbint(texture->c, &r, &g, &b);
 	if ((r > 255 || r < 0)
 		|| (g > 255 || g < 0)
@@ -63,13 +67,17 @@ int	rgb_check(t_tex *texture)
 
 int	texture_check(t_tex *texture, int fd, char *temp)
 {
-	if (!check_file(texture->ea, ".xpm", 4, 1)
-		||!check_file(texture->we, ".xpm", 4, 1)
-		||!check_file(texture->n, ".xpm", 4, 1)
-		||!check_file(texture->s, ".xpm", 4, 1)
-		|| rgb_check(texture))
+	if (check_file(texture->ea, ".xpm", 4, 1) == -1
+		||check_file(texture->we, ".xpm", 4, 1) == -1
+		||check_file(texture->n, ".xpm", 4, 1) == -1
+		||check_file(texture->s, ".xpm", 4, 1) == -1)
 	{
-		perror("Error\n incorect name files");
+		close_gnl(temp, fd);
+		return (1);
+	}
+	if (rgb_check(texture))
+	{
+		error_msg("RGB values can only be 0-255");
 		close_gnl(temp, fd);
 		return (1);
 	}
