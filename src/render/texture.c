@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:32:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/26 19:18:25 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 14:29:52 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	compute_tex_x(t_raycast *ray, t_cub *c, t_img *tex)
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * (double)tex->size.x);
 	if ((ray->side == 0 && ray->ray_dir.x > 0)
-		|| (ray->side == 1 && ray->ray_dir.y < 0))
+		|| (ray->side == 1 && ray->ray_dir.y > 0))
 		tex_x = tex->size.x - tex_x - 1;
 	return (tex_x);
 }

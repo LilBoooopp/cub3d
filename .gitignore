@@ -7,3 +7,4 @@ libft/Objects/
 libft/libft.a
 *.bak
 .counter
+*.png

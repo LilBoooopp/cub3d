@@ -3,16 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   map_fog.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:35:53 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/20 14:25:22 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/06/21 15:25:18 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	is_tile_visible(t_map *m, t_vec2 pl_pos, t_vec2i tile)
+static bool	is_within_fov(t_vec2 dir, t_vec2 pl_dir)
+{
+	double	len;
+	double	dot;
+
+	len = sqrt(dir.x * dir.x + dir.y * dir.y);
+	if (len == 0)
+		return (true);
+	dot = (dir.x * pl_dir.x + dir.y * pl_dir.y) / len;
+	return (dot >= 0.86);
+}
+
+bool	is_tile_visible(t_map *m, t_vec2 pl_pos, t_vec2i tile, t_vec2 pl_dir)
 {
 	t_vec2	pos;
 	t_vec2	dir;
@@ -21,11 +33,12 @@ bool	is_tile_visible(t_map *m, t_vec2 pl_pos, t_vec2i tile)
 
 	dir.x = tile.x + 0.5 - pl_pos.x;
 	dir.y = tile.y + 0.5 - pl_pos.y;
+	if (!is_within_fov(dir, pl_dir))
+		return (false);
 	steps = sqrt(dir.x * dir.x + dir.y * dir.y) * 10;
 	dir.x /= steps;
 	dir.y /= steps;
-	pos.x = pl_pos.x;
-	pos.y = pl_pos.y;
+	pos = pl_pos;
 	i = 0;
 	while (i < steps)
 	{
@@ -33,7 +46,7 @@ bool	is_tile_visible(t_map *m, t_vec2 pl_pos, t_vec2i tile)
 			return (true);
 		if (m->map[(int)pos.y][(int)pos.x] == '1'
 			|| m->map[(int)pos.y][(int)pos.x] == 'P')
-			return (false);
+			return ((int)pos.x == tile.x && (int)pos.y == tile.y);
 		pos.x += dir.x;
 		pos.y += dir.y;
 		i++;

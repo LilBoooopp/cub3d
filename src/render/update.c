@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 20:38:14 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 23:40:24 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/06/19 19:45:01 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	update(t_cub *cub)
 	else
 		cub->fps = 0;
 	smooth_input(cub);
-	reveal_surr(cub->map, cub->player.pos, 2);
+	reveal_surr(cub->map, cub->player.pos, 2.5);
 	render(cub);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/26 19:29:21 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 14:29:27 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@
 # define WIN_HEIGHT 1080
 
 # ifndef NUM_THREADS
-#  define NUM_THREADS 10
+#  define NUM_THREADS 15
 # endif
 
 # define MAP_WALL 0xFFb08243
@@ -393,7 +393,7 @@ void			join_threads(pthread_t *threads, int count);
 void			init_minimap(t_cub *c, t_map *m, t_img *map);
 void			draw_hud(t_cub *cub, t_img *dst);
 void			reveal_surr(t_map *map, t_vec2 pos, int radius);
-bool			is_tile_visible(t_map *m, t_vec2 pl_pos, t_vec2i tile);
+bool			is_tile_visible(t_map *m, t_vec2 pl_pos, t_vec2i tile, t_vec2 pl_dir);
 
 /* utils */
 int				close_window(t_cub *cub);
