@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/02 19:45:29 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/02 21:09:59 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,24 @@ int	open_xpm(t_cub *c)
 void	extract_texture(char *line, t_tex *texture)
 {
 	char	*tmp;
+	int		i;
 
-	tmp = ft_strtrim(line, "\n");
+	i = 2;
+	while (line[i] && line[i] == ' ')
+		i ++;
+	tmp = ft_strtrim(&line[i], "\n");
 	if (line[0] == 'F' && !texture->f && line[1] == ' ')
 	{
-		texture->f = ft_strdup(&tmp[2]);
+		texture->f = ft_strdup(tmp);
 		texture->full++;
 	}
 	else if (line[0] == 'C' && !texture->c && line[1] == ' ')
 	{
-		texture->c = ft_strdup(&tmp[2]);
+		texture->c = ft_strdup(tmp);
 		texture->full++;
 	}
 	else
-		c_point(texture, tmp);
+		c_point(texture, tmp, line);
 	free(tmp);
 }
 
@@ -82,7 +86,12 @@ t_map	*openfiles(char *name_files, t_tex *texture)
 		line = get_next_line(fd);
 	}
 	temp = line;
-	if (texture->full != 6 || texture_check(texture, fd, temp))
+	if (texture->full != 6)
+	{
+		error_msg("Texture error\n");
+		return (NULL);
+	}
+	if (texture_check(texture, fd, temp))
 		return (NULL);
 	return (read_map(fd, temp, 0, 0));
 }

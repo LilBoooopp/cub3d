@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:45:32 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/02 17:40:08 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 21:07:00 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,26 @@ void	ini_texture(t_tex *texture)
 	texture->ea = NULL;
 }
 
-void	c_point(t_tex *texture, char *tmp)
+void	c_point(t_tex *texture, char *tmp, char *line)
 {
-	if (ft_strncmp(tmp, "WE", 2) == 0 && !texture->we)
+	if (ft_strncmp(line, "WE", 2) == 0 && !texture->we)
 	{
-		texture->we = ft_strdup(&tmp[3]);
+		texture->we = ft_strdup(tmp);
 		texture->full++;
 	}
-	else if (ft_strncmp(tmp, "NO", 2) == 0 && !texture->n)
+	else if (ft_strncmp(line, "NO", 2) == 0 && !texture->n)
 	{
-		texture->n = ft_strdup(&tmp[3]);
+		texture->n = ft_strdup(tmp);
 		texture->full++;
 	}
-	else if (ft_strncmp(tmp, "SO", 2) == 0 && !texture->s)
+	else if (ft_strncmp(line, "SO", 2) == 0 && !texture->s)
 	{
-		texture->s = ft_strdup(&tmp[3]);
+		texture->s = ft_strdup(tmp);
 		texture->full++;
 	}
-	else if (ft_strncmp(tmp, "EA", 2) == 0 && !texture->ea)
+	else if (ft_strncmp(line, "EA", 2) == 0 && !texture->ea)
 	{
-		texture->ea = ft_strdup(&tmp[3]);
+		texture->ea = ft_strdup(tmp);
 		texture->full++;
 	}
 	else

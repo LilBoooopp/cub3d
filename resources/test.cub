@@ -6,7 +6,7 @@ F 255,255,255
 NO ./resources/grey-tile-portal.xpm
 SO ./resources/marioquestion_1.xpm
 WE ./resources/sky_1.xpm
-EA ./resources/grass_1.xpm
+
 
 11111111111111111111111111111111
 1       0000000000110000000000001

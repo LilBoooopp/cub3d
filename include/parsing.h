@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:46:15 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/02 17:38:09 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 21:07:26 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_directions
 }	t_directions;
 
 int		rgb_check(t_tex *texture);
-void	c_point(t_tex *texture, char *tmp);
+void	c_point(t_tex *texture, char *tmp, char *line);
 t_node	*ft_new(char *content);
 t_map	*read_map(int fd, char *line, int len, int max_width);
 t_node	*ft_new(char *content);

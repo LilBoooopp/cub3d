@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:33:13 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/02 19:38:42 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/02 21:09:40 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	find_char(t_map *map, int x, int y, int end)
 	else if (map->map[y][x] != '0' && map->map[y][x] != '1' &&
 		map->map[y][x] != ' ' && map->map[y][x] != 'P')
 	{
-		// printf("%c\n", map->map[y][x]);
 		error_msg("Invalide char\n");
 		return (2);
 	}
