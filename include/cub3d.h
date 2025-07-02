@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 14:29:27 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 15:41:55 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,8 @@
 # define MAP_WALL 0xFFb08243
 # define MAP_EMPTY 0xFFdeda68
 
-# define MOVE_SPEED 3.0
+# define MOVE_SPEED 4.0
 # define ROT_SPEED 2.0
-// # define JUMP_VEL 8.0
-// # define GRAVITY 20.0
-// # define MAX_HEIGHT 
-// 	(JUMP_VEL * JUMP_VEL / (2.0 / GRAVITY))
-// # define JUMP_VIEW_SCALE 30.0
 
 # define TILE_SIZE 1
 
@@ -328,12 +323,12 @@ double			gettime(void);
 t_map			*ini_map(t_cub *cub, char **v);
 int				init(t_cub *cub, char **v);
 void			init_player(t_player *player, t_map *map);
-void			init_hud(t_cub *cub, t_hud *hud);
+int				init_hud(t_cub *cub, t_hud *hud);
 
 /* mlx */
 int				get_pixel(t_img *img, t_vec2 pos);
 t_img			make_image(t_cub *cub, t_vec2 size, int color);
-t_img			setup_xpm(t_cub *c, char *xpm);
+int				setup_xpm(t_cub *c, t_img *img, char *xpm);
 t_vec2			get_rotated_position(t_vec2 center,
 					t_vec2 local, double angle);
 t_vec2			rotate_point(t_vec2 rel, double angle);
@@ -382,7 +377,7 @@ void			*render_map(t_cub *cub, t_img *img, t_player *player);
 void			set_side_dist(t_raycast *ray, t_player player);
 void			draw_texture(t_cub *c, t_img *img, t_raycast *ray, int x);
 void			draw_stripe(t_raycast *ray);
-void			open_xpm(t_cub *c);
+int				open_xpm(t_cub *c);
 void			*render_thread(void *arg);
 void			*render_map_thread(void *arg);
 void			set_bg(t_img *back, t_cub *c);
@@ -397,6 +392,8 @@ bool			is_tile_visible(t_map *m, t_vec2 pl_pos, t_vec2i tile, t_vec2 pl_dir);
 
 /* utils */
 int				close_window(t_cub *cub);
+void			free_map(t_cub *cub);
+void			free_xpm(t_cub *c, int error);
 int				is_in_bounds(t_img *img, t_vec2 point);
 t_vec2			fix_pos(t_cub *cub, t_img *dst, t_vec2 pos);
 t_vec2			get_center(t_img *img);

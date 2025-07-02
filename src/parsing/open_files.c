@@ -3,22 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/02 11:54:47 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 14:48:06 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	open_xpm(t_cub *c)
+int	open_xpm(t_cub *c)
 {
-	c->north = setup_xpm(c, c->tex.n);
-	c->east = setup_xpm(c, c->tex.ea);
-	c->south = setup_xpm(c, c->tex.s);
-	c->west = setup_xpm(c, c->tex.we);
-	c->doors = setup_xpm(c, c->tex.door);
+	int	error;
+
+	error = 0;
+	error = setup_xpm(c, &c->north, c->tex.n);
+	error = setup_xpm(c, &c->east, c->tex.ea);
+	error = setup_xpm(c, &c->south, c->tex.s);
+	error = setup_xpm(c, &c->west, c->tex.we);
+	error = setup_xpm(c, &c->doors, c->tex.door);
+	return (error);
 }
 
 void	extract_texture(char *line, t_tex *texture)
