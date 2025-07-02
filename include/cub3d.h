@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 16:59:05 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/02 17:08:49 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,8 @@
 
 # define TILE_SIZE 1
 
-# define IS_HUD 1
+# define IS_HUD 0
+# define IS_MAP 1
 
 extern const char	*g_digit[10];
 

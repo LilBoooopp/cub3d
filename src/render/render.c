@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/18 23:49:08 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/02 17:07:43 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	*render_thread(void *arg)
 
 int	render(t_cub *cub)
 {
-	pthread_t		threads[NUM_THREADS + 1];
+	pthread_t		threads[NUM_THREADS + IS_MAP];
 	t_thrdata		td[NUM_THREADS];
 	t_mapdata		md;
 	t_img			back;
@@ -88,15 +88,17 @@ int	render(t_cub *cub)
 	md.cub = cub;
 	md.img = make_image(cub,
 			set_vec2(cub->map->screenx, cub->map->screeny), 0x00000000);
-	create_map_thread(cub, &threads[0], &md);
+	if (IS_MAP)
+		create_map_thread(cub, &threads[0], &md);
 	args = setup_args(cub, &back, threads, td);
 	args.slice = WIN_WIDTH / NUM_THREADS;
 	spawn_rays(&args);
-	join_threads(args.threads, NUM_THREADS + 1);
+	join_threads(args.threads, NUM_THREADS + IS_MAP);
 	draw_image_transparent(&md.img, &back,
 		set_vec2((double)WIN_WIDTH - md.img.size.x, 0));
 	mlx_destroy_image(cub->mlx, md.img.img);
-	draw_hud(cub, &back);
+	if (IS_HUD)
+		draw_hud(cub, &back);
 	finalize_back_buffer(cub, &back);
 	return (0);
 }

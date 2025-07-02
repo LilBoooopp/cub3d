@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:27:36 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 16:12:16 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/02 17:13:24 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	free_anim(t_cub *c)
 int	close_window(t_cub *cub)
 {
 	destroy_textures(cub);
-	free_anim(cub);
+	if (IS_HUD)
+		free_anim(cub);
 	free_map(cub);
 	mlx_destroy_window(cub->mlx, cub->mlx_win);
 	mlx_destroy_display(cub->mlx);
