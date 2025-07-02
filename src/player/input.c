@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:25 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 14:29:46 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:52:37 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ void	smooth_input(t_cub *cub)
 		rotate(&cub->player, -rot);
 	if (cub->keys[KEY_RIGHT])
 		rotate(&cub->player, rot);
-	// printf("player x: %f, y: %f\n", cub->player.pos.x, cub->player.pos.y);
-	// printf("player dirx: %f, diry: %f\n", cub->player.dir.x, cub->player.dir.y);
-	// printf("player planex: %f, planey: %f\n", cub->player.plane.x, 
-	// 	cub->player.plane.y);
 }
 
 int	handle_keyrelease(int kc, t_cub *cub)
@@ -83,7 +79,3 @@ int	handle_input(int keycode, t_cub *cub)
 		ft_print_chartable(cub->map->map);
 	return (0);
 }
-// printf("player x: %f, y: %f\n", cub->player.pos.x, cub->player.pos.y);
-	// printf("player dirx: %f, diry: %f\n", cub->player.dir.x, cub->player.dir.y);
-	// printf("player planex: %f, planey: %f\n", cub->player.plane.x, 
-	// 	cub->player.plane.y);

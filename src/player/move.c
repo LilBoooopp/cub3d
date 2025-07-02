@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 19:41:35 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/26 16:40:41 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:53:11 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ void	move_forward(t_player *p, t_map *m, double spd)
 
 	n.x = p->pos.x + p->dir.x * spd;
 	n.y = p->pos.y + p->dir.y * spd;
-	if (m->map[(int)p->pos.y][(int)n.x] == '0' || m->map[(int)p->pos.y][(int)n.x] == 'O')
+	if (m->map[(int)p->pos.y][(int)n.x] == '0'
+		|| m->map[(int)p->pos.y][(int)n.x] == 'O')
 		p->pos.x = n.x / TILE_SIZE;
-	if (m->map[(int)n.y][(int)p->pos.x] == '0' || m->map[(int)n.y][(int)p->pos.x] == 'O')
+	if (m->map[(int)n.y][(int)p->pos.x] == '0'
+		|| m->map[(int)n.y][(int)p->pos.x] == 'O')
 		p->pos.y = n.y / TILE_SIZE;
 }
 
@@ -30,9 +32,11 @@ void	move_backward(t_player *p, t_map *m, double spd)
 
 	n.x = p->pos.x - p->dir.x * spd;
 	n.y = p->pos.y - p->dir.y * spd;
-	if (m->map[(int)p->pos.y][(int)n.x] == '0' || m->map[(int)p->pos.y][(int)n.x] == 'O')
+	if (m->map[(int)p->pos.y][(int)n.x] == '0'
+		|| m->map[(int)p->pos.y][(int)n.x] == 'O')
 		p->pos.x = n.x / TILE_SIZE;
-	if (m->map[(int)n.y][(int)p->pos.x] == '0' || m->map[(int)n.y][(int)p->pos.x] == 'O')
+	if (m->map[(int)n.y][(int)p->pos.x] == '0'
+		|| m->map[(int)n.y][(int)p->pos.x] == 'O')
 		p->pos.y = n.y / TILE_SIZE;
 }
 
@@ -42,9 +46,11 @@ void	move_right(t_player *p, t_map *m, double spd)
 
 	n.x = p->pos.x - p->dir.y * spd;
 	n.y = p->pos.y + p->dir.x * spd;
-	if (m->map[(int)p->pos.y][(int)n.x] == '0' || m->map[(int)p->pos.y][(int)n.x] == 'O')
+	if (m->map[(int)p->pos.y][(int)n.x] == '0'
+		|| m->map[(int)p->pos.y][(int)n.x] == 'O')
 		p->pos.x = n.x / TILE_SIZE;
-	if (m->map[(int)n.y][(int)p->pos.x] == '0' || m->map[(int)n.y][(int)p->pos.x] == 'O')
+	if (m->map[(int)n.y][(int)p->pos.x] == '0'
+		|| m->map[(int)n.y][(int)p->pos.x] == 'O')
 		p->pos.y = n.y / TILE_SIZE;
 }
 
@@ -54,9 +60,11 @@ void	move_left(t_player *p, t_map *m, double spd)
 
 	n.x = p->pos.x + p->dir.y * spd;
 	n.y = p->pos.y - p->dir.x * spd;
-	if (m->map[(int)p->pos.y][(int)n.x] == '0' || m->map[(int)p->pos.y][(int)n.x] == 'O')
+	if (m->map[(int)p->pos.y][(int)n.x] == '0'
+		|| m->map[(int)p->pos.y][(int)n.x] == 'O')
 		p->pos.x = n.x / TILE_SIZE;
-	if (m->map[(int)n.y][(int)p->pos.x] == '0' || m->map[(int)n.y][(int)p->pos.x] == 'O')
+	if (m->map[(int)n.y][(int)p->pos.x] == '0'
+		|| m->map[(int)n.y][(int)p->pos.x] == 'O')
 		p->pos.y = n.y / TILE_SIZE;
 }
 

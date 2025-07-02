@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:35:53 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/21 15:25:18 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:58:23 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	is_tile_visible(t_map *m, t_vec2 pl_pos, t_vec2i tile, t_vec2 pl_dir)
 	dir.y /= steps;
 	pos = pl_pos;
 	i = 0;
-	while (i < steps)
+	while (i++ < steps)
 	{
 		if ((int)pos.x == tile.x && (int)pos.y == tile.y)
 			return (true);
@@ -49,7 +49,6 @@ bool	is_tile_visible(t_map *m, t_vec2 pl_pos, t_vec2i tile, t_vec2 pl_dir)
 			return ((int)pos.x == tile.x && (int)pos.y == tile.y);
 		pos.x += dir.x;
 		pos.y += dir.y;
-		i++;
 	}
 	return (true);
 }

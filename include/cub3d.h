@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 16:12:22 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:59:05 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@
 # define WIN_HEIGHT 1080
 
 # ifndef NUM_THREADS
-#  define NUM_THREADS 15
+#  define NUM_THREADS 1
 # endif
 
 # define MAP_WALL 0xFFb08243
@@ -116,6 +116,8 @@
 # define ROT_SPEED 2.0
 
 # define TILE_SIZE 1
+
+# define IS_HUD 1
 
 extern const char	*g_digit[10];
 
