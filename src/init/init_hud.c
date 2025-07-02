@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:50:53 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 16:04:28 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:40:42 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	free_some_anim(t_cub *cub, t_hud *hud, int i)
 {
-	while (i > 6)
+	while (i > 5)
 	{
 		mlx_destroy_image(cub->mlx, hud->anim_reload[i - 6].img);
 		i--;
