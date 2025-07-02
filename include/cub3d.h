@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 15:41:55 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:12:22 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -394,6 +394,7 @@ bool			is_tile_visible(t_map *m, t_vec2 pl_pos, t_vec2i tile, t_vec2 pl_dir);
 int				close_window(t_cub *cub);
 void			free_map(t_cub *cub);
 void			free_xpm(t_cub *c, int error);
+void			error_msg(char *reason);
 int				is_in_bounds(t_img *img, t_vec2 point);
 t_vec2			fix_pos(t_cub *cub, t_img *dst, t_vec2 pos);
 t_vec2			get_center(t_img *img);

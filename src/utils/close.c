@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:27:36 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 15:45:22 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:12:16 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ void	free_xpm(t_cub *c, int error)
 	{
 		free(c->hud.anim_shoot);
 		free(c->hud.anim_reload);
+		error_msg("Failed to load an animation xpm file");
 	}
 	destroy_textures(c);
 	free_map(c);
-	mlx_destroy_window(c->mlx, c->mlx_win);
 	mlx_destroy_display(c->mlx);
 	free(c->mlx);
+	if (error != 1)
+		error_msg("Failed to load an xpm file");
 	exit(0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:50:53 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 15:56:09 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/02 16:04:28 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,18 @@
 
 static void	free_some_anim(t_cub *cub, t_hud *hud, int i)
 {
-	while (i-- > 6)
+	while (i > 6)
+	{
 		mlx_destroy_image(cub->mlx, hud->anim_reload[i - 6].img);
-	while (i-- > 1)
+		i--;
+	}
+	while (i > 1)
+	{
 		mlx_destroy_image(cub->mlx, hud->anim_shoot[i - 2].img);
-	mlx_destroy_image(cub->mlx, hud->anim_idle.img);
+		i--;
+	}
+	if (i == 1)
+		mlx_destroy_image(cub->mlx, hud->anim_idle.img);
 }
 
 static int	pick_sprite_anim(t_cub *cub, t_hud *hud, char *file, int i)
@@ -28,11 +35,7 @@ static int	pick_sprite_anim(t_cub *cub, t_hud *hud, char *file, int i)
 
 	error = setup_xpm(cub, &tmp, file);
 	if (error)
-	{
-		mlx_destroy_image(cub->mlx, tmp.img);
-		free_some_anim(cub, hud, i);
-		return (1);
-	}
+		return (free_some_anim(cub, hud, i - 1), 1);
 	if (i == 1)
 		hud->anim_idle = scale_size(cub, tmp, 3);
 	else if (i < 6)
