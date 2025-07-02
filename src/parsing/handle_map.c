@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/20 13:38:56 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 12:02:56 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	flood_fill_masked(t_map map, int x, int y, char **mask)
 	if (x < 0 || y < 0 || x == map.sizex || y == map.sizey)
 		return (-1);
 	c = map.map[y][x];
-	if (c == ' ' || c == '\0')
+	if (c == '\0')
 		return (-1);
 	if (c == '1' || mask[y][x] == 'x')
 		return (0);
@@ -52,7 +52,12 @@ char	**build_filtered_map(char **original, char **mask
 		while (x < width)
 		{
 			if (mask[y][x] == 'x')
-				filtered[y][x] = original[y][x];
+			{
+				if (original[y][x] != ' ')
+					filtered[y][x] = original[y][x];
+				else
+					filtered[y][x] = '0';
+			}
 			else
 				filtered[y][x] = '1';
 			x ++;
@@ -83,6 +88,7 @@ int	check_map_flood(t_map *map, int max_width)
 	{
 		ft_free_chartable(map->map);
 		ft_free_chartable(mask);
+		printf("error map\n");
 		return (1);
 	}
 	tmp = build_filtered_map(map->map, mask, map->sizex, map->sizey);

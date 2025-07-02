@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/06/20 13:39:33 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 11:54:47 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,11 @@ t_map	*openfiles(char *name_files, t_tex *texture)
 		line = get_next_line(fd);
 	}
 	temp = line;
-	if (texture_check(texture, fd, temp))
+	if (texture->full < 6 || texture_check(texture, fd, temp))
+	{
+		printf("erreur texture\n");
 		return (NULL);
+	}
 	return (read_map(fd, temp, 0, 0));
 }
 
