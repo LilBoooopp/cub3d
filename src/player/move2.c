@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:55:03 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/26 19:15:08 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 17:04:49 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,19 @@ int	mouse_press_handler(int button, int x, int y, void *param)
 	(void)y;
 	cub = (t_cub *)param;
 	if (button == KEY_LEFT_CLICK)
-		if (cub->hud.anim_state == IDLE)
+	{
+		if (cub->player.near_door == 1)
 		{
-			set_anim_state(cub, SHOOT);
-			if (cub->player.near_door == 1)
-			{
-				cub->map->map[cub->player.door_y][cub->player.door_x] = 'O';
-				cub->player.near_door = 0;
-			}
-			else if (cub->player.near_c_door == 1)
-			{
-				cub->map->map[cub->player.door_y][cub->player.door_x] = 'P';
-				cub->player.near_c_door = 0;
-			}
+			cub->map->map[cub->player.door_y][cub->player.door_x] = 'O';
+			cub->player.near_door = 0;
 		}
+		else if (cub->player.near_c_door == 1)
+		{
+			cub->map->map[cub->player.door_y][cub->player.door_x] = 'P';
+			cub->player.near_c_door = 0;
+		}
+		if (cub->hud.anim_state == IDLE && IS_HUD)
+			set_anim_state(cub, SHOOT);
+	}
 	return (0);
 }

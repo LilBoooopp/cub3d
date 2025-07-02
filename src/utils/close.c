@@ -3,14 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:27:36 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/20 11:58:54 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 17:13:24 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	destroy_textures(t_cub *c)
+{
+	if (c->north.img != NULL)
+		mlx_destroy_image(c->mlx, c->north.img);
+	if (c->east.img != NULL)
+		mlx_destroy_image(c->mlx, c->east.img);
+	if (c->south.img != NULL)
+		mlx_destroy_image(c->mlx, c->south.img);
+	if (c->west.img != NULL)
+		mlx_destroy_image(c->mlx, c->west.img);
+	if (c->doors.img != NULL)
+		mlx_destroy_image(c->mlx, c->doors.img);
+	free(c->tex.we);
+	free(c->tex.n);
+	free(c->tex.s);
+	free(c->tex.ea);
+	free(c->tex.door);
+}
+
+void	free_xpm(t_cub *c, int error)
+{
+	if (error == 1)
+	{
+		free(c->hud.anim_shoot);
+		free(c->hud.anim_reload);
+		error_msg("Failed to load an animation xpm file");
+	}
+	destroy_textures(c);
+	free_map(c);
+	mlx_destroy_display(c->mlx);
+	free(c->mlx);
+	if (error != 1)
+		error_msg("Failed to load an xpm file");
+	exit(0);
+}
 
 void	free_anim(t_cub *c)
 {
@@ -27,32 +63,12 @@ void	free_anim(t_cub *c)
 	free(c->hud.anim_shoot);
 }
 
-static void	destroy_textures(t_cub *c)
-{
-	mlx_destroy_image(c->mlx, c->north.img);
-	mlx_destroy_image(c->mlx, c->east.img);
-	mlx_destroy_image(c->mlx, c->south.img);
-	mlx_destroy_image(c->mlx, c->west.img);
-	mlx_destroy_image(c->mlx, c->doors.img);
-	free(c->tex.we);
-	free(c->tex.n);
-	free(c->tex.s);
-	free(c->tex.ea);
-	free(c->tex.door);
-	free_anim(c);
-}
-
 int	close_window(t_cub *cub)
 {
-	int	y;
-
 	destroy_textures(cub);
-	ft_free_chartable(cub->map->map);
-	y = -1;
-	while (++y < cub->map->sizey)
-		free(cub->map->explored[y]);
-	free(cub->map->explored);
-	free(cub->map);
+	if (IS_HUD)
+		free_anim(cub);
+	free_map(cub);
 	mlx_destroy_window(cub->mlx, cub->mlx_win);
 	mlx_destroy_display(cub->mlx);
 	free(cub->mlx);

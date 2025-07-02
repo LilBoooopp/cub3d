@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:43:08 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 17:39:15 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 18:00:57 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,13 @@ int	init(t_cub *cub, char **v)
 	cub->ismap = -1;
 	cub->player.near_door = 0;
 	cub->player.near_c_door = 0;
-	open_xpm(cub);
+	if (open_xpm(cub))
+		return (free_xpm(cub, 0), 1);
 	set_false(cub->keys);
 	init_player(&cub->player, cub->map);
-	init_hud(cub, &cub->hud);
+	if (IS_HUD)
+		if (init_hud(cub, &cub->hud))
+			return (free_xpm(cub, 1), 1);
 	cub->mlx_win = mlx_new_window(cub->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	return (0);
 }

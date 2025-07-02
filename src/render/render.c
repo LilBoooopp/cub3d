@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:59:10 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 16:37:28 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 18:01:13 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,12 @@ int	render(t_cub *cub)
 	args.slice = WIN_WIDTH / NUM_THREADS;
 	spawn_rays(&args);
 	join_threads(args.threads, NUM_THREADS + 1);
-	draw_image_transparent(&md.img, &back,
-		set_vec2((double)WIN_WIDTH - md.img.size.x, 0));
+	if (IS_MAP)
+		draw_image_transparent(&md.img, &back,
+			set_vec2((double)WIN_WIDTH - md.img.size.x, 0));
 	mlx_destroy_image(cub->mlx, md.img.img);
-	draw_hud(cub, &back);
+	if (IS_HUD)
+		draw_hud(cub, &back);
 	finalize_back_buffer(cub, &back);
 	return (0);
 }

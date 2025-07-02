@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/26 19:45:31 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/02 17:16:58 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	perform_dda(t_raycast *ray, t_cub *cub)
 	ray->hit = 0;
 	while (!ray->hit)
 	{
-		if ( cub->map->map[ray->map.y][ray->map.x] == 'O')
+		if (cub->map->map[ray->map.y][ray->map.x] == 'O')
 		{
 			cub->player.door_x = ray->map.x;
 			cub->player.door_y = ray->map.y;

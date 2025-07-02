@@ -69,14 +69,14 @@ RENDER_DIR = src/render/
 RENDER_SRC =  \
 	debug.c \
 	debug_rays.c \
+	doors.c \
 	font.c \
 	menu.c \
 	ray_utils.c \
 	rays.c \
 	render.c \
 	texture.c \
-	update.c \
-	doors.c
+	update.c
 RENDER = $(addprefix $(RENDER_DIR), $(RENDER_SRC))
 
 ANIM_DIR = src/render/anim/
@@ -93,6 +93,7 @@ MAP = $(addprefix $(MAP_DIR), $(MAP_SRC))
 UTILS_DIR = src/utils/
 UTILS_SRC =  \
 	close.c \
+	free.c \
 	img_math.c \
 	map_math.c \
 	math_vec.c \
