@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 20:58:11 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/03 13:38:41 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/02 20:20:36 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,18 @@ const char	*g_digit[10] = {
 void	draw_px(t_cub *c, int x, int y)
 {
 	int	col;
+	int	i;
+	int	j;
 
 	col = 0x000000;
-	mlx_pixel_put(c->mlx, c->mlx_win, x, y, col);
+	i = -1;
+	while (++i < 2){
+		j = -1;
+		while (++j < 2)
+		{
+			mlx_pixel_put(c->mlx, c->mlx_win, x + j, y + i, col);
+		}
+	}
 }
 
 void	draw_digit(t_cub *c, char d, t_vec2i oi, int s)
