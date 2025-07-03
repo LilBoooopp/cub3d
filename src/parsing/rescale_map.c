@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:14:20 by pbuet             #+#    #+#             */
-/*   Updated: 2025/07/02 17:40:37 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/03 13:51:45 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_adjacent_to_non_wall(char **map, int y, int x, t_map strmap)
 
 	if (create_directions(&dir))
 		return (2);
-	non_walls = "0NSEW";
+	non_walls = "0NSEWPO";
 	i = 0;
 	while (i < 8)
 	{

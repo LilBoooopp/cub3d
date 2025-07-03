@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/03 12:38:02 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/03 13:48:51 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,13 @@
 # define WIN_HEIGHT 1080
 
 # ifndef NUM_THREADS
-#  define NUM_THREADS 15
+#  define NUM_THREADS 1
 # endif
 
 # define MAP_WALL 0xFFb08243
 # define MAP_EMPTY 0xFFdeda68
 
-# define MOVE_SPEED 4.0
+# define MOVE_SPEED 6.0
 # define ROT_SPEED 2.0
 
 # define TILE_SIZE 1
