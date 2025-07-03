@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 00:45:41 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/03 14:00:17 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/03 18:13:30 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ void	perform_dda(t_raycast *ray, t_cub *cub)
 			cub->player.near_c_door = 1;
 		}
 		help_dda(ray);
-		if ((ray->side == 0 && ray->side_dist.x > MAX_RAY_DIST)
-			|| (ray->side == 1 && ray->side_dist.y > MAX_RAY_DIST))
-			break ;
 		if (ray->map.x < 0 || ray->map.x >= cub->map->sizex
 			|| ray->map.y < 0 || ray->map.y >= cub->map->sizey)
 		{
