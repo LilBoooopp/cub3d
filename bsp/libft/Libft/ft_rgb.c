@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 18:32:33 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/30 12:21:21 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/03 14:08:45 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	parse_rgbint(const char *rgb, int *r, int *g, int *b)
 			vals[i] = vals[i] * 10 + (*rgb++ - '0');
 		if (*rgb == ',' || *rgb == ' ')
 			rgb++;
-		i++;		
+		i++;
 	}
 	*r = vals[0];
 	*g = vals[1];
