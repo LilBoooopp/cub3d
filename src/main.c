@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:55:19 by cbopp             #+#    #+#             */
-/*   Updated: 2025/06/19 17:01:26 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/03 12:30:29 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ int	main(int ac, char **av)
 	t_cub	cub;
 
 	if (ac != 2)
+	{
+		errno = EINVAL;
+		error_msg("Only 1 arguement is permitted");
 		return (1);
+	}
 	ft_bzero(&cub, sizeof(cub));
 	if (init(&cub, av))
 		return (1);

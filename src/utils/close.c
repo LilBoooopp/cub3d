@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:27:36 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 17:13:24 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/03 12:25:09 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	destroy_textures(t_cub *c)
 	free(c->tex.s);
 	free(c->tex.ea);
 	free(c->tex.door);
+	free(c->tex.f);
+	free(c->tex.c);
 }
 
 void	free_xpm(t_cub *c, int error)
@@ -45,7 +47,7 @@ void	free_xpm(t_cub *c, int error)
 	free(c->mlx);
 	if (error != 1)
 		error_msg("Failed to load an xpm file");
-	exit(0);
+	exit(1);
 }
 
 void	free_anim(t_cub *c)

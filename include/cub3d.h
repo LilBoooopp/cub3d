@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 19:54:16 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/03 12:38:02 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,13 @@
 # include "../libft/libft.h"
 # include <sys/time.h>
 # include <pthread.h>
+# include <errno.h>
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 1080
 
 # ifndef NUM_THREADS
-#  define NUM_THREADS 1
+#  define NUM_THREADS 15
 # endif
 
 # define MAP_WALL 0xFFb08243
@@ -117,8 +118,8 @@
 
 # define TILE_SIZE 1
 
-# define IS_HUD 0
-# define IS_MAP 0
+# define IS_HUD 1
+# define IS_MAP 1
 
 extern const char	*g_digit[10];
 

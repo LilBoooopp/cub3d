@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/02 21:09:59 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/03 12:32:24 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	check_file(char *name_files, char *extension, size_t size, int clos)
 	check = ft_strrchr(name_files, '.');
 	if ((ft_strncmp(check, extension, size) == 1) || ft_strlen(check) != size)
 	{
+		errno = EINVAL;
 		error_msg("Wrong extention name");
 		return (-1);
 	}
@@ -88,7 +89,8 @@ t_map	*openfiles(char *name_files, t_tex *texture)
 	temp = line;
 	if (texture->full != 6)
 	{
-		error_msg("Texture error\n");
+		errno = EINVAL;
+		error_msg("Texture error");
 		return (NULL);
 	}
 	if (texture_check(texture, fd, temp))
