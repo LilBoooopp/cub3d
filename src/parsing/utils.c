@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:33:13 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/02 21:09:40 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/03 18:08:11 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ t_node	*ft_new(char *content)
 {
 	t_node	*new;
 
+	if (content == NULL)
+		return(NULL);
 	new = malloc(sizeof(t_node));
 	if (new == NULL)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:46:15 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/02 21:07:26 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/03 18:00:29 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int		ft_size(t_node *lst);
 char	**create_empty_map(int height, int width);
 int		search_player(t_map *map, int end);
 char	**rescale(t_map *strmap);
-void 	free_texture(t_cub *cub);
+void	free_texture(t_cub *cub);
 void	close_gnl(char *line, int fd);
 int		node_map(t_map *map, int max_width, t_node *lst_map, int size);
 void	ini_texture(t_tex *texture);
 int		texture_check(t_tex *texture, int fd, char *temp);
 int		check_file(char *name_files, char *extension, size_t size, int clos);
-int	create_directions(t_directions	*dir);
+int		create_directions(t_directions	*dir);
 
 #endif
