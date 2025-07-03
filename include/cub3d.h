@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:47:37 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/03 18:02:12 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/07/03 19:13:38 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,6 @@
 # define ROT_SPEED 2.0
 
 # define TILE_SIZE 1
-
-# define MAX_RAY_DIST 200.0f
 
 # define IS_HUD 1
 # define IS_MAP 1
