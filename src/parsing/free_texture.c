@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:23:19 by pbuet             #+#    #+#             */
-/*   Updated: 2025/07/02 19:49:09 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/03 13:24:12 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,21 @@ int	rgb_check(t_tex *texture)
 	int	g;
 	int	b;
 
+	r = 0;
+	g = 0;
+	b = 0;
 	if (ft_isalphastr(texture->c))
 		return (1);
 	if (ft_isalphastr(texture->f))
 		return (1);
-	parse_rgbint(texture->c, &r, &g, &b);
+	if (parse_rgbint(texture->c, &r, &g, &b))
+		return (1);
 	if ((r > 255 || r < 0)
 		|| (g > 255 || g < 0)
 		|| (b > 255 || b < 0))
 		return (1);
-	parse_rgbint(texture->f, &r, &g, &b);
+	if (parse_rgbint(texture->f, &r, &g, &b))
+		return (1);
 	if ((r > 255 || r < 0)
 		|| (g > 255 || g < 0)
 		|| (b > 255 || b < 0))
