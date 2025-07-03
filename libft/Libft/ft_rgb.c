@@ -6,30 +6,60 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 18:32:33 by cbopp             #+#    #+#             */
-/*   Updated: 2025/05/30 12:21:21 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/03 13:09:18 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void	parse_rgbint(const char *rgb, int *r, int *g, int *b)
+static int	parse_rgb_component(const char **rgb, int *val)
+{
+	int	res;
+
+	res = 0;
+	while (**rgb == ' ')
+		(*rgb)++;
+	if (**rgb == '-' || **rgb == '\0')
+		return (1);
+	if (**rgb < '0' || **rgb > '9')
+		return (1);
+	while (**rgb >= '0' && **rgb <= '9')
+	{
+		res = res * 10 + (**rgb - '0');
+		(*rgb)++;
+	}
+	while (**rgb == ' ')
+		(*rgb)++;
+	*val = res;
+	return (0);
+}
+
+int	parse_rgbint(const char *rgb, int *r, int *g, int *b)
 {
 	int	i;
-	int	vals[3];
+	int	rgb_vals[3];
 
 	i = 0;
 	while (i < 3)
 	{
-		vals[i] = 0;
-		while (*rgb >= '0' && *rgb <= '9')
-			vals[i] = vals[i] * 10 + (*rgb++ - '0');
-		if (*rgb == ',' || *rgb == ' ')
+		if (parse_rgb_component(&rgb, &rgb_vals[i]))
+			return (1);
+		if (i < 2)
+		{
+			if (*rgb != ',')
+				return (1);
 			rgb++;
-		i++;		
+		}
+		i++;
 	}
-	*r = vals[0];
-	*g = vals[1];
-	*b = vals[2];
+	while (*rgb == ' ')
+		rgb++;
+	if (*rgb != '\0')
+		return (1);
+	*r = rgb_vals[0];
+	*g = rgb_vals[1];
+	*b = rgb_vals[2];
+	return (0);
 }
 
 void	parse_rgbhex(const char *rgb, int *r, int *g, int *b)

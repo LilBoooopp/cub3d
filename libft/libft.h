@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:27:54 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/07/02 19:17:52 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/07/03 13:10:06 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ t_list	*ft_lstnew(void *content);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 void	parse_rgbhex(const char *rgb, int *r, int *g, int *b);
-void	parse_rgbint(const char *rgb, int *r, int *g, int *b);
+int		parse_rgbint(const char *rgb, int *r, int *g, int *b);
 
 //-------------------------------- PRINTF --------------------------------------
 
