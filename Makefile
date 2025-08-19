@@ -1,6 +1,6 @@
 #───────────────────────────  PROJECT BASICS  ────────────────────────────────#
 NAME = cub3d
-CC   = cc
+CC   = gcc
 INC = include
 RM   = rm -rf
 FLAGS = -Werror -Wextra -Wall -g -I$(INC) #-fsanitize=address

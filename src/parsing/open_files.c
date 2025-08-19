@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/03 18:02:53 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/08/19 17:47:23 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int	check_file(char *name_files, char *extension, size_t size, int clos)
 	int		fd;
 
 	check = ft_strrchr(name_files, '.');
-	if (check && ((ft_strncmp(check, extension, size) == 1) || ft_strlen(check) != size))
+	if (check && ((ft_strncmp(check, extension, size) == 1)
+			|| ft_strlen(check) != size))
 	{
 		errno = EINVAL;
 		error_msg("Wrong extention name");

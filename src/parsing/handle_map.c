@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/03 18:11:59 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/08/19 17:46:35 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ t_map	*tab_map(t_node *lst_map, int max_width)
 	if (size < 3)
 	{
 		error_msg("map size invalid");
-		return(NULL);
+		return (NULL);
 	}
 	map = malloc(sizeof(t_map));
 	map->map = malloc(sizeof(char *) * (size + 1));
