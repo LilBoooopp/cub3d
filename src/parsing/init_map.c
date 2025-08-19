@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:47:45 by pbuet             #+#    #+#             */
-/*   Updated: 2025/07/02 17:26:20 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/08/19 18:52:43 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	free_node(t_node *lst_map)
 {
 	t_node	*last;
 
+	if (lst_map == NULL)
+		return (0);
 	while (lst_map->next != NULL)
 	{
 		last = lst_map;
@@ -23,6 +25,8 @@ int	free_node(t_node *lst_map)
 		free(last->content);
 		free(last);
 	}
+	free(lst_map->content);
+	free(lst_map);
 	return (1);
 }
 

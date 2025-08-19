@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/08/19 17:46:35 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/08/19 18:52:28 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,15 @@ int	check_map_flood(t_map *map, int max_width)
 	char	**mask;
 
 	map->sizex = max_width;
-	if (search_player(map, 0) < 0)
-	{
-		error_msg("Invalid map\n");
-		return (1);
-	}
 	mask = create_empty_map(map->sizey, map->sizex);
 	if (!mask)
 		return (1);
-	if (flood_fill_masked(map, map->playerx, map->playery, mask) < 0)
+	if ((search_player(map, 0) < 0)
+		|| flood_fill_masked(map, map->playerx, map->playery, mask) < 0)
 	{
 		ft_free_chartable(map->map);
 		ft_free_chartable(mask);
-		printf("error map\n");
+		error_msg("error map");
 		return (1);
 	}
 	tmp = build_filtered_map(map->map, mask, map->sizex, map->sizey);
@@ -105,6 +101,7 @@ t_map	*tab_map(t_node *lst_map, int max_width)
 	if (size < 3)
 	{
 		error_msg("map size invalid");
+		free_node(lst_map);
 		return (NULL);
 	}
 	map = malloc(sizeof(t_map));

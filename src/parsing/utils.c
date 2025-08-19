@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:33:13 by plbuet            #+#    #+#             */
-/*   Updated: 2025/08/19 17:47:13 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/08/19 18:48:44 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int	find_char(t_map *map, int x, int y, int end)
 	}
 	else if (map->map[y][x] != '0' && map->map[y][x] != '1' &&
 		map->map[y][x] != ' ' && map->map[y][x] != 'P')
-	{
-		error_msg("Invalide char\n");
 		return (2);
-	}
 	return (0);
 }
 
@@ -39,6 +36,7 @@ int	search_player(t_map *map, int end)
 	int	y;
 	int	x;
 	int	find;
+	int	isfind;
 
 	x = 0;
 	y = 0;
@@ -48,8 +46,11 @@ int	search_player(t_map *map, int end)
 		x = 0;
 		while (x < map->sizex)
 		{
-			if (find_char(map, x, y, end))
+			isfind = find_char(map, x, y, end);
+			if (isfind == 1)
 				find ++;
+			else if (isfind == 2)
+				return (-1);
 			x++;
 		}
 		y++;

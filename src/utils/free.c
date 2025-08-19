@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 15:30:40 by cbopp             #+#    #+#             */
-/*   Updated: 2025/07/02 19:39:42 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/08/19 18:31:30 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	error_msg(char *reason)
 {
 	printf("Error\n");
-	perror(reason);
+	printf("%s\n", reason);
 }
 
 void	free_map(t_cub *cub)

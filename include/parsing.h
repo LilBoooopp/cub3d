@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:46:15 by plbuet            #+#    #+#             */
-/*   Updated: 2025/07/03 18:00:29 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/08/19 18:18:12 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void	ini_texture(t_tex *texture);
 int		texture_check(t_tex *texture, int fd, char *temp);
 int		check_file(char *name_files, char *extension, size_t size, int clos);
 int		create_directions(t_directions	*dir);
+int		free_node(t_node *lst_map);
 
 #endif
