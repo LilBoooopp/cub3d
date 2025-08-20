@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/08/20 17:11:32 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/08/20 17:31:38 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,5 @@ t_map	*read_map(int fd, char *line, int len, int max_width)
 		line = get_next_line(fd);
 	}
 	close_gnl(line, fd);
-	close(fd);
 	return (tab_map(map_list, max_width));
 }

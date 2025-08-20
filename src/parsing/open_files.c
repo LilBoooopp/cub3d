@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:27:03 by plbuet            #+#    #+#             */
-/*   Updated: 2025/08/20 17:12:11 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/08/20 17:36:23 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_map	*openfiles(char *name_files, t_tex *texture)
 		error_msg("Texture error");
 		return (NULL);
 	}
-	if (texture_check(texture, fd, temp))
+	if (texture_check(texture, fd, temp) || checkline(line))
 		return (NULL);
 	return (read_map(fd, temp, 0, ft_strlen(line)));
 }

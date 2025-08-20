@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:23:19 by pbuet             #+#    #+#             */
-/*   Updated: 2025/07/03 13:24:12 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/08/20 17:36:00 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	close_gnl(char *line, int fd)
 		line = get_next_line(fd);
 	}
 	free(line);
+	close(fd);
 }
 
 int	rgb_check(t_tex *texture)
@@ -87,4 +88,14 @@ int	texture_check(t_tex *texture, int fd, char *temp)
 		return (1);
 	}
 	return (0);
+}
+
+int	checkline(char *line)
+{
+	if (!line)
+	{
+		error_msg("empty map");
+		return (1);
+	}
+	return(0);
 }

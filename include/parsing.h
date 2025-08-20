@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:46:15 by plbuet            #+#    #+#             */
-/*   Updated: 2025/08/19 18:18:12 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/08/20 17:35:55 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int		texture_check(t_tex *texture, int fd, char *temp);
 int		check_file(char *name_files, char *extension, size_t size, int clos);
 int		create_directions(t_directions	*dir);
 int		free_node(t_node *lst_map);
+int		checkline(char *line);
 
 #endif
