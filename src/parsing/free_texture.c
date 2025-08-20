@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:23:19 by pbuet             #+#    #+#             */
-/*   Updated: 2025/08/20 17:46:05 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/08/20 17:53:55 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	close_gnl(char *line, int fd)
 	if (flag == 1)
 	{
 		error_msg("character after the map");
-		return(1);
+		return (1);
 	}
 	return (0);
 }
@@ -108,5 +108,5 @@ int	checkline(char *line)
 		error_msg("empty map");
 		return (1);
 	}
-	return(0);
+	return (0);
 }
