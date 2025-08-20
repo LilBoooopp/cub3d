@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/08/19 18:52:28 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/08/20 15:50:45 by pbuet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ t_map	*read_map(int fd, char *line, int len, int max_width)
 	free(line);
 	last = map_list;
 	line = get_next_line(fd);
-	while (line)
+	while (line && (ft_strncmp("\n", line, 1) !=0))
 	{
 		len = ft_strlen(line);
 		if (len > max_width)
@@ -141,7 +141,7 @@ t_map	*read_map(int fd, char *line, int len, int max_width)
 		last = new;
 		line = get_next_line(fd);
 	}
-	free(line);
+	close_gnl(line, fd);
 	close(fd);
 	return (tab_map(map_list, max_width));
 }
