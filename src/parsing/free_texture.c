@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:23:19 by pbuet             #+#    #+#             */
-/*   Updated: 2025/08/20 17:36:00 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/08/20 17:46:05 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,28 @@ void	free_texture(t_cub *c)
 		free(c->tex.c);
 }
 
-void	close_gnl(char *line, int fd)
+int	close_gnl(char *line, int fd)
 {
+	int	flag;
+
+	flag = 0;
 	free(line);
 	line = get_next_line(fd);
 	while (line)
 	{
+		if (ft_strncmp("\n", line, 1) != 0)
+			flag = 1;
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
 	close(fd);
+	if (flag == 1)
+	{
+		error_msg("character after the map");
+		return(1);
+	}
+	return (0);
 }
 
 int	rgb_check(t_tex *texture)
