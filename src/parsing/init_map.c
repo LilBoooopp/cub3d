@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:47:45 by pbuet             #+#    #+#             */
-/*   Updated: 2025/08/20 15:48:51 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/08/20 15:59:13 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	node_map(t_map *map, int max_width, t_node *lst_map, int size)
 	int		i;
 
 	i = 0;
-	while (i < size )
+	while (i < size)
 	{
 		map->map[i] = malloc(sizeof(char) * (max_width + 1));
 		if (!map->map[i])
