@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbuet <pbuet@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:55:03 by cbopp             #+#    #+#             */
-/*   Updated: 2025/08/20 13:12:07 by pbuet            ###   ########.fr       */
+/*   Updated: 2025/08/20 17:52:38 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	mouse_press_handler(int button, int x, int y, void *param)
 	cub = (t_cub *)param;
 	if (button == KEY_LEFT_CLICK)
 	{
-		if (cub->player.near_door == 1)
+		if (cub->player.near_door == 1 && cub->hud.anim_state == IDLE)
 		{
 			cub->map->map[cub->player.door_y][cub->player.door_x] = 'O';
 			cub->player.near_door = 0;
