@@ -6,7 +6,7 @@
 /*   By: cbopp <cbopp@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:11:33 by plbuet            #+#    #+#             */
-/*   Updated: 2025/08/20 15:59:07 by cbopp            ###   ########.fr       */
+/*   Updated: 2025/08/20 17:11:32 by cbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ t_map	*read_map(int fd, char *line, int len, int max_width)
 	while (line && (ft_strncmp("\n", line, 1) != 0))
 	{
 		len = ft_strlen(line);
-		if (len > max_width)
+		if (len >= max_width)
 			max_width = len;
 		new = ft_new(line);
 		if (!new)
